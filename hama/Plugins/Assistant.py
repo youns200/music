@@ -7,9 +7,9 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineQueryResultPhoto, InputTextMessageContent,
                             Message)
 
-from Yukki import (ASSID, ASSISTANT_PREFIX, ASSNAME, BOT_ID, BOT_USERNAME,
+from hama import (ASSID, ASSISTANT_PREFIX, ASSNAME, BOT_ID, BOT_USERNAME,
                    LOG_GROUP_ID, MUSIC_BOT_NAME, SUDOERS, app, userbot)
-from Yukki.Database import (approve_pmpermit, disapprove_pmpermit,
+from hama.Database import (approve_pmpermit, disapprove_pmpermit,
                             is_pmpermit_approved)
 
 __MODULE__ = "Assistant"
