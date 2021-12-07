@@ -8,20 +8,20 @@ from pyrogram import filters
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
-from Yukki import ASSID, BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
-from Yukki import boottime as bot_start_time
-from Yukki import db
-from Yukki.Core.PyTgCalls import Yukki
-from Yukki.Database import (add_nonadmin_chat, add_served_chat,
+from hama import ASSID, BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
+from hama import boottime as bot_start_time
+from hama import db
+from hama.Core.PyTgCalls import hama
+from hama.Database import (add_nonadmin_chat, add_served_chat,
                             blacklisted_chats, get_assistant, get_authuser,
                             get_authuser_names, is_nonadmin_chat,
                             is_served_chat, remove_active_chat,
                             remove_nonadmin_chat, save_assistant)
-from Yukki.Decorators.admins import ActualAdminCB
-from Yukki.Decorators.permission import PermissionCheck
-from Yukki.Inline import (custommarkup, dashmarkup, setting_markup,
+from hama.Decorators.admins import ActualAdminCB
+from hama.Decorators.permission import PermissionCheck
+from hama.Inline import (custommarkup, dashmarkup, setting_markup,
                           start_pannel, usermarkup, volmarkup)
-from Yukki.Utilities.ping import get_readable_time
+from hama.Utilities.ping import get_readable_time
 
 welcome_group = 2
 
@@ -215,7 +215,7 @@ async def start_markup_check(_, CallbackQuery):
         }
         volume = 25
         try:
-            await Yukki.pytgcalls.change_volume_call(c_id, volume)
+            await hama.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
             return await CallbackQuery.answer("No active Group Call...")
@@ -231,7 +231,7 @@ async def start_markup_check(_, CallbackQuery):
         }
         volume = 50
         try:
-            await Yukki.pytgcalls.change_volume_call(c_id, volume)
+            await hama.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
             return await CallbackQuery.answer("No active Group Call...")
@@ -247,7 +247,7 @@ async def start_markup_check(_, CallbackQuery):
         }
         volume = 100
         try:
-            await Yukki.pytgcalls.change_volume_call(c_id, volume)
+            await hama.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
             return await CallbackQuery.answer("No active Group Call...")
@@ -263,7 +263,7 @@ async def start_markup_check(_, CallbackQuery):
         }
         volume = 200
         try:
-            await Yukki.pytgcalls.change_volume_call(c_id, volume)
+            await hama.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
             return await CallbackQuery.answer("No active Group Call...")
@@ -285,7 +285,7 @@ async def start_markup_check(_, CallbackQuery):
             "volume": volume,
         }
         try:
-            await Yukki.pytgcalls.change_volume_call(c_id, volume)
+            await hama.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
             return await CallbackQuery.answer("No active Group Call...")
@@ -307,7 +307,7 @@ async def start_markup_check(_, CallbackQuery):
             "volume": volume,
         }
         try:
-            await Yukki.pytgcalls.change_volume_call(c_id, volume)
+            await hama.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
             return await CallbackQuery.answer("No active Group Call...")
@@ -329,7 +329,7 @@ async def start_markup_check(_, CallbackQuery):
             "volume": volume,
         }
         try:
-            await Yukki.pytgcalls.change_volume_call(c_id, volume)
+            await hama.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
             return await CallbackQuery.answer("No active Group Call...")
@@ -351,7 +351,7 @@ async def start_markup_check(_, CallbackQuery):
             "volume": volume,
         }
         try:
-            await Yukki.pytgcalls.change_volume_call(c_id, volume)
+            await hama.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
             return await CallbackQuery.answer("No active Group Call...")
@@ -373,7 +373,7 @@ async def start_markup_check(_, CallbackQuery):
             "volume": volume,
         }
         try:
-            await Yukki.pytgcalls.change_volume_call(c_id, volume)
+            await hama.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
             return await CallbackQuery.answer("No active Group Call...")
@@ -395,7 +395,7 @@ async def start_markup_check(_, CallbackQuery):
             "volume": volume,
         }
         try:
-            await Yukki.pytgcalls.change_volume_call(c_id, volume)
+            await hama.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("Setting Audio Changes ...")
         except:
             return await CallbackQuery.answer("No active Group Call...")
@@ -458,5 +458,5 @@ async def start_markup_check(_, CallbackQuery):
     if command == "DIT":
         diske = psutil.disk_usage("/").percent
         await CallbackQuery.answer(
-            f"Yukki Disk Usage: {diske}%", show_alert=True
+            f"Amort Disk Usage: {diske}%", show_alert=True
         )
