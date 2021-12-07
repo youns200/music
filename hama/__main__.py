@@ -10,15 +10,15 @@ from rich.console import Console
 from rich.table import Table
 from youtubesearchpython import VideosSearch
 
-from Yukki import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME,
+from hama import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME,
                    BOT_USERNAME, SUDOERS, app, db, pymongodb, userbot)
-from Yukki.Core.Logger.Log import (startup_delete_last, startup_edit_last,
+from hama.Core.Logger.Log import (startup_delete_last, startup_edit_last,
                                    startup_send_new)
-from Yukki.Core.PyTgCalls.Yukki import run
-from Yukki.Database import get_active_chats, get_sudoers, remove_active_chat
-from Yukki.Inline import private_panel
-from Yukki.Plugins import ALL_MODULES
-from Yukki.Utilities.inline import paginate_modules
+from hama.Core.PyTgCalls.hama import run
+from hama.Database import get_active_chats, get_sudoers, remove_active_chat
+from hama.Inline import private_panel
+from hama.Plugins import ALL_MODULES
+from hama.Utilities.inline import paginate_modules
 
 loop = asyncio.get_event_loop()
 console = Console()
@@ -27,7 +27,7 @@ HELPABLE = {}
 
 async def initiate_bot():
     with console.status(
-        "[magenta] Booting up The Yukki Music Bot...",
+        "[magenta] Booting up The Amort Music Bot...",
     ) as status:
         console.print("┌ [red]Clearing MongoDB cache...")
         try:
@@ -52,7 +52,7 @@ async def initiate_bot():
         await asyncio.sleep(1.2)
         for all_module in ALL_MODULES:
             imported_module = importlib.import_module(
-                "Yukki.Plugins." + all_module
+                "hama.Plugins." + all_module
             )
             if (
                 hasattr(imported_module, "__MODULE__")
@@ -108,7 +108,7 @@ async def initiate_bot():
         console.print(f"\n[red]Stopping Bot")
         return
     try:
-        await userbot.join_chat("OfficialYukki")
+        await userbot.join_chat("AmortMusic")
     except:
         pass
     console.print(f"\n┌[red] Bot Started as {BOT_NAME}!")
