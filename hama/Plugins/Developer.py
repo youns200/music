@@ -13,8 +13,8 @@ from pyrogram import filters
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import Message, ReplyKeyboardMarkup
 
-from Yukki import SUDOERS, userbot
-from Yukki.Utilities.tasks import add_task, rm_task
+from hama import SUDOERS, userbot
+from hama.Utilities.tasks import add_task, rm_task
 
 # Eval and Sh module from WBB
 
