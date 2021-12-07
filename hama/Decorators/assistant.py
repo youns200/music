@@ -2,7 +2,7 @@ from typing import Dict, List, Union
 
 from pyrogram.errors import UserAlreadyParticipant, UserNotParticipant
 
-from Yukki import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, app,
+from hama import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, app,
                    userbot)
 
 
