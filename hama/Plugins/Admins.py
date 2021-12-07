@@ -11,21 +11,21 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
 from pytgcalls import StreamType
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
-from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
-from Yukki.Core.PyTgCalls import Queues, Yukki
-from Yukki.Core.PyTgCalls.Converter import convert
-from Yukki.Core.PyTgCalls.Downloader import download
-from Yukki.Database import (is_active_chat, is_music_playing, music_off,
+from hama import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
+from hama.Core.PyTgCalls import Queues, hama
+from hama.Core.PyTgCalls.Converter import convert
+from hama.Core.PyTgCalls.Downloader import download
+from hama.Database import (is_active_chat, is_music_playing, music_off,
                             music_on, remove_active_chat)
-from Yukki.Decorators.admins import AdminRightsCheck
-from Yukki.Decorators.checker import checker, checkerCB
-from Yukki.Inline import audio_markup, primary_markup
-from Yukki.Utilities.changers import time_to_seconds
-from Yukki.Utilities.chat import specialfont_to_normal
-from Yukki.Utilities.theme import check_theme
-from Yukki.Utilities.thumbnails import gen_thumb
-from Yukki.Utilities.timer import start_timer
-from Yukki.Utilities.youtube import get_yt_info_id
+from hama.Decorators.admins import AdminRightsCheck
+from hama.Decorators.checker import checker, checkerCB
+from hama.Inline import audio_markup, primary_markup
+from hama.Utilities.changers import time_to_seconds
+from hama.Utilities.chat import specialfont_to_normal
+from hama.Utilities.theme import check_theme
+from hama.Utilities.thumbnails import gen_thumb
+from hama.Utilities.timer import start_timer
+from hama.Utilities.youtube import get_yt_info_id
 
 loop = asyncio.get_event_loop()
 
@@ -76,7 +76,7 @@ async def admins(_, message: Message):
         if not await is_music_playing(message.chat.id):
             return await message.reply_text("Music is already Paused.")
         await music_off(chat_id)
-        await Yukki.pytgcalls.pause_stream(chat_id)
+        await hama.pytgcalls.pause_stream(chat_id)
         await message.reply_text(
             f"🎧 Voicechat Paused by {message.from_user.mention}!"
         )
@@ -84,7 +84,7 @@ async def admins(_, message: Message):
         if await is_music_playing(message.chat.id):
             return await message.reply_text("Music is already Playing.")
         await music_on(chat_id)
-        await Yukki.pytgcalls.resume_stream(message.chat.id)
+        await hama.pytgcalls.resume_stream(message.chat.id)
         await message.reply_text(
             f"🎧 Voicechat Resumed by {message.from_user.mention}!"
         )
@@ -94,7 +94,7 @@ async def admins(_, message: Message):
         except QueueEmpty:
             pass
         await remove_active_chat(chat_id)
-        await Yukki.pytgcalls.leave_group_call(message.chat.id)
+        await hama.pytgcalls.leave_group_call(message.chat.id)
         await message.reply_text(
             f"🎧 Voicechat End/Stopped by {message.from_user.mention}!"
         )
@@ -105,7 +105,7 @@ async def admins(_, message: Message):
             await message.reply_text(
                 "No more music in __Queue__ \n\nLeaving Voice Chat"
             )
-            await Yukki.pytgcalls.leave_group_call(message.chat.id)
+            await hama.pytgcalls.leave_group_call(message.chat.id)
             return
         else:
             videoid = Queues.get(chat_id)["file"]
@@ -131,7 +131,7 @@ async def admins(_, message: Message):
                     None, download, videoid, mystic, title
                 )
                 raw_path = await convert(downloaded_file)
-                await Yukki.pytgcalls.change_stream(
+                await hama.pytgcalls.change_stream(
                     chat_id,
                     InputStream(
                         InputAudioStream(
@@ -158,7 +158,7 @@ async def admins(_, message: Message):
                 )
                 os.remove(thumb)
             else:
-                await Yukki.pytgcalls.change_stream(
+                await hama.pytgcalls.change_stream(
                     chat_id,
                     InputStream(
                         InputAudioStream(
