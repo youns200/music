@@ -9,26 +9,26 @@ from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import StreamType
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
-from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
-from Yukki.Core.PyTgCalls import Queues, Yukki
-from Yukki.Core.PyTgCalls.Converter import convert
-from Yukki.Core.PyTgCalls.Downloader import download
-from Yukki.Database import (_get_playlists, delete_playlist, get_playlist,
+from hama import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
+from hama.Core.PyTgCalls import Queues, hama
+from hama.Core.PyTgCalls.Converter import convert
+from hama.Core.PyTgCalls.Downloader import download
+from hama.Database import (_get_playlists, delete_playlist, get_playlist,
                             get_playlist_names, is_active_chat, save_playlist)
-from Yukki.Database.queue import (add_active_chat, is_active_chat,
+from hama.Database.queue import (add_active_chat, is_active_chat,
                                   is_music_playing, music_off, music_on,
                                   remove_active_chat)
-from Yukki.Decorators.admins import AdminRightsCheckCB
-from Yukki.Decorators.checker import checkerCB
-from Yukki.Inline import (audio_markup, audio_markup2, download_markup,
+from hama.Decorators.admins import AdminRightsCheckCB
+from hama.Decorators.checker import checkerCB
+from hama.Inline import (audio_markup, audio_markup2, download_markup,
                           fetch_playlist, paste_queue_markup, primary_markup)
-from Yukki.Utilities.changers import time_to_seconds
-from Yukki.Utilities.chat import specialfont_to_normal
-from Yukki.Utilities.paste import isPreviewUp, paste_queue
-from Yukki.Utilities.theme import check_theme
-from Yukki.Utilities.thumbnails import gen_thumb
-from Yukki.Utilities.timer import start_timer
-from Yukki.Utilities.youtube import get_yt_info_id
+from hama.Utilities.changers import time_to_seconds
+from hama.Utilities.chat import specialfont_to_normal
+from hama.Utilities.paste import isPreviewUp, paste_queue
+from hama.Utilities.theme import check_theme
+from hama.Utilities.thumbnails import gen_thumb
+from hama.Utilities.timer import start_timer
+from hama.Utilities.youtube import get_yt_info_id
 
 loop = asyncio.get_event_loop()
 
@@ -65,7 +65,7 @@ async def admin_risghts(_, CallbackQuery):
                 "Music is already Paused", show_alert=True
             )
         await music_off(chat_id)
-        await Yukki.pytgcalls.pause_stream(chat_id)
+        await hama.pytgcalls.pause_stream(chat_id)
         await CallbackQuery.message.reply_text(
             f"🎧 Voicechat Paused by {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
@@ -78,7 +78,7 @@ async def admin_risghts(_, CallbackQuery):
                 "Music is already Resumed.", show_alert=True
             )
         await music_on(chat_id)
-        await Yukki.pytgcalls.resume_stream(chat_id)
+        await hama.pytgcalls.resume_stream(chat_id)
         await CallbackQuery.message.reply_text(
             f"🎧 Voicechat Resumed by {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
@@ -91,7 +91,7 @@ async def admin_risghts(_, CallbackQuery):
         except QueueEmpty:
             pass
         await remove_active_chat(chat_id)
-        await Yukki.pytgcalls.leave_group_call(chat_id)
+        await hama.pytgcalls.leave_group_call(chat_id)
         await CallbackQuery.message.reply_text(
             f"🎧 Voicechat End/Stopped by {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
@@ -105,7 +105,7 @@ async def admin_risghts(_, CallbackQuery):
             await CallbackQuery.message.reply_text(
                 f"No more music in __Queue__ \n\nLeaving Voice Chat..Button Used By :- {CallbackQuery.from_user.mention}"
             )
-            await Yukki.pytgcalls.leave_group_call(chat_id)
+            await hama.pytgcalls.leave_group_call(chat_id)
             await CallbackQuery.message.delete()
             await CallbackQuery.answer(
                 "Skipped. No more music in Queue", show_alert=True
@@ -139,7 +139,7 @@ async def admin_risghts(_, CallbackQuery):
                     None, download, videoid, mystic, title
                 )
                 raw_path = await convert(downloaded_file)
-                await Yukki.pytgcalls.change_stream(
+                await hama.pytgcalls.change_stream(
                     chat_id,
                     InputStream(
                         InputAudioStream(
@@ -178,7 +178,7 @@ async def admin_risghts(_, CallbackQuery):
             else:
                 await CallbackQuery.message.delete()
                 await CallbackQuery.answer("Skipped!", show_alert=True)
-                await Yukki.pytgcalls.change_stream(
+                await hama.pytgcalls.change_stream(
                     chat_id,
                     InputStream(
                         InputAudioStream(
@@ -319,7 +319,7 @@ async def play_playlist(_, CallbackQuery):
                 )
                 raw_path = await convert(downloaded_file)
                 try:
-                    await Yukki.pytgcalls.join_group_call(
+                    await hama.pytgcalls.join_group_call(
                         chat_id,
                         InputStream(
                             InputAudioStream(
