@@ -1,8 +1,8 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from Yukki import SUDOERS, app
-from Yukki.Database import blacklist_chat, blacklisted_chats, whitelist_chat
+from hama import SUDOERS, app
+from hama.Database import blacklist_chat, blacklisted_chats, whitelist_chat
 
 __MODULE__ = "Blacklist"
 __HELP__ = """
