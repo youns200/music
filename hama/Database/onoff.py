@@ -1,6 +1,6 @@
 from typing import Dict, List, Union
 
-from Yukki import db
+from hama import db
 
 onoffdb = db.onoffper
 
