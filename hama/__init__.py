@@ -13,10 +13,10 @@ from pymongo.errors import ConnectionFailure
 from rich.console import Console
 from rich.table import Table
 
-from Yukki.Core.Clients.cli import app, userbot
-from Yukki.Core.Logger.Log import (startup_delete_last, startup_edit_last,
+from hama.Core.Clients.cli import app, userbot
+from hama.Core.Logger.Log import (startup_delete_last, startup_edit_last,
                                    startup_send_new)
-from Yukki.Utilities.changers import time_to_seconds
+from hama.Utilities.changers import time_to_seconds
 
 loop = asyncio.get_event_loop()
 console = Console()
@@ -117,7 +117,7 @@ async def initiate_bot():
                 "[bold yellow] I hate it to say but something is wrong with your database url :(\ntry rechecking it or replace it with a new one.\n\nExiting all processes with SIGTERM..."
             )
             return
-        pymongodb = smex.Yukki
+        pymongodb = smex.hama
         await asyncio.sleep(2)
         try:
             pymongodb.command("serverStatus")
@@ -125,7 +125,7 @@ async def initiate_bot():
         except ConnectionFailure:
             server_status = "404"
         if not server_status == "200":
-            status.update(status="[bold red] Failed to boot Yukki Music Bot!")
+            status.update(status="[bold red] Failed to boot amort Music Bot!")
             console.print(
                 "[bold yellow] I hate it to say but something is wrong with your database url :(\ntry rechecking it or replace it with a new one.\n\nExiting all processes with SIGTERM..."
             )
