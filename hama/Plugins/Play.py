@@ -6,22 +6,22 @@ from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
                             Voice)
 from youtube_search import YoutubeSearch
 
-from Yukki import (BOT_USERNAME, DURATION_LIMIT, DURATION_LIMIT_MIN,
+from hama import (BOT_USERNAME, DURATION_LIMIT, DURATION_LIMIT_MIN,
                    MUSIC_BOT_NAME, app, db_mem)
-from Yukki.Core.PyTgCalls.Converter import convert
-from Yukki.Core.PyTgCalls.Downloader import download
-from Yukki.Decorators.assistant import AssistantAdd
-from Yukki.Decorators.checker import checker
-from Yukki.Decorators.permission import PermissionCheck
-from Yukki.Inline import (playlist_markup, search_markup, search_markup2,
+from hama.Core.PyTgCalls.Converter import convert
+from hama.Core.PyTgCalls.Downloader import download
+from hama.Decorators.assistant import AssistantAdd
+from hama.Decorators.checker import checker
+from hama.Decorators.permission import PermissionCheck
+from hama.Inline import (playlist_markup, search_markup, search_markup2,
                           url_markup, url_markup2)
-from Yukki.Utilities.changers import seconds_to_min, time_to_seconds
-from Yukki.Utilities.chat import specialfont_to_normal
-from Yukki.Utilities.stream import start_stream, start_stream_audio
-from Yukki.Utilities.theme import check_theme
-from Yukki.Utilities.thumbnails import gen_thumb
-from Yukki.Utilities.url import get_url
-from Yukki.Utilities.youtube import (get_yt_info_id, get_yt_info_query,
+from hama.Utilities.changers import seconds_to_min, time_to_seconds
+from hama.Utilities.chat import specialfont_to_normal
+from hama.Utilities.stream import start_stream, start_stream_audio
+from hama.Utilities.theme import check_theme
+from hama.Utilities.thumbnails import gen_thumb
+from hama.Utilities.url import get_url
+from hama.Utilities.youtube import (get_yt_info_id, get_yt_info_query,
                                      get_yt_info_query_slider)
 
 loop = asyncio.get_event_loop()
