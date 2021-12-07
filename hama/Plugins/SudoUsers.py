@@ -9,8 +9,8 @@ from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message
 
-from Yukki import BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
-from Yukki.Database import (add_gban_user, add_off, add_on, add_sudo,
+from hama import BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
+from hama.Database import (add_gban_user, add_off, add_on, add_sudo,
                             get_active_chats, get_served_chats, get_sudoers,
                             is_gbanned_user, remove_active_chat,
                             remove_gban_user, remove_served_chat, remove_sudo)
@@ -69,7 +69,7 @@ async def useradd(_, message: Message):
             await message.reply_text(
                 f"Added **{user.mention}** to Sudo Users."
             )
-            os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
+            os.system(f"kill -9 {os.getpid()} && python3 -m hama")
         else:
             await message.reply_text("Failed")
         return
@@ -82,7 +82,7 @@ async def useradd(_, message: Message):
         await message.reply_text(
             f"Added **{message.reply_to_message.from_user.mention}** to Sudo Users"
         )
-        os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
+        os.system(f"kill -9 {os.getpid()} && python3 -m hama")
     else:
         await message.reply_text("Failed")
     return
@@ -108,7 +108,7 @@ async def userdel(_, message: Message):
             await message.reply_text(
                 f"Removed **{user.mention}** from {MUSIC_BOT_NAME}'s Sudo."
             )
-            return os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
+            return os.system(f"kill -9 {os.getpid()} && python3 -m hama")
         await message.reply_text(f"Something wrong happened.")
         return
     from_user_id = message.from_user.id
@@ -123,7 +123,7 @@ async def userdel(_, message: Message):
         await message.reply_text(
             f"Removed **{mention}** from {MUSIC_BOT_NAME}'s Sudo."
         )
-        return os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
+        return os.system(f"kill -9 {os.getpid()} && python3 -m hama")
     await message.reply_text(f"Something wrong happened.")
 
 
@@ -159,7 +159,7 @@ async def sudoers_list(_, message: Message):
         await message.reply_text(text)
 
 
-# Restart Yukki
+# Restart hama
 
 
 @app.on_message(filters.command("restart") & filters.user(SUDOERS))
@@ -191,15 +191,15 @@ async def theme_func(_, message):
         except Exception:
             pass
     x = await message.reply_text(f"Restarting {MUSIC_BOT_NAME}")
-    os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
+    os.system(f"kill -9 {os.getpid()} && python3 -m hama")
 
 
-## Maintenance Yukki
+## Maintenance hama
 
 
 @app.on_message(filters.command("maintenance") & filters.user(SUDOERS))
 async def maintenance(_, message):
-    usage = "**Usage:**\n/Yukki [enable|disable]"
+    usage = "**Usage:**\n/hama [enable|disable]"
     if len(message.command) != 2:
         return await message.reply_text(usage)
     chat_id = message.chat.id
@@ -405,7 +405,7 @@ async def update(_, message):
     m = subprocess.check_output(["git", "pull"]).decode("UTF-8")
     if str(m[0]) != "A":
         x = await message.reply_text("Found Updates! Pushing Now.")
-        return os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
+        return os.system(f"kill -9 {os.getpid()} && python3 -m hama")
     else:
         await message.reply_text("Already Upto Date")
 
