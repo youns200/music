@@ -7,13 +7,13 @@ from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import StreamType
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
-from Yukki import BOT_USERNAME, db_mem
-from Yukki.Core.PyTgCalls import Queues, Yukki
-from Yukki.Database import (add_active_chat, is_active_chat, music_off,
+from hama import BOT_USERNAME, db_mem
+from hama.Core.PyTgCalls import Queues, hama
+from hama.Database import (add_active_chat, is_active_chat, music_off,
                             music_on)
-from Yukki.Inline import (audio_markup, audio_markup2, primary_markup,
+from hama.Inline import (audio_markup, audio_markup2, primary_markup,
                           secondary_markup)
-from Yukki.Utilities.timer import start_timer
+from hama.Utilities.timer import start_timer
 
 loop = asyncio.get_event_loop()
 
@@ -66,7 +66,7 @@ async def start_stream(
         return
     else:
         try:
-            await Yukki.pytgcalls.join_group_call(
+            await hama.pytgcalls.join_group_call(
                 CallbackQuery.message.chat.id,
                 InputStream(
                     InputAudioStream(
@@ -145,7 +145,7 @@ async def start_stream_audio(
         return
     else:
         try:
-            await Yukki.pytgcalls.join_group_call(
+            await hama.pytgcalls.join_group_call(
                 message.chat.id,
                 InputStream(
                     InputAudioStream(
