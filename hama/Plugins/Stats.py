@@ -15,13 +15,13 @@ from pyrogram import __version__ as pyrover
 from pyrogram import filters
 from pyrogram.types import Message
 
-from Yukki import (BOT_ID, MUSIC_BOT_NAME, SUDOERS, app, boottime, pymongodb,
+from hama import (BOT_ID, MUSIC_BOT_NAME, SUDOERS, app, boottime, pymongodb,
                    userbot)
-from Yukki.Database import get_gbans_count, get_served_chats, get_sudoers
-from Yukki.Inline import (stats1, stats2, stats3, stats4, stats5, stats6,
+from hama.Database import get_gbans_count, get_served_chats, get_sudoers
+from hama.Inline import (stats1, stats2, stats3, stats4, stats5, stats6,
                           stats7)
-from Yukki.Plugins import ALL_MODULES
-from Yukki.Utilities.ping import get_readable_time
+from hama.Plugins import ALL_MODULES
+from hama.Utilities.ping import get_readable_time
 
 __MODULE__ = "Stats"
 __HELP__ = """
