@@ -31,11 +31,8 @@ themes2 = [
 
 __MODULE__ = "Theme"
 __HELP__ = """
-
-
-/settheme 
+/settheme
 - Set a theme for thumbnails.
-
 /theme
 - Check Theme for your chat.
 """
@@ -68,5 +65,6 @@ async def theme_func(_, message):
     else:
         theme = _note["theme"]
     await message.reply_text(
-        f"**{MUSIC_BOT_NAME} Thumbnails Theme**\n\n**Current Theme:-** {theme}\n\n**Available Themes:-** {' | '.join(themes2)} \n\nUse /setheme to change theme."
+        f"**{MUSIC_BOT_NAME} Thumbnails Theme**\n\n**Current Theme:-** {theme}\n\n**Available Themes:-** {' | '.join(themes2)} \n\nUse /settheme to change theme."
     )
+
