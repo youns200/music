@@ -47,16 +47,15 @@ async def bot_sys_stats():
 
 
 @app.on_message(filters.command("stats") & ~filters.edited)
-async def gstats(_, Message):
+async def gstats(_, message):
     start = datetime.now()
     try:
         await message.delete()
     except:
         pass
     uptime = await bot_sys_stats()
-    response = await Message.reply_photo(
-        photo="Utils/Query.jpg", caption="Getting Stats!"
-    )
+    response = await message.reply_photo(
+        photo="Utils/Query.jpg", caption="Getting Stats!")
     end = datetime.now()
     resp = (end - start).microseconds / 1000
     smex = f"""
