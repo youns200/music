@@ -7,12 +7,12 @@
   "python3",
   "telegram",
   "bot",
-  "Yukki",
-  "YukkiMusicBot",
+  "hama",
+  "AmortMusicBot",
   "telegram-bot",
   "pyrogram"
   ],
-  "repository": "https://github.com/notreallyshikhar/YukkiMusicBot",
+  "repository": "https://github.com/hama-maqsood/musicenn",
   "stack": "container",
   "env": {
     "API_ID": {
