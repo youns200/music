@@ -27,7 +27,7 @@ MOD_NOLOAD = []
 
 ### Mongo DB
 MONGODB_CLI = Bot(mango)
-db = MONGODB_CLI.Yukki
+db = MONGODB_CLI.hama
 pymongodb = ""
 
 ### Boot Time
@@ -69,13 +69,13 @@ async def initiate_bot():
     )
     console.print(header)
     with console.status(
-        "[magenta] Booting up The Yukki Music Bot...",
+        "[magenta] Booting up The amort Music Bot...",
     ) as status:
         console.print("┌ [red]Booting Up The Clients...\n")
         await app.start()
         await userbot.start()
         console.print("└ [green]Clients Booted Successfully!")
-        initial = await startup_send_new("Starting Yukki Music Bot...")
+        initial = await startup_send_new("Starting amort Music Bot...")
         await asyncio.sleep(0.5)
         all_over = await startup_send_new("Checking Required Directories...")
         console.print(
