@@ -11,7 +11,7 @@ STRING = getenv("STRING_SESSION", "AgAeQXjYUNrcZ1_gKt-4iyIW9YPMrzUXhNyP2C9qK8iRa
 BOT_TOKEN = getenv("BOT_TOKEN", "2100441086:AAEGGfcEENlB_xd2wXTNq1Elrrm5v1c5Ym8")
 API_ID = int(getenv("API_ID", "6699478"))
 API_HASH = getenv("API_HASH", "28e67d90d53ce22e01d330141824b1da")
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", "10"))
+DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", "1000"))
 ASSISTANT_PREFIX = list(getenv("ASSISTANT_PREFIX", ".").split())
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://hamat:hamat@cluster0.i9wpi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "511311707").split()))
