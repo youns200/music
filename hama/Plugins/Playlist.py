@@ -109,9 +109,7 @@ async def playlist(_, message):
     buttons = check_markup(user_name, user_id, "abcd")
     await message.reply_photo(
         photo=thumb,
-        caption=(
-            f"**{MUSIC_BOT_NAME}'s Playlist Feature**\n\nSelect The Playlist, You want to **check!**"
-        ),
+        caption=(f"**{MUSIC_BOT_NAME} Playlist Feature**\n\nSelect The Playlist, You want to **check!**"),
         reply_markup=InlineKeyboardMarkup(buttons),
     )
     return
