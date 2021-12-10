@@ -18,21 +18,21 @@ from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
 
 loop = asyncio.get_event_loop()
 
-__MODULE__ = "Join/Leave"
+__MODULE__ = "جۆین کردن و چونە دەری یارمەتی دەر"
 __HELP__ = """
 
-**Note:**
-Only for Sudo Users
+**تێبینی:**
+تایبەتە بە بەڕێوەبەری بۆتە
 
 
-/joinassistant [Chat Username or Chat ID]
-- Join assistant to a group.
+/join [پێناسە یاخود ناسنامەی گرووپ]
+- بۆ بانگیشت کردنی یارمەتی دەر بۆ گرووپ.
 
-/leaveassistant [Chat Username or Chat ID]
-- Assistant will leave the particular group.
+/leave [پێناسە یاخود ناسنامەی گرووپ]
+- بۆ دەرچونی یارمەتی دەر لەگرووپ.
 
-/leavebot [Chat Username or Chat ID]
-- Bot will leave the particular chat.
+/leavebot [پێناسە یاخود ناسنامەی گروو‌پ]
+- بۆ دەرچونی بۆت لە گرووپ.
 
 """
 
@@ -67,10 +67,10 @@ async def timer_checkup_markup(_, CallbackQuery):
                 f"Remaining {dur_left} out of {duration_min} Mins.",
                 show_alert=True,
             )
-        return await CallbackQuery.answer(f"Not Playing.", show_alert=True)
+        return await CallbackQuery.answer(f"پەخشکردن نیە.", show_alert=True)
     else:
         return await CallbackQuery.answer(
-            f"No Active Voice Chat", show_alert=True
+            f"چاتی دەنگی چاڵاک نەکراوە", show_alert=True
         )
 
 
@@ -83,7 +83,7 @@ async def activevc(_, message: Message):
         duration_min = db_mem[message.chat.id]["total"]
         got_queue = get_queue.get(message.chat.id)
         if not got_queue:
-            await mystic.edit(f"Nothing in Queue")
+            await mystic.edit(f"هیچ تراک زیادنەکراوە بۆ ڕێز")
         fetched = []
         for get in got_queue:
             fetched.append(get)
@@ -92,22 +92,22 @@ async def activevc(_, message: Message):
         current_playing = fetched[0][0]
         user_name = fetched[0][1]
 
-        msg = "**Queued List**\n\n"
-        msg += "**Currently Playing:**"
+        msg = "**لیستی داواکراو**\n\n"
+        msg += "**پەخشکراوەکان:**"
         msg += "\n▶️" + current_playing[:30]
-        msg += f"\n   ╚By:- {user_name}"
-        msg += f"\n   ╚Duration:- Remaining `{dur_left}` out of `{duration_min}` Mins."
+        msg += f"\n   ╚داواکراوە لەلایەن:- {user_name}"
+        msg += f"\n   ╚کات:- دەست پێک `{dur_left}` دەر ئەچێت دوای `{duration_min}` خوڵەک."
         fetched.pop(0)
         if fetched:
             msg += "\n\n"
-            msg += "**Up Next In Queue:**"
+            msg += "**هەڵگیرا:**"
             for song in fetched:
                 name = song[0][:30]
                 usr = song[1]
                 dur = song[2]
                 msg += f"\n⏸️{name}"
-                msg += f"\n   ╠Duration : {dur}"
-                msg += f"\n   ╚Requested by : {usr}\n"
+                msg += f"\n   ╠کات : {dur}"
+                msg += f"\n   ╚داواکراوە لەلایەن : {usr}\n"
         if len(msg) > 4096:
             await mystic.delete()
             filename = "queue.txt"
@@ -115,14 +115,14 @@ async def activevc(_, message: Message):
                 out_file.write(str(msg.strip()))
             await message.reply_document(
                 document=filename,
-                caption=f"**OUTPUT:**\n\n`Queued List`",
+                caption=f"**ڕێز:**\n\n`لیستی ڕێزکراوەکان`",
                 quote=False,
             )
             os.remove(filename)
         else:
             await mystic.edit(msg)
     else:
-        await message.reply_text(f"Nothing in Queue")
+        await message.reply_text(f"هیچ تراکێک لە ڕێزدا نیە")
 
 
 @app.on_message(filters.command("activevc") & filters.user(SUDOERS))
@@ -150,15 +150,15 @@ async def activevc(_, message: Message):
             text += f"<b>{j + 1}. {title}</b> [`{x}`]\n"
         j += 1
     if not text:
-        await message.reply_text("No Active Voice Chats")
+        await message.reply_text("چاتی دەنگی چاڵاک نەکراوە")
     else:
         await message.reply_text(
-            f"**Active Voice Chats:-**\n\n{text}",
+            f"**چاتی دەنگی چاڵاکرا:-**\n\n{text}",
             disable_web_page_preview=True,
         )
 
 
-@app.on_message(filters.command("joinassistant") & filters.user(SUDOERS))
+@app.on_message(filters.command("join") & filters.user(SUDOERS))
 async def basffy(_, message):
     if len(message.command) != 2:
         await message.reply_text(
@@ -191,7 +191,7 @@ async def baaaf(_, message):
     await message.reply_text("Bot has left the chat successfully")
 
 
-@app.on_message(filters.command("leaveassistant") & filters.user(SUDOERS))
+@app.on_message(filters.command("leave") & filters.user(SUDOERS))
 async def baujaf(_, message):
     if len(message.command) != 2:
         await message.reply_text(
