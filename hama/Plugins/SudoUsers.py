@@ -15,35 +15,35 @@ from hama.Database import (add_gban_user, add_off, add_on, add_sudo,
                             is_gbanned_user, remove_active_chat,
                             remove_gban_user, remove_served_chat, remove_sudo)
 
-__MODULE__ = "SudoUsers"
+__MODULE__ = "بەڕێوەبەری بۆت"
 __HELP__ = """
 
 
 /sudolist 
-    Check the sudo user list of Bot. 
+    بۆ بینینی لیستی بەڕێوەبەرەکانی بۆت. 
 
 
-**Note:**
-Only for Sudo Users. 
+**تێبینی:**
+تەنیا بەڕێوەبەر ئەتوانی بەکاربێنی. 
 
 
-/addsudo [Username or Reply to a user]
-- To Add A User In Bot's Sudo Users.
+/addsudo [پێناسە یان ڕیپڵەی چات]
+- بۆ زیادکردنی بەڕێوەبەر بۆ بۆت.
 
-/delsudo [Username or Reply to a user]
-- To Remove A User from Bot's Sudo Users.
+/delsudo [پێناسە یان ڕیپڵەی چات]
+- بۆ سڕینەوەی بەڕێوەبەر لە لیست.
 
 /restart 
-- Restart Bot [All downloads, cache, raw files will be cleared too]. 
+- بۆ ڕێستات کردنەوەی هەموو فایڵەکانی بۆت. 
 
 /maintenance [enable / disable]
-- When enabled Bot goes under maintenance mode. No one can play Music now!
+- بۆ چاڵاک کردن و ڕاگرتنی بۆت لە پەخشکردن!
 
 /update 
-- Fetch Updates from Server.
+- بۆ نوێ کردنەوەی بۆت.
 
 /clean
-- Clean Temp Files and Logs.
+- بۆ سڕینەوەی داگیراوەکان.
 """
 # Add Sudo Users!
 
