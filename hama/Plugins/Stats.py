@@ -23,13 +23,13 @@ from hama.Inline import (stats1, stats2, stats3, stats4, stats5, stats6,
 from hama.Plugins import ALL_MODULES
 from hama.Utilities.ping import get_readable_time
 
-__MODULE__ = "Stats"
+__MODULE__ = "تۆماری بۆت"
 __HELP__ = """
 
 
 /stats 
-- Check the Stats of Bot.
-- Gets the stat of MongoDb , Assistant, System etc
+- بۆ دەست کەوتنی زانیاری لەسەر بۆت.
+- بۆ دەست کەوتنی زانیاری لەسەر MongoDb , Assistant, System etc
 """
 
 
