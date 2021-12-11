@@ -12,7 +12,7 @@ from hama import (ASSID, ASSISTANT_PREFIX, ASSNAME, BOT_ID, BOT_USERNAME,
 from hama.Database import (approve_pmpermit, disapprove_pmpermit,
                             is_pmpermit_approved)
 
-__MODULE__ = "Assistant"
+#__MODULE__ = "Assistant"
 __HELP__ = f"""
 
 **Note:**
