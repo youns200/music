@@ -78,12 +78,12 @@ async def initiate_bot():
         await asyncio.sleep(2.4)
         await startup_delete_last(_____)
     console.print(
-        "[bold green]Congrats!! Amort Music Bot has started successfully!\n"
+        "[bold green]سەرکەوتوبو!! Amort Music Bot has started successfully!\n"
     )
     try:
         await app.send_message(
             LOG_GROUP_ID,
-            "<b>Congrats!! Music Bot has started successfully!</b>",
+            "<b>سەرکەوتوبو!! بۆتی پەخشکردنی گۆرانی چاڵاک بو!</b>",
         )
     except Exception as e:
         print(
@@ -99,13 +99,13 @@ async def initiate_bot():
     try:
         await userbot.send_message(
             LOG_GROUP_ID,
-            "<b>Congrats!! Assistant has started successfully!</b>",
+            "<b>سەرکەوتوبو!! یارمەتی دەر چاڵاک بوو!</b>",
         )
     except Exception as e:
         print(
             "Assistant Account has failed to access the log Channel. Make sure that you have added your bot to your log channel and promoted as admin!"
         )
-        console.print(f"\n[red]Stopping Bot")
+        console.print(f"\n[red]بۆت ڕاگیرا")
         return
     try:
         await userbot.join_chat("AmortMusic")
@@ -119,11 +119,12 @@ async def initiate_bot():
     console.print(f"\n[red]Stopping Bot")
 
 
-home_text_pm = f"""Hello ,
-My name is {BOT_NAME}.
-I'm Telegram Voice Chat Audio with some useful features.
+home_text_pm = f"""
+✨ بەخێربیت  {BOT_NAME}. !
 
-All commands can be used with: / """
+💭 ڕێگەت پێدەدات بۆ پەخشکردنی مۆسیقا لەسەر گرووپەکان لە ڕێگەی چاتی ڤیدیۆی تەلیگرامی نوێ!
+
+💡 دۆزینەوەی هەموو فەرمانەکانی بۆت و چۆنیەتی کارکردن بە کلیک کردن لەسەر دوگمەی فەرمانەکانی 📚! """
 
 
 @app.on_message(filters.command("help") & filters.private)
@@ -138,7 +139,7 @@ async def start_command(_, message):
         name = (message.text.split(None, 1)[1]).lower()
         if name[0] == "s":
             sudoers = await get_sudoers()
-            text = "**__Sudo Users List of Bot:-__**\n\n"
+            text = "**__لیستی بەڕێوەبەرەکان:-__**\n\n"
             j = 0
             for count, user_id in enumerate(sudoers, 1):
                 try:
@@ -151,7 +152,7 @@ async def start_command(_, message):
                 text += f"➤ {user}\n"
                 j += 1
             if j == 0:
-                await message.reply_text("No Sudo Users")
+                await message.reply_text("هیچ بەڕێوەبەرێک نیە")
             else:
                 await message.reply_text(text)
         if name == "help":
@@ -163,7 +164,7 @@ async def start_command(_, message):
                 reply_markup=keyboard,
             )
         if name[0] == "i":
-            m = await message.reply_text("🔎 Fetching Info!")
+            m = await message.reply_text("🔎 گەران بەدوای زانیاری!")
             query = (str(name)).replace("info_", "", 1)
             query = f"https://www.youtube.com/watch?v={query}"
             results = VideosSearch(query, limit=1)
@@ -177,26 +178,26 @@ async def start_command(_, message):
                 link = result["link"]
                 published = result["publishedTime"]
             searched_text = f"""
-🔍__**Video Track Information**__
+🔍__**بینینی زانیاری تراکی ئەم ڤیدیۆیە**__
 
-❇️**Title:** {title}
+❇️**ناوو:** {title}
 
-⏳**Duration:** {duration} Mins
-👀**Views:** `{views}`
-⏰**Published Time:** {published}
-🎥**Channel Name:** {channel}
-📎**Channel Link:** [Visit From Here]({channellink})
-🔗**Video Link:** [Link]({link})
+⏳**کات:** {duration} خوڵەک
+👀**بینەر:** `{views}`
+⏰**کاتی بڵاوکردنەوە:** {published}
+🎥**ناوی کەناڵ:** {channel}
+📎**لینکی کەناڵ:** [بینینی کەناڵ]({channellink})
+🔗**لینکی ڤیدیۆ:** [Link]({link})
 
-⚡️ __Searched Powered By {BOT_NAME}t__"""
+⚡️ __گەران لەلایەن {BOT_NAME}__"""
             key = InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="🎥 Watch Youtube Video", url=f"{link}"
+                            text="🎥 بینینی ڤیدیۆ", url=f"{link}"
                         ),
                         InlineKeyboardButton(
-                            text="🔄 Close", callback_data="close"
+                            text="🔄 داخستن", callback_data="close"
                         ),
                     ],
                 ]
@@ -220,11 +221,11 @@ async def help_parser(name, keyboard=None):
     if not keyboard:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     return (
-        """Hello {first_name},
+        """سلاو {first_name},
 
-Click on the buttons for more information.
+کرتە بکە لەسەر دوگمانەی خوارەوە بۆ بینینی فرمانەکان و زانیاریەکان.
 
-All commands can be used with: /
+بۆ هەمو فرمانەکان ئەم هێمایە بەکاربێنە: /
 """.format(
             first_name=name
         ),
@@ -246,17 +247,17 @@ async def help_button(client, query):
     next_match = re.match(r"help_next\((.+?)\)", query.data)
     back_match = re.match(r"help_back", query.data)
     create_match = re.match(r"help_create", query.data)
-    top_text = f"""Hello {query.from_user.first_name},
+    top_text = f"""سلاو {query.from_user.first_name},
 
-Click on the buttons for more information.
+کرتە بکە لەسەر ئەم دوگمانەی خوارەوە.
 
-All commands can be used with: /
+هەموو فرمانەکان هێمایە بەکاربێنە: /
  """
     if mod_match:
         module = mod_match.group(1)
         text = (
             "{} **{}**:\n".format(
-                "Here is the help for", HELPABLE[module].__MODULE__
+                "ئێرە بۆ یارمەتی دانی تۆیە", HELPABLE[module].__MODULE__
             )
             + HELPABLE[module].__HELP__
         )
@@ -264,10 +265,10 @@ All commands can be used with: /
             [
                 [
                     InlineKeyboardButton(
-                        text="↪️ Back", callback_data="help_back"
+                        text="↪️ گەرانەوە", callback_data="help_back"
                     ),
                     InlineKeyboardButton(
-                        text="🔄 Close", callback_data="close"
+                        text="🔄 داخستن", callback_data="close"
                     ),
                 ],
             ]
