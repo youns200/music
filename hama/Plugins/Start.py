@@ -47,25 +47,25 @@ async def welcome(_, message: Message):
         await add_served_chat(chat_id)
     if chat_id in await blacklisted_chats():
         await message.reply_text(
-            f"Hushh, Your chat group[{message.chat.title}] has been blacklisted!\n\nAsk any Sudo User to whitelist your chat"
+            f"ببوورە, ئەم گروپە[{message.chat.title}] سزادراوە!\n\nپەیوەندی بە بەڕێوەبەری بۆت بکە بۆ یارمەتی"
         )
         await app.leave_chat(chat_id)
     for member in message.new_chat_members:
         try:
             if member.id in OWNER_ID:
                 return await message.reply_text(
-                    f"{MUSIC_BOT_NAME}'s Owner[{member.mention}] has just joined your chat."
+                    f"{MUSIC_BOT_NAME} داڕێژەری بۆت [{member.mention}] پەیوەندی بەم گروپ چاتە کرد."
                 )
             if member.id in SUDOERS:
                 return await message.reply_text(
-                    f"A member of {MUSIC_BOT_NAME}'s Sudo User[{member.mention}] has just joined your chat."
+                    f" {MUSIC_BOT_NAME} بەڕێوەبەری بۆت [{member.mention}] پەیوەندی بەم گروپ چاتە کرد."
                 )
             if member.id == ASSID:
                 await remove_active_chat(chat_id)
             if member.id == BOT_ID:
                 out = start_pannel()
                 await message.reply_text(
-                    f"Welcome To {MUSIC_BOT_NAME}\n\nPromote me as administrator in your group otherwise I will not function properly.",
+                    f"سلاو من {MUSIC_BOT_NAME}\n\nپێویستە بەرزبکرێمەوە بۆ بەڕێوەبەری گروپ بۆ ئەوەی بتوانم کار بکەم.",
                     reply_markup=InlineKeyboardMarkup(out[1]),
                 )
                 return
@@ -80,7 +80,7 @@ async def useradd(_, message: Message):
     await asyncio.gather(
         message.delete(),
         message.reply_text(
-            f"Thanks for having me in {message.chat.title}.\n{MUSIC_BOT_NAME} is alive.\n\nFor any assistance or help, checkout our support group and channel.",
+            f"سوپاس بۆ گروپی  {message.chat.title}.\n{MUSIC_BOT_NAME} من ئیستا چاڵاکم.\n\n.",
             reply_markup=InlineKeyboardMarkup(out[1]),
         ),
     )
@@ -91,7 +91,7 @@ async def okaybhai(_, CallbackQuery):
     await CallbackQuery.answer("Going Back ...")
     out = start_pannel()
     await CallbackQuery.edit_message_text(
-        text=f"Thanks for having me in {CallbackQuery.message.chat.title}.\n{MUSIC_BOT_NAME}is alive.\n\nFor any assistance or help, checkout our support group and channel.",
+        text=f"سوپاس بۆ ئەوەی منم لە ژوورەوە بوو  {CallbackQuery.message.chat.title}.\n{MUSIC_BOT_NAME} ئیستا چاڵاکە.\n\nبۆ هەر هاوکاری و یارمەتییەک، پشکنین بۆ گرووپ و کەناڵی پشتیوانیمان بکرێت.",
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
 
@@ -113,7 +113,7 @@ async def settingm(_, CallbackQuery):
     else:
         volume = _check["volume"]
     await CallbackQuery.edit_message_text(
-        text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%",
+        text=f"{text}\n\n**گرووپ:** {c_title}\n**ناسنامەی گروپ:** {c_id}\n**قەبارەی سەوت:** {volume}%",
         reply_markup=InlineKeyboardMarkup(buttons),
     )
 
