@@ -417,9 +417,9 @@ async def start_markup_check(_, CallbackQuery):
         else:
             j = 0
             await CallbackQuery.edit_message_text(
-                "Fetching Authorised Users... Please Wait"
+                "پکشنیک بۆ ئەندامە تایبەتەکان... تکایە چاوەڕوان بە"
             )
-            msg = f"**Authorised Users List[AUL]:**\n\n"
+            msg = f"**لیستی ئەندامی تایبەت[AUL]:**\n\n"
             for note in _playlist:
                 _note = await get_authuser(
                     CallbackQuery.message.chat.id, note
@@ -435,7 +435,7 @@ async def start_markup_check(_, CallbackQuery):
                 except Exception:
                     continue
                 msg += f"{j}➤ {user}[`{user_id}`]\n"
-                msg += f"    ┗ Added By:- {admin_name}[`{admin_id}`]\n\n"
+                msg += f"    ┗ زیادکراوە لەلایەن:- {admin_name}[`{admin_id}`]\n\n"
             await CallbackQuery.edit_message_text(
                 msg, reply_markup=InlineKeyboardMarkup(buttons)
             )
@@ -443,7 +443,7 @@ async def start_markup_check(_, CallbackQuery):
         bot_uptimee = int(time.time() - bot_start_time)
         Uptimeee = f"{get_readable_time((bot_uptimee))}"
         await CallbackQuery.answer(
-            f"Bot's Uptime: {Uptimeee}", show_alert=True
+            f"بۆت کاتی نوێکاری: {Uptimeee}", show_alert=True
         )
     if command == "CPT":
         cpue = psutil.cpu_percent(interval=0.5)
