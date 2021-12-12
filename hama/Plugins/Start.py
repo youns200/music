@@ -25,7 +25,7 @@ from hama.Utilities.ping import get_readable_time
 
 welcome_group = 2
 
-__MODULE__ = "Essentials"
+#__MODULE__ = "Essentials"
 __HELP__ = """
 
 
