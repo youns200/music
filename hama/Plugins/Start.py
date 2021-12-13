@@ -107,6 +107,7 @@ async def settings(_, message: Message):
 
 
 
+
 @app.on_callback_query(filters.regex("okaybhai"))
 async def okaybhai(_, CallbackQuery):
     await CallbackQuery.answer("گەڕانەوە ...")
