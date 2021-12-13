@@ -65,7 +65,7 @@ async def on_stream_end(client: PyTgCalls, update: Update) -> None:
             if str(finxx) != "raw":
                 mystic = await app.send_message(
                     chat_id,
-                    "**Playlist Function**\n\n__Downloading Next Music From Playlist....__",
+                    "**کرداری لیستی پەخشکردن**\n\n__داگرتنی مۆسیقای داهاتوو لە لیستی پەخشکردن....__",
                 )
                 (
                     title,
@@ -74,7 +74,7 @@ async def on_stream_end(client: PyTgCalls, update: Update) -> None:
                     thumbnail,
                 ) = get_yt_info_id(afk)
                 mystic = await mystic.edit(
-                    f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
+                    f"**{MUSIC_BOT_NAME} داگرتنی**\n\n**ناو:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
                 )
                 loop = asyncio.get_event_loop()
                 downloaded_file = await loop.run_in_executor(
@@ -106,7 +106,7 @@ async def on_stream_end(client: PyTgCalls, update: Update) -> None:
                     photo=thumb,
                     reply_markup=InlineKeyboardMarkup(buttons),
                     caption=(
-                        f"🎥<b>__Started Playing:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={afk}) \n👤**__Requested by:__** {mention}"
+                        f"🎥<b>__دەسپێکرا:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={afk}) \n👤**__داواکراوە لەلایەن:__** {mention}"
                     ),
                 )
                 os.remove(thumb)
@@ -147,7 +147,7 @@ async def on_stream_end(client: PyTgCalls, update: Update) -> None:
                     chat_id,
                     photo=thumb,
                     reply_markup=InlineKeyboardMarkup(buttons),
-                    caption=f"🎥<b>__Started Playing:__</b> {title} \n👤<b>__Requested by:__ </b> {mention}",
+                    caption=f"🎥<b>__دەسپێکرا:__</b> {title} \n👤<b>__داواکراوە لەلایەن:__ </b> {mention}",
                 )
             await start_timer(
                 videoid,
