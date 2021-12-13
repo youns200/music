@@ -106,14 +106,6 @@ async def settings(_, message: Message):
         message.reply_text(f"{text}\n\n**Group:** {message.chat.title}\n**Group ID:** {message.chat.id}\n**Volume Level:** {volume}%", reply_markup=InlineKeyboardMarkup(buttons)),
     )
 
-@app.on_callback_query(filters.regex("hamo1"))
-async def hamo1(_, CallbackQuery):
-    await CallbackQuery.answer("گەڕانەوە ...")
-    out = start_pannel()
-    await CallbackQuery.edit_message_text(
-        text=f"سوپاس بۆ ئەوەی منم لە ژوورەوە بوو  {CallbackQuery.message.chat.title}.\n{MUSIC_BOT_NAME} ئیستا چاڵاکە.\n\nبۆ هەر هاوکاری و یارمەتییەک، پشکنین بۆ گرووپ و کەناڵی پشتیوانیمان بکرێت.",
-        reply_markup=InlineKeyboardMarkup(out[1]),
-    )
 
 
 @app.on_callback_query(filters.regex("settingm"))
