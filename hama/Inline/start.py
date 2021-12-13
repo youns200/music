@@ -1,8 +1,30 @@
+
 from config import MUSIC_BOT_NAME, SUPPORT_CHANNEL, SUPPORT_GROUP
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
 from hama import BOT_USERNAME
+
+def setting_markup2():
+    buttons = [
+        [
+            InlineKeyboardButton(text="🔈 کواڵێیتی دەنگ", callback_data="AQ"),
+            InlineKeyboardButton(text="🎚 قەبارەی دەنگ", callback_data="AV"),
+        ],
+        [
+            InlineKeyboardButton(
+                text="👥 بەکارهێنەرانی تایبەت", callback_data="AU"
+            ),
+            InlineKeyboardButton(
+                text="💻 ئامارەکان", callback_data="Dashboard"
+            ),
+        ],
+        [
+            InlineKeyboardButton(text="✖️ داخستن", callback_data="close"),
+        ],
+    ]
+    return f"🔧  **{MUSIC_BOT_NAME} ڕێکخستنی**", buttons
+
 
 
 def start_pannel():
@@ -10,7 +32,7 @@ def start_pannel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 فرمانەکان و یارمەتی", callback_data="hamo"
                 ),
             ],
             [
@@ -232,17 +254,17 @@ def custommarkup():
 def usermarkup():
     buttons = [
         [
-            InlineKeyboardButton(text="👥 Everyone", callback_data="EVE"),
-            InlineKeyboardButton(text="🙍 Admins", callback_data="AMS"),
+            InlineKeyboardButton(text="👥 هەموکەس", callback_data="EVE"),
+            InlineKeyboardButton(text="🙍 بەڕێوەبەر", callback_data="AMS"),
         ],
         [
             InlineKeyboardButton(
-                text="📋 Authorized Users Lists", callback_data="USERLIST"
+                text="📋 لیستی بەکارهێنەرانی تایبەت", callback_data="USERLIST"
             )
         ],
-        [InlineKeyboardButton(text="🔙 Go back", callback_data="settingm")],
+        [InlineKeyboardButton(text="🔙 گەڕانەوە", callback_data="settingm")],
     ]
-    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
+    return f"🔧  **{MUSIC_BOT_NAME} ڕێکخستن**", buttons
 
 
 def dashmarkup():
@@ -255,6 +277,6 @@ def dashmarkup():
             InlineKeyboardButton(text="💻 Cpu", callback_data="CPT"),
             InlineKeyboardButton(text="💽 Disk", callback_data="DIT"),
         ],
-        [InlineKeyboardButton(text="🔙 Go back", callback_data="settingm")],
+        [InlineKeyboardButton(text="🔙 گەڕانەوە", callback_data="settingm")],
     ]
-    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
+    return f"🔧  **{MUSIC_BOT_NAME} ڕێکخستن**", buttons
