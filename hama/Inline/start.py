@@ -46,7 +46,7 @@ def start_pannel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 Helper Commands Menu", callback_data="hamo"
                 ),
             ],
             [
@@ -65,7 +65,7 @@ def start_pannel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 Helper Commands Menu", callback_data="hamo"
                 ),
             ],
             [
@@ -84,7 +84,7 @@ def start_pannel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 Helper Commands Menu", callback_data="hamo"
                 ),
             ],
             [
@@ -109,7 +109,7 @@ def private_panel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 Helper Commands Menu", callback_data="hamo"
                 ),
             ],
             [
@@ -124,7 +124,7 @@ def private_panel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 Helper Commands Menu", callback_data="hamo"
                 ),
             ],
             [
@@ -144,7 +144,7 @@ def private_panel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 Helper Commands Menu", callback_data="hamo"
                 ),
             ],
             [
@@ -164,7 +164,7 @@ def private_panel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 Helper Commands Menu", callback_data="hamo"
                 ),
             ],
             [
@@ -201,7 +201,7 @@ def setting_markup():
         ],
         [
             InlineKeyboardButton(text="✖️ Close", callback_data="close"),
-            InlineKeyboardButton(text="🔙 Go Back", callback_data="okaybhai"),
+            InlineKeyboardButton(text="🔙 Go Back", callback_data="hamo1"),
         ],
     ]
     return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
