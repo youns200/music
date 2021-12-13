@@ -235,7 +235,7 @@ async def help_parser(name, keyboard=None):
 
 
 @app.on_callback_query(filters.regex("hamo"))
-async def shikhar(_, CallbackQuery):
+async def hamo(_, CallbackQuery):
     text, keyboard = await help_parser(CallbackQuery.from_user.mention)
     await CallbackQuery.message.edit(text, reply_markup=keyboard)
 
