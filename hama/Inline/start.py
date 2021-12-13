@@ -215,21 +215,21 @@ def volmarkup():
             )
         ],
         [
-            InlineKeyboardButton(text="🔈 Low Vol", callback_data="LV"),
-            InlineKeyboardButton(text="🔉 Medium Vol", callback_data="MV"),
+            InlineKeyboardButton(text="🔈 کەم", callback_data="LV"),
+            InlineKeyboardButton(text="🔉 مام ناوەند", callback_data="MV"),
         ],
         [
-            InlineKeyboardButton(text="🔊 High Vol", callback_data="HV"),
-            InlineKeyboardButton(text="🔈 Amplified Vol", callback_data="VAM"),
+            InlineKeyboardButton(text="🔊 زۆر", callback_data="HV"),
+            InlineKeyboardButton(text="🔈 بەرز", callback_data="VAM"),
         ],
         [
             InlineKeyboardButton(
-                text="🔽 Custom Volume 🔽", callback_data="Custommarkup"
+                text="🔽 خواستی خۆت 🔽", callback_data="Custommarkup"
             )
         ],
-        [InlineKeyboardButton(text="🔙 Go back", callback_data="settingm")],
+        [InlineKeyboardButton(text="🔙 گەڕانەوە", callback_data="settingm")],
     ]
-    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
+    return f"🔧  **{MUSIC_BOT_NAME} ڕێکخستن**", buttons
 
 
 def custommarkup():
@@ -246,9 +246,9 @@ def custommarkup():
             InlineKeyboardButton(text="+50", callback_data="PFZ"),
             InlineKeyboardButton(text="-50", callback_data="MFZ"),
         ],
-        [InlineKeyboardButton(text="🔼Custom Volume 🔼", callback_data="AV")],
+        [InlineKeyboardButton(text="🔼خواستی خۆت 🔼", callback_data="AV")],
     ]
-    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
+    return f"🔧  **{MUSIC_BOT_NAME} ڕێکخستن**", buttons
 
 
 def usermarkup():
