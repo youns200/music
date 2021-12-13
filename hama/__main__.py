@@ -233,7 +233,7 @@ async def help_parser(name, keyboard=None):
     )
 
 
-@app.on_callback_query(filters.regex("shikhar"))
+@app.on_callback_query(filters.regex("help_(.*?)"))
 async def shikhar(_, CallbackQuery):
     text, keyboard = await help_parser(CallbackQuery.from_user.mention)
     await CallbackQuery.message.edit(text, reply_markup=keyboard)
