@@ -89,8 +89,8 @@ async def useradd(_, message: Message):
 
 
 
-@app.on_callback_query(filters.regex("okaybhai"))
-async def okaybhai(_, CallbackQuery):
+@app.on_callback_query(filters.regex("hamo1"))
+async def hamo1(_, CallbackQuery):
     await CallbackQuery.answer("گەڕانەوە ...")
     out = start_pannel()
     await CallbackQuery.edit_message_text(
