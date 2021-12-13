@@ -4,7 +4,7 @@ from pyrogram.types import Message
 from hama import SUDOERS, app
 from hama.Database import blacklist_chat, blacklisted_chats, whitelist_chat
 
-__MODULE__ = "Blacklist"
+__MODULE__ = " بڵۆک"
 __HELP__ = """
 
 
