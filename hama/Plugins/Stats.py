@@ -39,10 +39,10 @@ async def bot_sys_stats():
     mem = psutil.virtual_memory().percent
     disk = psutil.disk_usage("/").percent
     stats = f"""
-**Uptime:** {get_readable_time((bot_uptime))}
-**CPU:** {cpu}%
-**RAM:** {mem}%
-**Disk: **{disk}%"""
+**کاتی نوێکار:** {get_readable_time((bot_uptime))}
+**کوپ:** {cpu}%
+**ڕام:** {mem}%
+**دیسک: **{disk}%"""
     return stats
 
 
@@ -55,11 +55,11 @@ async def gstats(_, message):
         pass
     uptime = await bot_sys_stats()
     response = await message.reply_photo(
-        photo="Utils/Query.jpg", caption="Getting Stats!")
+        photo="Utils/Query.jpg", caption="بەدەستهێنانی ئامارەکان!")
     end = datetime.now()
     resp = (end - start).microseconds / 1000
     smex = f"""
-[•]<u>**General Stats**</u>
+[•]<u>** ئامارەکان**</u>
     
 Ping: `⚡{resp} ms`
 {uptime}
@@ -76,7 +76,7 @@ Ping: `⚡{resp} ms`
 async def stats_markup(_, CallbackQuery):
     command = CallbackQuery.matches[0].group(1)
     if command == "sys_stats":
-        await CallbackQuery.answer("Getting System Stats...", show_alert=True)
+        await CallbackQuery.answer("بەدەستهێنانی ئامارەکانی سیستەم...", show_alert=True)
         sc = platform.system()
         arch = platform.machine()
         ram = (
@@ -85,19 +85,19 @@ async def stats_markup(_, CallbackQuery):
         bot_uptime = int(time.time() - boottime)
         uptime = f"{get_readable_time((bot_uptime))}"
         smex = f"""
-[•]<u>**System Stats**</u>
+[•]<u>**ئامارەکانی سیستەم**</u>
 
-**Yukki Uptime:** {uptime}
-**System Proc:** Online
-**Platform:** {sc}
-**Architecture:** {arch}
-**Ram:** {ram}
-**Python Ver:** {pyver.split()[0]}
-**Pyrogram Ver:** {pyrover}"""
+**کاتی نوێکاری:** {uptime}
+**دۆخی سیستەم:** Online
+**پلاتفۆڕم:** {sc}
+**تەلارسازی:** {arch}
+**ڕام:** {ram}
+**پایتۆن ڤێر:** {pyver.split()[0]}
+**پیرۆگرام ڤێر:** {pyrover}"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats2)
     if command == "sto_stats":
         await CallbackQuery.answer(
-            "Getting Storage Stats...", show_alert=True
+            "دەستکەوتنی ئامارەکانی کۆگا...", show_alert=True
         )
         hdd = psutil.disk_usage("/")
         total = hdd.total / (1024.0 ** 3)
@@ -107,14 +107,14 @@ async def stats_markup(_, CallbackQuery):
         free = hdd.free / (1024.0 ** 3)
         free = str(free)
         smex = f"""
-[•]<u>**Storage Stats**</u>
+[•]<u>**ئامارەکانی کۆگا**</u>
 
-**Storage Avail:** {total[:4]} GiB 
-**Storage Used:** {used[:4]} GiB
-**Storage Left:** {free[:4]} GiB"""
+**خەزنکردنی Avail:** {total[:4]} GiB 
+**خەزن کردن بەکارهاتووە: **{used[:4]} GiB
+**کۆگا لای چەپ:** {free[:4]} GiB"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats3)
     if command == "bot_stats":
-        await CallbackQuery.answer("Getting Bot Stats...", show_alert=True)
+        await CallbackQuery.answer("بەدەستهێنانی ئامارەکانی بۆت...", show_alert=True)
         served_chats = []
         chats = await get_served_chats()
         for chat in chats:
@@ -130,16 +130,16 @@ async def stats_markup(_, CallbackQuery):
             except Exception:
                 continue
         smex = f"""
-[•]<u>**Bot Stats**</u>
+[•]<u>**بۆت ئامارەکان**</u>
 
-**Modules Loaded:** {modules_loaded}
-**GBanned Users:** {blocked}
-**Sudo Users:** {j}
-**Served Chats:** {len(served_chats)}"""
+**مۆدیوولەکان بارکراوە:** {modules_loaded}
+**بەکارهێنەرانی GBanned:** {blocked}
+**بەکارهێنەرانی Sudo:** {j}
+**چاتەکانی خزمەت کرد:** {len(served_chats)}"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats4)
     if command == "mongo_stats":
         await CallbackQuery.answer(
-            "Getting MongoDB Stats...", show_alert=True
+            "بەدەستهێنانی ئامارەکانی MongoDB...", show_alert=True
         )
         db = pymongodb
         call = db.command("dbstats")
@@ -156,24 +156,24 @@ async def stats_markup(_, CallbackQuery):
         mongouptime = str(mongouptime)
         provider = status["repl"]["tags"]["provider"]
         smex = f"""
-[•]<u>**MongoDB Stats**</u>
+[•]<u>**ئامارەکانی MongoDB**</u>
 
-**Mongo Uptime:** {mongouptime[:4]} Days
-**Version:** {mver}
-**Database:** {database}
-**Provider:** {provider}
-**DB Size:** {datasize[:6]} Mb
-**Storage:** {storage} Mb
-**Collections:** {collections}
-**Keys:** {objects}
-**Total Queries:** `{query}`"""
+**کاتینوێکاری Mongo:** {mongouptime[:4]} Days
+**وەشان:** {mver}
+**داتابەیسی:** {database}
+**دابینکەر:** {provider}
+**قەبارەی DB:** {datasize[:6]} Mb
+**خەزنکردنی:** {storage} Mb
+**کۆکراوەکان:** {collections}
+**کلیلەکان:** {objects}
+**کۆی کیوریەکان:** `{query}`"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats5)
     if command == "assis_stats":
         await CallbackQuery.answer(
-            "Getting Assistant Stats...", show_alert=True
+            "دەستکەوتنی یاریدەدەری ئامارەکان...", show_alert=True
         )
         await CallbackQuery.edit_message_text(
-            "Getting Assistant Stats.. Please Wait...", reply_markup=stats7
+            "دەستکەوتنی یاریدەدەری ئامارەکان. تکایە چاوەڕوان بە...", reply_markup=stats7
         )
         groups_ub = channels_ub = bots_ub = privates_ub = total_ub = 0
         async for i in userbot.iter_dialogs():
@@ -189,26 +189,26 @@ async def stats_markup(_, CallbackQuery):
                 privates_ub += 1
 
         smex = f"""
-[•]<u>Assistant Stats</u>
+[•]<u>ئامارەکانی یاری دەر</u>
 
-**Dialogs:** {total_ub}
-**Groups:** {groups_ub} 
-**Channels:** {channels_ub} 
-**Bots:** {bots_ub}
-**Users:** {privates_ub}"""
+**دیالۆگەکان:** {total_ub}
+**گروپەکان:** {groups_ub} 
+**کەناڵەکان:** {channels_ub} 
+**بۆتەکەکان:** {bots_ub}
+**ئەندامەکان:** {privates_ub}"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats6)
     if command == "gen_stats":
         start = datetime.now()
         uptime = await bot_sys_stats()
         await CallbackQuery.answer(
-            "Getting General Stats...", show_alert=True
+            " بەدەستهێنانی ئامارە گشتیەکان...", show_alert=True
         )
         end = datetime.now()
         resp = (end - start).microseconds / 1000
         smex = f"""
-[•]<u>General Stats</u>
+[•]<u>ئامارە گشتیەکان</u>
 
-**Ping:** `⚡{resp} ms`
+**پینگ:** `⚡{resp} ms`
 {uptime}"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats1)
     if command == "wait_stats":
