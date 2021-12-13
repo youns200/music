@@ -18,7 +18,7 @@ from hama.Utilities.download import get_formats, get_type
 user_time = {}
 flex = {}
 
-__MODULE__ = "Global Ban"
+#__MODULE__ = "Global Ban"
 __HELP__ = """
 
 **Note:**
@@ -65,11 +65,11 @@ async def ytdata(_, CallbackQuery):
 
 
 inl = InlineKeyboardMarkup(
-    [[InlineKeyboardButton(text="Downloading......", callback_data=f"down")]]
+    [[InlineKeyboardButton(text="داگرتن......", callback_data=f"down")]]
 )
 
 upl = InlineKeyboardMarkup(
-    [[InlineKeyboardButton(text="Uploading......", callback_data=f"down")]]
+    [[InlineKeyboardButton(text="بارکردن......", callback_data=f"down")]]
 )
 
 
@@ -77,15 +77,15 @@ def inl_mark(videoid, user_id):
     buttons = [
         [
             InlineKeyboardButton(
-                text="Download or Upload Failed......", callback_data=f"down"
+                text="داگرتن و باکردن سەرکەوتونەبو......", callback_data=f"down"
             )
         ],
         [
             InlineKeyboardButton(
-                text="⬅️  Go Back", callback_data=f"good {videoid}|{user_id}"
+                text="⬅️  گەڕانەوە", callback_data=f"good {videoid}|{user_id}"
             ),
             InlineKeyboardButton(
-                text="🗑 Close Menu", callback_data=f"close2"
+                text="🗑 داخستن", callback_data=f"close2"
             ),
         ],
     ]
@@ -103,7 +103,7 @@ async def boom(_, CallbackQuery):
     user_id = CallbackQuery.from_user.id
     type, format_id, videoid = callback_request.split("||")
     mystic = await CallbackQuery.edit_message_text(
-        "Download Started\n\nDownloading speed could be slow. Please hold on..",
+        "داگرتن دەسی پێ کرد\n\nدابەزاندنی خێرایی لەوانەیە هێواش بێت. تکایە بوەستە..",
         reply_markup=inl,
     )
     yturl = f"https://www.youtube.com/watch?v={videoid}"
@@ -115,16 +115,16 @@ async def boom(_, CallbackQuery):
         thumb_image_path = result["thumbnails"][0]["url"]
         channel = channel = result["channel"]["name"]
         fetched = f"""
-🔍**Track Downloaded**
+🔍**تراک دابەزێنرا**
 
-❇️**Title:** {title}
+❇️**ناو:** {title}
 
-⏳**Duration:** {duration} Mins
-👀**Views:** `{views}`
-🎥**Channel Name:** {channel}
-🔗**Video Link:** [Link]({yturl})
+⏳**کات:** {duration} خوڵەک
+👀**بینەر:** `{views}`
+🎥**ناوی کەناڵ:** {channel}
+🔗**لینکی ڤیدیۆ:** [Link]({yturl})
 
-⚡️ __Youtube Inline Download Powered By {MUSIC_BOT_NAME}__"""
+⚡️ __داگرتنی هێڵی ناوەوەی Youtube لەلایەن {MUSIC_BOT_NAME}__"""
     filext = "%(title)s.%(ext)s"
     userdir = os.path.join(os.getcwd(), "downloads", str(user_id))
     if not os.path.isdir(userdir):
