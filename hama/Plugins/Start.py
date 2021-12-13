@@ -103,7 +103,7 @@ async def settings(_, message: Message):
     text, buttons = setting_markup2()
     await asyncio.gather(
         message.delete(),
-        message.reply_text(f"{text}\n\n**Group:** {message.chat.title}\n**Group ID:** {message.chat.id}\n**Volume Level:** {volume}%", reply_markup=InlineKeyboardMarkup(buttons)),
+        message.reply_text(f"{text}\n\n**ناو:** {message.chat.title}\n**ناسنامەی گروپ:** {message.chat.id}\n**قەبارەی سەوت:** {volume}%", reply_markup=InlineKeyboardMarkup(buttons)),
     )
 
 
