@@ -239,7 +239,7 @@ async def send_file(
     CallbackQuery, med, filename, videoid, user_id, link, channel
 ):
     await CallbackQuery.edit_message_text(
-        "Upload Started\n\nUploading speed could be slow. Please hold on..",
+        "بارکردن دەستی پێکرد\n\nچاوەڕوان بە لەوانەیە داگرتن خاو بێ..",
         reply_markup=upl,
     )
     try:
