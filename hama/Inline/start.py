@@ -42,11 +42,11 @@ def start_pannel():
             ],
         ]
         return f"🎛  **ئەمە {MUSIC_BOT_NAME}**", buttons
-    if not SUPPORT_CHANNEL and SUPPORT_GROUP:
+    if not SUPPORT_CHANNEL and SUPPORT_GROUP and CC:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان و یارمەتی", callback_data="hamo"
+                    text="🗂 فرمانەکان و یارمەتی", url=f"{CC}"
                 ),
             ],
             [
@@ -61,11 +61,11 @@ def start_pannel():
             ],
         ]
         return f"🎛  **ئەمە {MUSIC_BOT_NAME}*", buttons
-    if SUPPORT_CHANNEL and not SUPPORT_GROUP:
+    if SUPPORT_CHANNEL and not SUPPORT_GROUP and CC:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان و یارمەتی", callback_data="hamo"
+                    text="🗂 فرمانەکان و یارمەتی", url=f"{CC}"
                 ),
             ],
             [
@@ -80,11 +80,11 @@ def start_pannel():
             ],
         ]
         return f"🎛  **ئەمە {MUSIC_BOT_NAME}**", buttons
-    if SUPPORT_CHANNEL and SUPPORT_GROUP:
+    if SUPPORT_CHANNEL and SUPPORT_GROUP and CC:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان و یارمەتی", callback_data="hamo"
+                    text="🗂 فرمانەکان و یارمەتی", url=f"{CC}"
                 ),
             ],
             [
@@ -105,11 +105,11 @@ def start_pannel():
 
 
 def private_panel():
-    if not SUPPORT_CHANNEL and not SUPPORT_GROUP:
+    if not SUPPORT_CHANNEL and not SUPPORT_GROUP and CC:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان و یارمەتی", callback_data="hamo"
+                    text="🗂 فرمانەکان و یارمەتی", url=f"{CC}"
                 ),
             ],
             [
@@ -124,7 +124,7 @@ def private_panel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان و یارمەتی", callback_data="hamo"
+                    text="🗂 فرمانەکان و یارمەتی", url=f"{CC}"
                 ),
             ],
             [
@@ -140,11 +140,11 @@ def private_panel():
             ],
         ]
         return f"🎛  **ئەمە {MUSIC_BOT_NAME}*", buttons
-    if SUPPORT_CHANNEL and not SUPPORT_GROUP:
+    if SUPPORT_CHANNEL and not SUPPORT_GROUP and CC:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان و یارمەتی", callback_data="hamo"
+                    text="🗂 فرمانەکان و یارمەتی", url=f"{CC}"
                 ),
             ],
             [
@@ -160,11 +160,11 @@ def private_panel():
             ],
         ]
         return f"🎛  **ئەمە {MUSIC_BOT_NAME}**", buttons
-    if SUPPORT_CHANNEL and SUPPORT_GROUP:
+    if SUPPORT_CHANNEL and SUPPORT_GROUP and CC:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان و یارمەتی", callback_data="hamo"
+                    text="🗂 فرمانەکان و یارمەتی", url=f"{CC}"
                 ),
             ],
             [
