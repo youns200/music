@@ -9,10 +9,10 @@ from pyrogram.types import Message
 from hama import BOT_USERNAME, MUSIC_BOT_NAME, app, boottime
 from hama.Utilities.ping import get_readable_time
 
-__MODULE__ = "Ping"
+__MODULE__ = "پینگ"
 __HELP__ = """
 
-/ping - Check if Bot is alive or not.
+/ping - بپشکنە ئەگەر بۆت زیندووە یان نا .
 """
 
 
@@ -23,9 +23,9 @@ async def bot_sys_stats():
     disk = psutil.disk_usage("/").percent
     stats = f"""
 Uptime: {get_readable_time((bot_uptime))}
-CPU: {cpu}%
-RAM: {mem}%
-Disk: {disk}%"""
+کوپ: {cpu}%
+ڕام: {mem}%
+دیسک: {disk}%"""
     return stats
 
 
@@ -40,5 +40,5 @@ async def ping(_, message):
     end = datetime.now()
     resp = (end - start).microseconds / 1000
     await response.edit_text(
-        f"**Pong!**\n`⚡{resp} ms`\n\n<b><u>{MUSIC_BOT_NAME} System Stats:</u></b>{uptime}"
+        f"**Pong!**\n`⚡{resp} ms`\n\n<b><u>{MUSIC_BOT_NAME} ئامارەکانی سیستەم:</u></b>{uptime}"
     )
