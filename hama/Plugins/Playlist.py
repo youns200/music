@@ -17,16 +17,16 @@ __MODULE__ = "Playlist"
 __HELP__ = """
 
 /playplaylist 
-- Start playing Your Saved Playlist.
+- دەست بکە بە پەخشکردنی لیستی پەخشی پاشەکەوتکراوت.
 
 /playlist 
-- Check Your Saved Playlist On Servers.
+- لیستی پەخشکردنی پاشەکەوتکراوەکەت بپشکنە لەسەر سێرڤەرەکان.
 
 /delmyplaylist
-- Delete any saved music in your playlist
+- سڕینەوەی هەر مووزیکێکی پاشەکەوتکراو لە لیستی پەخشکردنەکەت
 
 /delgroupplaylist
-- Delete any saved music in your group's playlist [Requires Admin Rights.]
+- سڕینەوەی هەر مۆسیقایەکی پاشەکەوتکراو لە لیستی پەخشکردنی گروپەکەت [پێویستی بە مافەکانی بەڕێوەبەرە.]
 
 """
 
