@@ -1,5 +1,5 @@
 
-from config import MUSIC_BOT_NAME, SUPPORT_CHANNEL, SUPPORT_GROUP
+from config import MUSIC_BOT_NAME, SUPPORT_CHANNEL, SUPPORT_GROUP, CC
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
@@ -28,11 +28,11 @@ def setting_markup2():
 
 
 def start_pannel():
-    if not SUPPORT_CHANNEL and not SUPPORT_GROUP:
+    if not SUPPORT_CHANNEL and not SUPPORT_GROUP and CC:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان و یارمەتی", callback_data="hamo"
+                    text="🗂 فرمانەکان و یارمەتی", url=f"{CC}"
                 ),
             ],
             [
