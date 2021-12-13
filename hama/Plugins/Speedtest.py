@@ -7,11 +7,11 @@ from pyrogram.types import Message
 
 from hama import BOT_ID, SUDOERS, app
 
-__MODULE__ = "Speedtest"
+__MODULE__ = "خێرای بۆت"
 __HELP__ = """
 
 /speedtest 
-- Check Server Latency and Speed.
+- بۆ پشکنینی خێرای بۆت.
 
 """
 
@@ -31,33 +31,33 @@ def bytes(size: float) -> str:
 
 @app.on_message(filters.command("speedtest") & ~filters.edited)
 async def statsguwid(_, message):
-    m = await message.reply_text("Running Speed test")
+    m = await message.reply_text("پشکنینی خێرای بۆت")
     try:
         test = speedtest.Speedtest()
         test.get_best_server()
-        m = await m.edit("Running Download SpeedTest")
+        m = await m.edit("داگرتنی خێرای بۆت")
         test.download()
-        m = await m.edit("Running Upload SpeedTest")
+        m = await m.edit("بارکردنی خێرای بۆت")
         test.upload()
         test.results.share()
         result = test.results.dict()
     except Exception as e:
         return await m.edit(e)
-    m = await m.edit("Sharing SpeedTest Results")
+    m = await m.edit("هاوبەشکردنی خێرای بۆت")
     path = wget.download(result["share"])
 
-    output = f"""**Speedtest Results**
+    output = f"""**لیستی خێرای**
     
 <u>**Client:**</u>
 **__ISP:__** {result['client']['isp']}
-**__Country:__** {result['client']['country']}
+**__وڵات:__** {result['client']['country']}
   
-<u>**Server:**</u>
-**__Name:__** {result['server']['name']}
-**__Country:__** {result['server']['country']}, {result['server']['cc']}
-**__Sponsor:__** {result['server']['sponsor']}
-**__Latency:__** {result['server']['latency']}  
-**__Ping:__** {result['ping']}"""
+<u>**سرێڤەر:**</u>
+**__ناو:__** {result['server']['name']}
+**__وڵات:__** {result['server']['country']}, {result['server']['cc']}
+**__سپۆنسەر:__** {result['server']['sponsor']}
+**__لاتینس:__** {result['server']['latency']}  
+**__پینگ:__** {result['ping']}"""
     msg = await app.send_photo(
         chat_id=message.chat.id, photo=path, caption=output
     )
