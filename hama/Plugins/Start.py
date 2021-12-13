@@ -87,25 +87,6 @@ async def useradd(_, message: Message):
     )
 
 
-@app.on_message(filters.command("settings") & filters.group)
-@PermissionCheck
-async def settings(_, message: Message):
-    c_id = message.chat.id
-    _check = await get_assistant(c_id, "assistant")
-    if not _check:
-        assis = {
-            "volume": 100,
-        }
-        await save_assistant(c_id, "assistant", assis)
-        volume = 100
-    else:
-        volume = _check["volume"]
-    text, buttons = setting_markup2()
-    await asyncio.gather(
-        message.delete(),
-        message.reply_text(f"{text}\n\n**Group:** {message.chat.title}\n**Group ID:** {message.chat.id}\n**Volume Level:** {volume}%", reply_markup=InlineKeyboardMarkup(buttons)),
-
-
 
 
 @app.on_callback_query(filters.regex("okaybhai"))
