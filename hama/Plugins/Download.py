@@ -18,17 +18,17 @@ from hama.Utilities.download import get_formats, get_type
 user_time = {}
 flex = {}
 
-#__MODULE__ = "Global Ban"
+__MODULE__ = "سزادان"
 __HELP__ = """
 
-**Note:**
-Only for Sudo Users.
+**تێبینی:**
+تەنیا بۆ بەڕێوەبەری بوتە.
 
 /gban [Username or Reply to a user]
-- Ban a user globally in Bot's Served Chats and prevents user from using bot commands.
+- قەدەغەکردنی بەکارهێنەرێک لەسەر ئاستی جیهانی لە چاتەکانی خزمەتکاری بۆت و ڕێگە لە بەکارهێنەر دەگرێت لە بەکارهێنانی فەرمانەکانی بۆت.
 
 /ungban [Username or Reply to a user]
-- Remove a user from Bot's GBan List.
+- لابردنی بەکارهێنەرێک لە لیستی GBan ی بۆت.
 """
 
 
@@ -230,7 +230,7 @@ async def boom(_, CallbackQuery):
 
 def p_mark(link, channel):
     buttons = [
-        [InlineKeyboardButton(text="Watch on Youtube", url=f"{link}")],
+        [InlineKeyboardButton(text="ئێرە دابگرە بۆ بینینی ڤیدیۆ", url=f"{link}")],
     ]
     return buttons
 
