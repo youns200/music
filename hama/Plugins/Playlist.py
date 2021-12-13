@@ -56,7 +56,7 @@ async def play_playlist_cmd(_, message):
                     userid = user.id
                     third_name = user.first_name
                 except Exception as e:
-                    return await message.reply_text("User not found")
+                    return await message.reply_text("بەکارهێنەر نیە")
             user_id = message.from_user.id
             user_name = message.from_user.first_name
             buttons = third_playlist_markup(
@@ -65,7 +65,7 @@ async def play_playlist_cmd(_, message):
             hmo = await message.reply_photo(
                 photo=thumb,
                 caption=(
-                    f"**{MUSIC_BOT_NAME}'s Playlist Feature**\nSelect the Playlist you want to play!.\n\nYou can play someone else's playlist too:-\n- /playplaylist [Username]\n- /playplaylist [USER ID](if user has deleted acc)\n- /playplaylist [Reply to a User]"
+                    f"**{MUSIC_BOT_NAME}لیستی پەخشکردن **\nگۆرانیەک هەڵبژێرە لە لیستی پەخشکردنت!."
                 ),
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
@@ -77,7 +77,7 @@ async def play_playlist_cmd(_, message):
             await message.reply_photo(
                 photo=thumb,
                 caption=(
-                    f"**{MUSIC_BOT_NAME}'s Playlist Feature**\nSelect the Playlist you want to play!.\n\nYou can play someone else's playlist too:-\n- /playplaylist [Username]\n- /playplaylist [USER ID](if user has deleted acc)\n- /playplaylist [Reply to a User]"
+                    f"**{MUSIC_BOT_NAME} لیستی پەخشکردن هەڵبژێرە لە زیادکراوەکان"
                 ),
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
@@ -93,7 +93,7 @@ async def play_playlist_cmd(_, message):
         hmo = await message.reply_photo(
             photo=thumb,
             caption=(
-                f"**{MUSIC_BOT_NAME}'s Playlist Feature**\nSelect the Playlist you want to play!.\n\nYou can play someone else's playlist too:-\n- /playplaylist [Username]\n- /playplaylist [USER ID](if user has deleted acc)\n- /playplaylist [Reply to a User]"
+                f"**{MUSIC_BOT_NAME} لیستی پەخشکردن هەڵبژێرە بۆ پەخشکردن"
             ),
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -109,7 +109,7 @@ async def playlist(_, message):
     buttons = check_markup(user_name, user_id, "abcd")
     await message.reply_photo(
         photo=thumb,
-        caption=(f"**{MUSIC_BOT_NAME} Playlist Feature**\n\nSelect The Playlist, You want to **check!**"),
+        caption=(f"**{MUSIC_BOT_NAME} پشکنینین بۆ لیستی پەخشکردن بکە"),
         reply_markup=InlineKeyboardMarkup(buttons),
     )
     return
@@ -163,7 +163,7 @@ options_Genre = [
 
 @app.on_message(filters.command("delmyplaylist"))
 async def del_cmd(_, message):
-    usage = f"Usage:\n\n/delmyplaylist [Genre] [Numbers between 1-30] ( to delete a particular music in playlist )\n\nor\n\n/delmyplaylist [Genre] all ( to delete whole playlist )\n\n**Genres:-**\n{' | '.join(options_Genre)}"
+    usage = f"بەفرمانی:\n\n/delmyplaylist [Genre] [ژمارە 1-30] ( بۆ سڕینەوەی گۆرانیەی زیادت کردوە )\n\nیان\n\n/delmyplaylist [Genre] all ( بۆ سڕینەوەی هەموو گۆرانیەکان )\n\n**فرمانەکان:-**\n{' | '.join(options_Genre)}"
     if len(message.command) < 3:
         return await message.reply_text(usage)
     genre = message.text.split(None, 2)[1].strip()
@@ -177,14 +177,14 @@ async def del_cmd(_, message):
     if str(count) == "all":
         buttons = delete_playlist_markuup("Personal", genre)
         return await message.reply_text(
-            f"Confirmation!!\nYou sure you want to delete your whole {genre} playlist?",
+            f"دڵنیایت!!\n لەسڕینەوەی هەموو زیادکراوەکانی ناو {genre} پەخشکردن?",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
         _playlist = await get_playlist_names(message.from_user.id, genre)
     if not _playlist:
         await message.reply_text(
-            f"You have no Playlist on {MUSIC_BOT_NAME}'s Server"
+            f"تۆ هیچ زیادکراوێکت نیە لەلیستی  {MUSIC_BOT_NAME}"
         )
     else:
         titlex = []
@@ -199,19 +199,19 @@ async def del_cmd(_, message):
                 )
                 if deleted:
                     return await message.reply_text(
-                        f"**Deleted the {count} music in playlist**"
+                        f"**سڕاوە {count} گۆرانی لە لیست**"
                     )
                 else:
                     return await message.reply_text(
-                        f"**No such saved music in playlist.**"
+                        f"**هیچ هەڵگیراوێک نیە لە لیستی پەخشکردن.**"
                     )
-        await message.reply_text("You have no such music in Playlist.")
+        await message.reply_text("تۆ هیچ زیادکراوێکت نیە لەلیست.")
 
 
 @app.on_message(filters.command("delgroupplaylist"))
 @AdminRightsCheck
 async def delgroupplaylist(_, message):
-    usage = f"Usage:\n\n/delgroupplaylist [Genre] [Numbers between 1-30] ( to delete a particular music in playlist )\n\nor\n\n /delgroupplaylist [Genre] all ( to delete whole playlist )\n\n**Genres:-**\n{' | '.join(options_Genre)}"
+    usage = f"بەفرمانی:\n\n/delgroupplaylist [ئاماژە] [ژمارە 1-30] ( بۆ سڕینەوەی یەک دانە )\n\nیان\n\n /delgroupplaylist [ئاماژە] all ( بۆ سڕنەوەی گشتی )\n\n**فرمانەکان:-**\n{' | '.join(options_Genre)}"
     if len(message.command) < 3:
         return await message.reply_text(usage)
     genre = message.text.split(None, 2)[1].strip()
@@ -225,14 +225,14 @@ async def delgroupplaylist(_, message):
     if str(count) == "all":
         buttons = delete_playlist_markuup("Group", genre)
         return await message.reply_text(
-            f"Confirmation!!\nYou sure you want to delete Group's whole {genre} playlist?",
+            f"دڵنیایت!!\nدەتەوێت بسڕێتەوە لەگروپەکەت {genre} ?",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
         _playlist = await get_playlist_names(message.chat.id, genre)
     if not _playlist:
         await message.reply_text(
-            f"You have no Playlist on {MUSIC_BOT_NAME}'s Server"
+            f"تۆ زیادکراوت نیە لە {MUSIC_BOT_NAME}سرێڤەری "
         )
     else:
         titlex = []
@@ -245,13 +245,13 @@ async def delgroupplaylist(_, message):
                 deleted = await delete_playlist(message.chat.id, note, genre)
                 if deleted:
                     return await message.reply_text(
-                        f"**Deleted the {count} music in group's playlist**"
+                        f"**بەسەرکەوتوی سڕاوە {count} گۆرانیە لە لیستی گروپ**"
                     )
                 else:
                     return await message.reply_text(
-                        f"**No such saved music in Group playlist.**"
+                        f"**هیچ زیادکراوێک بۆ لیستی گروپ نیە.**"
                     )
-        await message.reply_text("You have no such music in Playlist.")
+        await message.reply_text("هیچ گۆرانیەکت زیادنەکردوە بۆ لیست.")
 
 
 @app.on_callback_query(filters.regex(pattern=r"show_genre"))
