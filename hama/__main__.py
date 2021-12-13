@@ -10,8 +10,9 @@ from rich.console import Console
 from rich.table import Table
 from youtubesearchpython import VideosSearch
 
+
 from hama import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME,
-                   BOT_USERNAME, SUDOERS, app, db, pymongodb, userbot)
+                   BOT_USERNAME, SUDOERS, app, db, userbot)
 from hama.Core.Logger.Log import (startup_delete_last, startup_edit_last,
                                    startup_send_new)
 from hama.Core.PyTgCalls.hama import run
@@ -233,8 +234,8 @@ async def help_parser(name, keyboard=None):
     )
 
 
-@app.on_callback_query(filters.regex("help_(.*?)"))
-async def shikhar(_, CallbackQuery):
+@app.on_callback_query(filters.regex("hamo"))
+async def hamo(_, CallbackQuery):
     text, keyboard = await help_parser(CallbackQuery.from_user.mention)
     await CallbackQuery.message.edit(text, reply_markup=keyboard)
 
