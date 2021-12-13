@@ -16,12 +16,12 @@ from hama.Utilities.youtube import (get_yt_info_query,
 
 loop = asyncio.get_event_loop()
 
-__MODULE__ = "Song"
+__MODULE__ = "داگرتنی گۆرانی"
 __HELP__ = """
 
 
-/song [Youtube URL or Search Query] 
-- Download the particular query in audio or video format.
+/song [لینکی یوتوب ] 
+- بۆ دابەزاندنی ڤیدیۆ و گۆرانی.
 
 
 
@@ -35,12 +35,12 @@ __HELP__ = """
 async def play(_, message: Message):
     if message.sender_chat:
         return await message.reply_text(
-            "You're an __Anonymous Admin__ in this Chat Group!\nRevert back to User Account From Admin Rights."
+            "تۆ __Anonymous Admin__ لەم گروپی چاتەدا!\nهەوڵبدە خۆت بگەڕێینەوە بۆ بەڕێوەبەری ئاسایی."
         )
     await message.delete()
     url = get_url(message)
     if url:
-        mystic = await message.reply_text("🔄 Processing URL... Please Wait!")
+        mystic = await message.reply_text("🔄 پرۆسەی لینک... تکایە چاوەڕوان بە!")
         query = message.text.split(None, 1)[1]
         (
             title,
@@ -50,21 +50,21 @@ async def play(_, message: Message):
             videoid,
         ) = await loop.run_in_executor(None, get_yt_info_query, query)
         if str(duration_min) == "None":
-            return await mystic.edit("Sorry! Its a Live Video")
+            return await mystic.edit("ببوورە ئەم ڤیدیۆیە ڕاستەوخۆیە")
         await mystic.delete()
         buttons = song_download_markup(videoid, message.from_user.id)
         return await message.reply_photo(
             photo=thumb,
-            caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
+            caption=f"📎ناو: **{title}\n\n⏳کات:** {duration_min} خوڵەک\n\n__[ئێرە دابگرە بۆ بینینی زانیاری ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
         if len(message.command) < 2:
             await message.reply_text(
-                "**Usage:**\n\n/song [Youtube Url or Music Name]\n\nDownloads the Particular Query."
+                "**بە فرمانی:**\n\n/song [لینکی یوتوب یان ناوی گۆرانی بنوسە]\n\nبۆ داگرتنی ڤیدیۆ."
             )
             return
-        mystic = await message.reply_text("🔍 Searching Your Query...")
+        mystic = await message.reply_text("🔍 گەران بۆ دابەزاندن...")
         query = message.text.split(None, 1)[1]
         (
             title,
@@ -74,14 +74,14 @@ async def play(_, message: Message):
             videoid,
         ) = await loop.run_in_executor(None, get_yt_info_query, query)
         if str(duration_min) == "None":
-            return await mystic.edit("Sorry! Its a Live Video")
+            return await mystic.edit("ببوورە ئەمە ڤیدیۆی ڕاستەوخۆیە")
         await mystic.delete()
         buttons = song_markup(
             videoid, duration_min, message.from_user.id, query, 0
         )
         return await message.reply_photo(
             photo=thumb,
-            caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
+            caption=f"📎ناو: **{title}\n\n⏳کات:** {duration_min} خوڵەک\n\n__[بۆ بینینی زانیاری لەسەر ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
 
@@ -107,7 +107,7 @@ async def song_right(_, CallbackQuery):
     what, type, query, user_id = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         return await CallbackQuery.answer(
-            "Search Your Own Music. You're not allowed to use this button.",
+            "گەڕان لە مۆسیقای خۆت. ڕێگەت پێنەدراوە ئەم دوگمە بەکاربهێنیت.",
             show_alert=True,
         )
     what = str(what)
@@ -117,7 +117,7 @@ async def song_right(_, CallbackQuery):
             query_type = 0
         else:
             query_type = int(type + 1)
-        await CallbackQuery.answer("Getting Next Result", show_alert=True)
+        await CallbackQuery.answer("دەستکەوتنی ئەنجامی داهاتوو", show_alert=True)
         (
             title,
             duration_min,
@@ -132,7 +132,7 @@ async def song_right(_, CallbackQuery):
         )
         med = InputMediaPhoto(
             media=thumb,
-            caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
+            caption=f"📎ناو: **{title}\n\n⏳کات:** {duration_min} خوڵەک\n\n__[ـبۆ بینینی زانیاری لەسەر ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
         )
         return await CallbackQuery.edit_message_media(
             media=med, reply_markup=InlineKeyboardMarkup(buttons)
@@ -142,7 +142,7 @@ async def song_right(_, CallbackQuery):
             query_type = 9
         else:
             query_type = int(type - 1)
-        await CallbackQuery.answer("Getting Previous Result", show_alert=True)
+        await CallbackQuery.answer("دەستکەوتنی ئەنجامی پێشوو", show_alert=True)
         (
             title,
             duration_min,
@@ -157,7 +157,7 @@ async def song_right(_, CallbackQuery):
         )
         med = InputMediaPhoto(
             media=thumb,
-            caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
+            caption=f"📎ناوت: **{title}\n\n⏳کات:** {duration_min} خولەک\n\n__[بینینی زانیاری لەسەر ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
         )
         return await CallbackQuery.edit_message_media(
             media=med, reply_markup=InlineKeyboardMarkup(buttons)
