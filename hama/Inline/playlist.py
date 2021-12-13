@@ -40,41 +40,41 @@ def play_genre_playlist(user_id, type, videoid):
     buttons = [
         [
             InlineKeyboardButton(
-                text=f"Bollywood",
+                text=f"بۆلیوود",
                 callback_data=f"play_playlist {user_id}|{type}|Bollywood",
             ),
             InlineKeyboardButton(
-                text=f"Hollywood",
+                text=f"هۆلیوود",
                 callback_data=f"play_playlist {user_id}|{type}|Hollywood",
             ),
         ],
         [
             InlineKeyboardButton(
-                text=f"Party",
+                text=f"هەڵپەڕکێ",
                 callback_data=f"play_playlist {user_id}|{type}|Party",
             ),
             InlineKeyboardButton(
-                text=f"Lofi",
+                text=f"خۆشەویستی",
                 callback_data=f"play_playlist {user_id}|{type}|Lofi",
             ),
         ],
         [
             InlineKeyboardButton(
-                text=f"Sad",
+                text=f"خەمناک",
                 callback_data=f"play_playlist {user_id}|{type}|Sad",
             ),
             InlineKeyboardButton(
-                text=f"Weeb",
+                text=f"سروود",
                 callback_data=f"play_playlist {user_id}|{type}|Weeb",
             ),
         ],
         [
             InlineKeyboardButton(
-                text=f"Punjabi",
+                text=f"ئاینی",
                 callback_data=f"play_playlist {user_id}|{type}|Punjabi",
             ),
             InlineKeyboardButton(
-                text=f"Others",
+                text=f"زیاتر",
                 callback_data=f"play_playlist {user_id}|{type}|Others",
             ),
         ],
@@ -93,41 +93,41 @@ def add_genre_markup(user_id, type, videoid):
     buttons = [
         [
             InlineKeyboardButton(
-                text=f"✚ Weeb",
+                text=f"✚ گریاوی",
                 callback_data=f"add_playlist {videoid}|{type}|Weeb",
             ),
             InlineKeyboardButton(
-                text=f"✚ Sad",
+                text=f"✚ خەمناک",
                 callback_data=f"add_playlist {videoid}|{type}|Sad",
             ),
         ],
         [
             InlineKeyboardButton(
-                text=f"✚ Party",
+                text=f"✚ خۆشەویستی",
                 callback_data=f"add_playlist {videoid}|{type}|Party",
             ),
             InlineKeyboardButton(
-                text=f"✚ Lofi",
+                text=f"✚ ئاشقانە",
                 callback_data=f"add_playlist {videoid}|{type}|Lofi",
             ),
         ],
         [
             InlineKeyboardButton(
-                text=f"✚ Bollywood",
+                text=f"✚ ئاینی",
                 callback_data=f"add_playlist {videoid}|{type}|Bollywood",
             ),
             InlineKeyboardButton(
-                text=f"✚ Hollywood",
+                text=f"✚ سروود",
                 callback_data=f"add_playlist {videoid}|{type}|Hollywood",
             ),
         ],
         [
             InlineKeyboardButton(
-                text=f"✚ Punjabi",
+                text=f"✚ ڕۆمانسی",
                 callback_data=f"add_playlist {videoid}|{type}|Punjabi",
             ),
             InlineKeyboardButton(
-                text=f"✚ Others",
+                text=f"✚ زیاتڕ",
                 callback_data=f"add_playlist {videoid}|{type}|Others",
             ),
         ],
@@ -145,37 +145,37 @@ def check_genre_markup(type, videoid, user_id):
     buttons = [
         [
             InlineKeyboardButton(
-                text=f"Weeb", callback_data=f"check_playlist {type}|Weeb"
+                text=f"کۆمیدیا", callback_data=f"check_playlist {type}|Weeb"
             ),
             InlineKeyboardButton(
-                text=f"Sad", callback_data=f"check_playlist {type}|Sad"
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text=f"Party", callback_data=f"check_playlist {type}|Party"
-            ),
-            InlineKeyboardButton(
-                text=f"Lofi", callback_data=f"check_playlist {type}|Lofi"
+                text=f"ئاینی", callback_data=f"check_playlist {type}|Sad"
             ),
         ],
         [
             InlineKeyboardButton(
-                text=f"Bollywood",
+                text=f"سروود", callback_data=f"check_playlist {type}|Party"
+            ),
+            InlineKeyboardButton(
+                text=f"گریاناوی", callback_data=f"check_playlist {type}|Lofi"
+            ),
+        ],
+        [
+            InlineKeyboardButton(
+                text=f"خەمناک",
                 callback_data=f"check_playlist {type}|Bollywood",
             ),
             InlineKeyboardButton(
-                text=f"Hollywood",
+                text=f"ئاشقانە",
                 callback_data=f"check_playlist {type}|Hollywood",
             ),
         ],
         [
             InlineKeyboardButton(
-                text=f"Punjabi",
+                text=f"خۆشەویستی",
                 callback_data=f"check_playlist {type}|Punjabi",
             ),
             InlineKeyboardButton(
-                text=f"Others", callback_data=f"check_playlist {type}|Others"
+                text=f"زیاتری", callback_data=f"check_playlist {type}|Others"
             ),
         ],
         [InlineKeyboardButton(text="🗑 ", callback_data="close")],
@@ -197,7 +197,7 @@ def third_playlist_markup(user_name, user_id, third_name, userid, videoid):
         ],
         [
             InlineKeyboardButton(
-                text=f"{third_name[:16]}'s Playlist",
+                text=f"{third_name[:16]} لیستی",
                 callback_data=f"show_genre {userid}|third|{videoid}",
             ),
         ],
