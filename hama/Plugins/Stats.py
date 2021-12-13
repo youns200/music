@@ -14,8 +14,9 @@ from pyrogram import Client
 from pyrogram import __version__ as pyrover
 from pyrogram import filters
 from pyrogram.types import Message
-
-from hama import (BOT_ID, MUSIC_BOT_NAME, SUDOERS, app, boottime, pymongodb, 
+from pymongo import MongoClient
+from config import MONGO_DB_URI
+from hama import (BOT_ID, MUSIC_BOT_NAME, SUDOERS, app, boottime,
                    userbot)
 from hama.Database import get_gbans_count, get_served_chats, get_sudoers
 from hama.Inline import (stats1, stats2, stats3, stats4, stats5, stats6,
