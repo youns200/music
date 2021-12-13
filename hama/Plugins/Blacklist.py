@@ -9,19 +9,19 @@ __HELP__ = """
 
 
 /blacklistedchat 
-- Check Blacklisted Chats of Bot.
+- بۆ پشکینینی لیستی بڵۆک کراوەکان.
 
 
-**Note:**
-Only for Sudo Users.
+**تێبینی:**
+تەنیا بۆ بەڕێوەبەری بۆتە.
 
 
 /blacklistchat [CHAT_ID] 
-- Blacklist any chat from using Music Bot
+- بۆ بلۆک کردنی گروپ لە بۆتی گۆرانی وتن
 
 
 /whitelistchat [CHAT_ID] 
-- Whitelist any blacklisted chat from using Music Bot
+- بۆ بڵۆک کردنی ئەندام لەگروپ چاتەکان
 
 """
 
@@ -62,7 +62,7 @@ async def whitelist_chat_func(_, message: Message):
 
 @app.on_message(filters.command("blacklistedchat"))
 async def blacklisted_chats_func(_, message: Message):
-    text = "**Blacklisted Chats:**\n\n"
+    text = "**لیستی بڵۆکی گروپەکان:**\n\n"
     j = 0
     for count, chat_id in enumerate(await blacklisted_chats(), 1):
         try:
@@ -72,6 +72,6 @@ async def blacklisted_chats_func(_, message: Message):
         j = 1
         text += f"**{count}. {title}** [`{chat_id}`]\n"
     if j == 0:
-        await message.reply_text("No Blacklisted Chats")
+        await message.reply_text("لە لیستی بڵۆک نیە")
     else:
         await message.reply_text(text)
