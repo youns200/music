@@ -142,7 +142,7 @@ async def stats_markup(_, CallbackQuery):
         await CallbackQuery.answer(
             "بەدەستهێنانی ئامارەکانی MongoDB...", show_alert=True
         )
-        db = pymongodb
+        db = pymongo
         call = db.command("dbstats")
         database = call["db"]
         datasize = call["dataSize"] / 1024
