@@ -143,9 +143,18 @@ async def stats_markup(_, CallbackQuery):
         await CallbackQuery.edit_message_text(smex, reply_markup=stats4)
     if command == "mongo_stats":
         await CallbackQuery.answer(
-            "بەدەستهێنانی ئامارەکانی MongoDB...", show_alert=True
+            "چاوەڕوان بە بۆ بەدەستهێنانی زانیاری داتا بەیس...", show_alert=True
         )
-        db = pymongo
+        try:
+            pymongo = MongoClient(MONGO_DB_URI)
+        except Exception as e:
+            print(e)
+            return await CallbackQuery.edit_message_text("ببوورە ئامار بەدەست نەگەشت", reply_markup=stats5)
+        try:
+            db = pymongo.hama
+        except Exception as e:
+            print(e)
+            return await CallbackQuery.edit_message_text("ببوورە ئامار بەدەست نەگەشت", reply_markup=stats5)
         call = db.command("dbstats")
         database = call["db"]
         datasize = call["dataSize"] / 1024
@@ -160,17 +169,16 @@ async def stats_markup(_, CallbackQuery):
         mongouptime = str(mongouptime)
         provider = status["repl"]["tags"]["provider"]
         smex = f"""
-[•]<u>**ئامارەکانی MongoDB**</u>
-
-**کاتینوێکاری Mongo:** {mongouptime[:4]} Days
+[•]<u>**ئاماری داتا بەیس**</u>
+**کاتی نوێکاری داتا:** {mongouptime[:4]} ڕۆژەکان
 **وەشان:** {mver}
-**داتابەیسی:** {database}
-**دابینکەر:** {provider}
-**قەبارەی DB:** {datasize[:6]} Mb
-**خەزنکردنی:** {storage} Mb
-**کۆکراوەکان:** {collections}
+**داتابەیس:** {database}
+**پڕۆڤیر:** {provider}
+**قەبارەی داتا بەیس:** {datasize[:6]} Mb
+**خەزنکردن:** {storage} Mb
+**کۆرکردنەوەکان:** {collections}
 **کلیلەکان:** {objects}
-**کۆی کیوریەکان:** `{query}`"""
+**هەموو خەزنکراوەکان:** `{query}`"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats5)
     if command == "assis_stats":
         await CallbackQuery.answer(
