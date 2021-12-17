@@ -8,6 +8,7 @@ import time
 import uuid
 from datetime import datetime
 from sys import version as pyver
+import multiprocessing
 
 import psutil
 from pyrogram import Client
@@ -80,6 +81,7 @@ async def stats_markup(_, CallbackQuery):
         await CallbackQuery.answer("بەدەستهێنانی ئامارەکانی سیستەم...", show_alert=True)
         sc = platform.system()
         arch = platform.machine()
+        cpu_count = multiprocessing.cpu_count()
         ram = (
             str(round(psutil.virtual_memory().total / (1024.0 ** 3))) + " GB"
         )
@@ -92,6 +94,7 @@ async def stats_markup(_, CallbackQuery):
 **دۆخی سیستەم:** Online
 **پلاتفۆڕم:** {sc}
 **تەلارسازی:** {arch}
+**کوپس:** {cpu_count}v
 **ڕام:** {ram}
 **پایتۆن ڤێر:** {pyver.split()[0]}
 **پیرۆگرام ڤێر:** {pyrover}"""
