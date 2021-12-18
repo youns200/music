@@ -15,7 +15,7 @@ def others_markup(videoid, user_id):
                 callback_data=f"your_playlist {videoid}|{user_id}",
             ),
             InlineKeyboardButton(
-                text="✚ گروپ لیست",
+                text="✚ لیستی گرووپ",
                 callback_data=f"group_playlist {videoid}|{user_id}",
             ),
         ],
@@ -33,7 +33,7 @@ def others_markup(videoid, user_id):
             InlineKeyboardButton(
                 text="🗑 داخستن",
                 callback_data=f"close",
-            )
+            ),
         ],
     ]
     return buttons
