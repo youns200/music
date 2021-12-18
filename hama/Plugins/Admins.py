@@ -3,18 +3,18 @@ import os
 import random
 from asyncio import QueueEmpty
 
-from config import get_queue
 from pyrogram import filters
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, KeyboardButton, Message,
                             ReplyKeyboardMarkup, ReplyKeyboardRemove)
-from pytgcalls import StreamType
-from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
+from config import get_queue
 from hama import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
-from hama.Core.PyTgCalls import Queues, hama
+from hama.Core.PyTgCalls import Queues
 from hama.Core.PyTgCalls.Converter import convert
 from hama.Core.PyTgCalls.Downloader import download
+from hama.Core.PyTgCalls.Yukki import (pause_stream, resume_stream,
+                                        skip_stream, stop_stream)
 from hama.Database import (is_active_chat, is_music_playing, music_off,
                             music_on, remove_active_chat)
 from hama.Decorators.admins import AdminRightsCheck
@@ -70,7 +70,7 @@ async def admins(_, message: Message):
         if not await is_music_playing(message.chat.id):
             return await message.reply_text("موزیک وەستاوە.")
         await music_off(chat_id)
-        await hama.pytgcalls.pause_stream(chat_id)
+        await pause_stream(chat_id)
         await message.reply_text(
             f"🎧 پەخشکردن وەستا لەلایەن {message.from_user.mention}!"
         )
@@ -78,7 +78,7 @@ async def admins(_, message: Message):
         if await is_music_playing(message.chat.id):
             return await message.reply_text("موزیک پەخشکراوە.")
         await music_on(chat_id)
-        await hama.pytgcalls.resume_stream(message.chat.id)
+        await resume_stream(chat_id)
         await message.reply_text(
             f"🎧 پەخشکردن دەستپێکراوە لەلایەن {message.from_user.mention}!"
         )
@@ -88,7 +88,7 @@ async def admins(_, message: Message):
         except QueueEmpty:
             pass
         await remove_active_chat(chat_id)
-        await hama.pytgcalls.leave_group_call(message.chat.id)
+        await stop_stream(chat_id)
         await message.reply_text(
             f"🎧 چاتی دەنگی کۆتای هات لەلایەن {message.from_user.mention}!"
         )
@@ -99,7 +99,7 @@ async def admins(_, message: Message):
             await message.reply_text(
                 "هیچ تراکێکی تر لە __ڕێزدا__ نیە \n\nیارمەتی دەر دەرچۆ لەچاتی دەنگی"
             )
-            await hama.pytgcalls.leave_group_call(message.chat.id)
+           await stop_stream(chat_id)
             return
         else:
             videoid = Queues.get(chat_id)["file"]
@@ -125,14 +125,7 @@ async def admins(_, message: Message):
                     None, download, videoid, mystic, title
                 )
                 raw_path = await convert(downloaded_file)
-                await hama.pytgcalls.change_stream(
-                    chat_id,
-                    InputStream(
-                        InputAudioStream(
-                            raw_path,
-                        ),
-                    ),
-                )
+                await skip_stream(chat_id, raw_path)
                 theme = await check_theme(chat_id)
                 chat_title = await specialfont_to_normal(message.chat.title)
                 thumb = await gen_thumb(
@@ -150,16 +143,9 @@ async def admins(_, message: Message):
                         f"<b>__تراکی داواکراو__</b>\n\n🎥<b>__دەست کرا بە پەخشکردنی:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n⏳<b>__کات:__</b> {duration_min} خوڵەک\n👤**__داواکراوە لەلایەن:__** {mention}"
                     ),
                 )
-                os.remove(thumb)
+                 os.remove(thumb)
             else:
-                await hama.pytgcalls.change_stream(
-                    chat_id,
-                    InputStream(
-                        InputAudioStream(
-                            videoid,
-                        ),
-                    ),
-                )
+                await skip_stream(chat_id, videoid)
                 afk = videoid
                 title = db_mem[videoid]["title"]
                 duration_min = db_mem[videoid]["duration"]
@@ -194,7 +180,7 @@ async def admins(_, message: Message):
                     reply_markup=InlineKeyboardMarkup(buttons),
                     caption=f"<b>__تراکی داواکراو__</b>\n\n🎥<b>__دۆخی ئیستا پەخشکراوە:__</b> {title} \n⏳<b>__کات:__</b> {duration_min} \n👤<b>__داواکراوە لەلایەن:__ </b> {mention}",
                 )
-            await start_timer(
+              await start_timer(
                 videoid,
                 duration_min,
                 duration_sec,
