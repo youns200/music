@@ -1,3 +1,4 @@
+
 import os
 import random
 from os import path
@@ -33,9 +34,23 @@ async def gen_thumb(thumbnail, title, userid, theme, ctitle):
     img = Image.open(f"cache/temp{userid}.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("Utils/finalfont.ttf", 85)
-    font2 = ImageFont.truetype("Utils/finalfont.ttf", 60)     
-    draw.text((20, 45), f"پەخشکراوە لە: {ctitle[:14]}...", fill= "white", stroke_width = 1, stroke_fill="white", font=font2)
-    draw.text((25, 595), f"{title[:27]}...", fill="white", stroke_width = 2, stroke_fill="white" ,font=font)
+    font2 = ImageFont.truetype("Utils/finalfont.ttf", 60)
+    draw.text(
+        (20, 45),
+        f"پەخشکراوە لە: {ctitle[:14]}...",
+        fill="white",
+        stroke_width=1,
+        stroke_fill="white",
+        font=font2,
+    )
+    draw.text(
+        (25, 595),
+        f"{title[:27]}...",
+        fill="white",
+        stroke_width=2,
+        stroke_fill="white",
+        font=font,
+    )
     img.save(f"cache/final{userid}.png")
     os.remove(f"cache/temp{userid}.png")
     os.remove(f"cache/thumb{userid}.jpg")
