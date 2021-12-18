@@ -2,13 +2,12 @@ import asyncio
 import os
 import shutil
 
-from config import get_queue
 from pyrogram.types import InlineKeyboardMarkup
-from pytgcalls import StreamType
-from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
+from config import get_queue
 from hama import BOT_USERNAME, db_mem
-from hama.Core.PyTgCalls import Queues, hama
+from hama.Core.PyTgCalls import Queues
+from hama.Core.PyTgCalls.hama import join_stream
 from hama.Database import (add_active_chat, is_active_chat, music_off,
                             music_on)
 from hama.Inline import (audio_markup, audio_markup2, primary_markup,
@@ -56,7 +55,7 @@ async def start_stream(
         final_output = await CallbackQuery.message.reply_photo(
             photo=thumb,
             caption=(
-                f"🎬<b>__گۆرانی:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n⏳<b>__کات:__</b> {duration_min} \n💡<b>__دەربارە:__</b> [ئێرە دابگرە](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n👤<b>__داواکراوە لەلایەن:__ </b>{CallbackQuery.from_user.mention} \n🚧<b>__لە ڕێزدا:__</b> <b>#{position}!</b>"
+                f"🎬<b>__گۆرانی:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n⏳<b>__کات:__</b> {duration_min} \n💡<b>__دەربارە:__</b> [ئێرە دابگرە ](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n👤<b>__داواگراوە لەلایەن:__ </b>{CallbackQuery.from_user.mention} \n🚧<b>__شوێن لە ڕێزدا:__</b> <b>#{position}!</b>"
             ),
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -65,19 +64,9 @@ async def start_stream(
         os.remove(thumb)
         return
     else:
-        try:
-            await hama.pytgcalls.join_group_call(
-                CallbackQuery.message.chat.id,
-                InputStream(
-                    InputAudioStream(
-                        file,
-                    ),
-                ),
-                stream_type=StreamType().local_stream,
-            )
-        except Exception as e:
+        if not await join_stream(CallbackQuery.message.chat.id, file):
             return await mystic.edit(
-                "ببوورە نەتوانرا پەیوەندی بە چاتی دەنگی بکرێ سەرەتا چاڵاکی بکە."
+                "تکایە سەرەتا چاتی دەنگی بکەوە."
             )
         get_queue[CallbackQuery.message.chat.id] = []
         got_queue = get_queue.get(CallbackQuery.message.chat.id)
@@ -92,7 +81,7 @@ async def start_stream(
             videoid, CallbackQuery.from_user.id, duration_min, duration_min
         )
         await mystic.delete()
-        cap = f"🎥<b>__پەخشکراوو:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n💡<b>__دەربارە:__</b> [ئێرە دابگرە](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n👤**__داواکراوە لەلایەن:__** {CallbackQuery.from_user.mention}"
+        cap = f"🎥<b>__پەخشکراوە:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n💡<b>__دەربارە:__</b> [ئێرە دابگرە](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n👤**__داواکراوە لەلایەن:__** {CallbackQuery.from_user.mention}"
         final_output = await CallbackQuery.message.reply_photo(
             photo=thumb,
             reply_markup=InlineKeyboardMarkup(buttons),
@@ -137,28 +126,17 @@ async def start_stream_audio(
         final_output = await message.reply_photo(
             photo="Utils/Telegram.JPEG",
             caption=(
-                f"🎬<b>__گۆرانی:__ </b> [لە فایڵی دەنگیەوە پەخشکراوە]({link})\n⏳<b>__کات:__</b> {duration_min} \n👤<b>__داواکراوە لەلایەن:__ </b>{message.from_user.mention} \n🚧<b>__لە ڕێزدا:__</b> <b>#{position}!</b>"
+                f"🎬<b>__فایڵی دەنگی:__ </b> [بۆ بینینی فایڵی دەنگی ئێرە دابگرە]({link})\n⏳<b>__کات:__</b> {duration_min} \n👤<b>__داواراوە لەلایەن:__ </b>{message.from_user.mention} \n🚧<b>__شوێن لەڕێزدا:__</b> <b>#{position}!</b>"
             ),
             reply_markup=audio_markup2,
         )
         await mystic.delete()
         return
     else:
-        try:
-            await hama.pytgcalls.join_group_call(
-                message.chat.id,
-                InputStream(
-                    InputAudioStream(
-                        file,
-                    ),
-                ),
-                stream_type=StreamType().local_stream,
+        if not await join_stream(message.chat.id, file):
+            return await mystic.edit(
+                "تکایە سەرەتا چاتی دەنگی بکەوە ."
             )
-        except Exception as e:
-            await mystic.edit(
-                "تکایە سەرەتا چاتی دەنگی چاڵاک بکە."
-            )
-            return
         get_queue[message.chat.id] = []
         got_queue = get_queue.get(message.chat.id)
         title = title
@@ -172,7 +150,7 @@ async def start_stream_audio(
             videoid, message.from_user.id, duration_min, duration_min
         )
         await mystic.delete()
-        cap = f"🎥<b>__پەخشکراوە:__ </b>[فایڵی دەنگی]({link})\n👤**__داواکراوە لەلایەن:__** {message.from_user.mention}"
+        cap = f"🎥<b>__پەخشکراوە:__ </b>[بینینی فایڵی دەنگی]({link})\n👤**__داواکراوە لەلایەن:__** {message.from_user.mention}"
         final_output = await message.reply_photo(
             photo="Utils/Telegram.JPEG",
             reply_markup=InlineKeyboardMarkup(buttons),
