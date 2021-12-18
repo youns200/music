@@ -1,9 +1,4 @@
-Skip to content
-Search or jump to…
-Pulls
-Issues
-Marketplace
-Explore
+
  
    
 from inspect import getfullargspec
