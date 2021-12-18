@@ -1,21 +1,18 @@
-import asyncio
-import importlib
-import os
-import re
-
-from config import LOG_GROUP_ID
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pytgcalls import idle
 from rich.console import Console
 from rich.table import Table
 from youtubesearchpython import VideosSearch
 
-
-from hama import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME,
-                   BOT_USERNAME, SUDOERS, app, db, userbot)
+from config import LOG_GROUP_ID
+from hama import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5,
+                   ASSID1, ASSID2, ASSID3, ASSID4, ASSID5, ASSNAME1, ASSNAME2,
+                   ASSNAME3, ASSNAME4, ASSNAME5, BOT_ID, BOT_NAME, app)
 from hama.Core.Logger.Log import (startup_delete_last, startup_edit_last,
                                    startup_send_new)
-from hama.Core.PyTgCalls.hama import run
+from hama.Core.PyTgCalls.hama import (pytgcalls1, pytgcalls2, pytgcalls3,
+                                        pytgcalls4, pytgcalls5)
 from hama.Database import get_active_chats, get_sudoers, remove_active_chat
 from hama.Inline import private_panel
 from hama.Plugins import ALL_MODULES
@@ -28,7 +25,7 @@ HELPABLE = {}
 
 async def initiate_bot():
     with console.status(
-        "[magenta] Booting up The Amort Music Bot...",
+        "[magenta] Booting up The hama Music Bot...",
     ) as status:
         console.print("┌ [red]Clearing MongoDB cache...")
         try:
@@ -79,12 +76,12 @@ async def initiate_bot():
         await asyncio.sleep(2.4)
         await startup_delete_last(_____)
     console.print(
-        "[bold green]سەرکەوتوبو!! Amort Music Bot has started successfully!\n"
+        "[bold green]Congrats!! Hama Music Bot has started successfully!\n"
     )
     try:
         await app.send_message(
             LOG_GROUP_ID,
-            "<b>سەرکەوتوبو!! بۆتی پەخشکردنی گۆرانی چاڵاک بو!</b>",
+            "<b>Congrats!! Music Bot has started successfully!</b>",
         )
     except Exception as e:
         print(
@@ -98,27 +95,99 @@ async def initiate_bot():
         console.print(f"\n[red]Stopping Bot")
         return
     try:
-        await userbot.send_message(
+        await ASS_CLI_1.send_message(
             LOG_GROUP_ID,
-            "<b>سەرکەوتوبو!! یارمەتی دەر چاڵاک بوو!</b>",
+            "<b>Congrats!! Assistant Client 1 has started successfully!</b>",
         )
     except Exception as e:
         print(
-            "Assistant Account has failed to access the log Channel. Make sure that you have added your bot to your log channel and promoted as admin!"
+            "Assistant Account 1 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
         )
-        console.print(f"\n[red]بۆت ڕاگیرا")
+        console.print(f"\n[red]Stopping Bot")
         return
     try:
-        await userbot.join_chat("AmortMusic")
+        await ASS_CLI_1.join_chat("OfficialYukki")
+    except:
+        pass
+    try:
+        await ASS_CLI_2.send_message(
+            LOG_GROUP_ID,
+            "<b>Congrats!! Assistant Client 2 has started successfully!</b>",
+        )
+    except Exception as e:
+        print(
+            "Assistant Account 2 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+        )
+        console.print(f"\n[red]Stopping Bot")
+        return
+    try:
+        await ASS_CLI_2.join_chat("OfficialYukki")
+    except:
+        pass
+    try:
+        await ASS_CLI_3.send_message(
+            LOG_GROUP_ID,
+            "<b>Congrats!! Assistant Client 3 has started successfully!</b>",
+        )
+    except Exception as e:
+        print(
+            "Assistant Account 3 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+        )
+        console.print(f"\n[red]Stopping Bot")
+        return
+    try:
+        await ASS_CLI_3.join_chat("OfficialYukki")
+    except:
+        pass
+    try:
+        await ASS_CLI_4.send_message(
+            LOG_GROUP_ID,
+            "<b>Congrats!! Assistant Client 4 has started successfully!</b>",
+        )
+    except Exception as e:
+        print(
+            "Assistant Account 4 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+        )
+        console.print(f"\n[red]Stopping Bot")
+        return
+    try:
+        await ASS_CLI_4.join_chat("OfficialYukki")
+    except:
+        pass
+    try:
+        await ASS_CLI_5.send_message(
+            LOG_GROUP_ID,
+            "<b>Congrats!! Assistant Client 5 has started successfully!</b>",
+        )
+    except Exception as e:
+        print(
+            "Assistant Account 5 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+        )
+        console.print(f"\n[red]Stopping Bot")
+        return
+    try:
+        await ASS_CLI_5.join_chat("OfficialYukki")
     except:
         pass
     console.print(f"\n┌[red] Bot Started as {BOT_NAME}!")
     console.print(f"├[green] ID :- {BOT_ID}!")
-    console.print(f"├[red] Assistant Started as {ASSNAME}!")
-    console.print(f"└[green] ID :- {ASSID}!")
-    await run()
+    console.print(f"├[red] Assistant 1 Started as {ASSNAME1}!")
+    console.print(f"├[green] ID :- {ASSID1}!")
+    console.print(f"├[red] Assistant 2 Started as {ASSNAME2}!")
+    console.print(f"├[green] ID :- {ASSID2}!")
+    console.print(f"├[red] Assistant 3 Started as {ASSNAME3}!")
+    console.print(f"├[green] ID :- {ASSID3}!")
+    console.print(f"├[red] Assistant 4 Started as {ASSNAME4}!")
+    console.print(f"├[green] ID :- {ASSID4}!")
+    console.print(f"├[red] Assistant 5 Started as {ASSNAME5}!")
+    console.print(f"└[green] ID :- {ASSID5}!")
+    await pytgcalls1.start()
+    await pytgcalls2.start()
+    await pytgcalls3.start()
+    await pytgcalls4.start()
+    await pytgcalls5.start()
+    await idle()
     console.print(f"\n[red]Stopping Bot")
-
 
 home_text_pm = f"""
 ✨ بەخێربیت  {BOT_NAME}. !
