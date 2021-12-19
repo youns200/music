@@ -4,38 +4,31 @@ import shutil
 import subprocess
 from sys import version as pyver
 
-from config import get_queue
 from pyrogram import Client, filters
-from pyrogram.types import Message
-
-from hama import SUDOERS, app, db_mem, userbot
-from hama.Database import get_active_chats, is_active_chat
-from hama.Decorators.checker import checker, checkerCB
-from hama.Inline import primary_markup
-
 from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
                             Voice)
 
+from config import get_queue
+from hama import SUDOERS, app, db_mem
+from hama.Database import (get_active_chats, get_assistant, is_active_chat,
+                            save_assistant)
+from hama.Decorators.checker import checker, checkerCB
+from hama.Inline import primary_markup
+from hama.Utilities.assistant import get_assistant_details, random_assistant
+
 loop = asyncio.get_event_loop()
 
-__MODULE__ = "جۆین کردن و چونە دەری یارمەتی دەر"
+__MODULE__ = "Join/Leave"
 __HELP__ = """
-
-**تێبینی:**
-تایبەتە بە بەڕێوەبەری بۆتە
-
-
-/join [پێناسە یاخود ناسنامەی گرووپ]
-- بۆ بانگیشت کردنی یارمەتی دەر بۆ گرووپ.
-
-/leave [پێناسە یاخود ناسنامەی گرووپ]
-- بۆ دەرچونی یارمەتی دەر لەگرووپ.
-
-/leavebot [پێناسە یاخود ناسنامەی گروو‌پ]
-- بۆ دەرچونی بۆت لە گرووپ.
-
+**Note:**
+Only for Sudo Users
+/joinassistant [Chat Username or Chat ID]
+- Join assistant to a group.
+/leaveassistant [Chat Username or Chat ID]
+- Assistant will leave the particular group.
+/leavebot [Chat Username or Chat ID]
+- Bot will leave the particular chat.
 """
-
 
 
 @app.on_callback_query(filters.regex("pr_go_back_timer"))
@@ -49,10 +42,10 @@ async def pr_go_back_timer(_, CallbackQuery):
             dur_left = db_mem[CallbackQuery.message.chat.id]["left"]
             duration_min = db_mem[CallbackQuery.message.chat.id]["total"]
             buttons = primary_markup(videoid, user_id, dur_left, duration_min)
-            await CallbackQuery.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
-             
-    
-    
+            await CallbackQuery.edit_message_reply_markup(
+                reply_markup=InlineKeyboardMarkup(buttons)
+            )
+
 
 @app.on_callback_query(filters.regex("timer_checkup_markup"))
 async def timer_checkup_markup(_, CallbackQuery):
@@ -67,10 +60,10 @@ async def timer_checkup_markup(_, CallbackQuery):
                 f"Remaining {dur_left} out of {duration_min} Mins.",
                 show_alert=True,
             )
-        return await CallbackQuery.answer(f"پەخشکردن نیە.", show_alert=True)
+        return await CallbackQuery.answer(f"Not Playing.", show_alert=True)
     else:
         return await CallbackQuery.answer(
-            f"چاتی دەنگی چاڵاک نەکراوە", show_alert=True
+            f"No Active Voice Chat", show_alert=True
         )
 
 
@@ -83,7 +76,7 @@ async def activevc(_, message: Message):
         duration_min = db_mem[message.chat.id]["total"]
         got_queue = get_queue.get(message.chat.id)
         if not got_queue:
-            await mystic.edit(f"هیچ تراک زیادنەکراوە بۆ ڕێز")
+            await mystic.edit(f"هیچ لەڕێزدا نیە")
         fetched = []
         for get in got_queue:
             fetched.append(get)
@@ -92,15 +85,15 @@ async def activevc(_, message: Message):
         current_playing = fetched[0][0]
         user_name = fetched[0][1]
 
-        msg = "**لیستی داواکراو**\n\n"
-        msg += "**پەخشکراوەکان:**"
+        msg = "**لیستی داواکراوەکان**\n\n"
+        msg += "**پەخشکراو:**"
         msg += "\n▶️" + current_playing[:30]
-        msg += f"\n   ╚داواکراوە لەلایەن:- {user_name}"
-        msg += f"\n   ╚کات:- دەست پێک `{dur_left}` دەر ئەچێت دوای `{duration_min}` خوڵەک."
+        msg += f"\n   ╚لەلایەن:- {user_name}"
+        msg += f"\n   ╚کات:- Remaining `{dur_left}` کۆتای `{duration_min}` خوڵەک."
         fetched.pop(0)
         if fetched:
             msg += "\n\n"
-            msg += "**هەڵگیرا:**"
+            msg += "**داواکراوەکانی تر:**"
             for song in fetched:
                 name = song[0][:30]
                 usr = song[1]
@@ -115,14 +108,14 @@ async def activevc(_, message: Message):
                 out_file.write(str(msg.strip()))
             await message.reply_document(
                 document=filename,
-                caption=f"**ڕێز:**\n\n`لیستی ڕێزکراوەکان`",
+                caption=f"**داواکراوەکان:**\n\n`لیستی داواکراوەکان`",
                 quote=False,
             )
             os.remove(filename)
         else:
             await mystic.edit(msg)
     else:
-        await message.reply_text(f"هیچ تراکێک لە ڕێزدا نیە")
+        await message.reply_text(f"هیچ زیادکراوێک نیە")
 
 
 @app.on_message(filters.command("activevc") & filters.user(SUDOERS))
@@ -150,15 +143,15 @@ async def activevc(_, message: Message):
             text += f"<b>{j + 1}. {title}</b> [`{x}`]\n"
         j += 1
     if not text:
-        await message.reply_text("چاتی دەنگی چاڵاک نەکراوە")
+        await message.reply_text("No Active Voice Chats")
     else:
         await message.reply_text(
-            f"**چاتی دەنگی چاڵاکرا:-**\n\n{text}",
+            f"**Active Voice Chats:-**\n\n{text}",
             disable_web_page_preview=True,
         )
 
 
-@app.on_message(filters.command("join") & filters.user(SUDOERS))
+@app.on_message(filters.command("joinassistant") & filters.user(SUDOERS))
 async def basffy(_, message):
     if len(message.command) != 2:
         await message.reply_text(
@@ -167,7 +160,23 @@ async def basffy(_, message):
         return
     chat = message.text.split(None, 2)[1]
     try:
-        await userbot.join_chat(chat)
+        chat_id = (await app.get_chat(chat)).id
+    except:
+        return await message.reply_text(
+            "Add Bot to this Chat First.. Unknown Chat for the bot"
+        )
+    _assistant = await get_assistant(chat_id, "assistant")
+    if not _assistant:
+        return await message.reply_text(
+            "No Pre-Saved Assistant Found.\n\nYou can set Assistant Via /play inside {Chat}'s Group"
+        )
+    else:
+        ran_ass = _assistant["saveassistant"]
+    ASS_ID, ASS_NAME, ASS_USERNAME, ASS_ACC = await get_assistant_details(
+        ran_ass
+    )
+    try:
+        await ASS_ACC.join_chat(chat_id)
     except Exception as e:
         await message.reply_text(f"Failed\n**Possible reason could be**:{e}")
         return
@@ -191,7 +200,7 @@ async def baaaf(_, message):
     await message.reply_text("Bot has left the chat successfully")
 
 
-@app.on_message(filters.command("leave") & filters.user(SUDOERS))
+@app.on_message(filters.command("leaveassistant") & filters.user(SUDOERS))
 async def baujaf(_, message):
     if len(message.command) != 2:
         await message.reply_text(
@@ -200,7 +209,23 @@ async def baujaf(_, message):
         return
     chat = message.text.split(None, 2)[1]
     try:
-        await userbot.leave_chat(chat)
+        chat_id = (await app.get_chat(chat)).id
+    except:
+        return await message.reply_text(
+            "Add Bot to this Chat First.. Unknown Chat for the bot"
+        )
+    _assistant = await get_assistant(chat, "assistant")
+    if not _assistant:
+        return await message.reply_text(
+            "No Pre-Saved Assistant Found.\n\nYou can set Assistant Via /play inside {Chat}'s Group"
+        )
+    else:
+        ran_ass = _assistant["saveassistant"]
+    ASS_ID, ASS_NAME, ASS_USERNAME, ASS_ACC = await get_assistant_details(
+        ran_ass
+    )
+    try:
+        await ASS_ACC.leave_chat(chat_id)
     except Exception as e:
         await message.reply_text(f"Failed\n**Possible reason could be**:{e}")
         return
