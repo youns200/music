@@ -1,3 +1,6 @@
+import asyncio
+import os
+import time
 from os import listdir, mkdir
 
 from aiohttp import ClientSession
