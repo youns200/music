@@ -4,46 +4,35 @@ import shutil
 import subprocess
 from sys import version as pyver
 
-from config import OWNER_ID
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message
 
-from hama import BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
-from hama.Database import (add_gban_user, add_off, add_on, add_sudo,
+from config import OWNER_ID
+from Yukki import BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
+from Yukki.Database import (add_gban_user, add_off, add_on, add_sudo,
                             get_active_chats, get_served_chats, get_sudoers,
                             is_gbanned_user, remove_active_chat,
                             remove_gban_user, remove_served_chat, remove_sudo)
 
-__MODULE__ = "بەڕێوەبەری بۆت"
+__MODULE__ = "SudoUsers"
 __HELP__ = """
-
-
 /sudolist 
-    بۆ بینینی لیستی بەڕێوەبەرەکانی بۆت. 
-
-
-**تێبینی:**
-تەنیا بەڕێوەبەر ئەتوانی بەکاربێنی. 
-
-
-/addsudo [پێناسە یان ڕیپڵەی چات]
-- بۆ زیادکردنی بەڕێوەبەر بۆ بۆت.
-
-/delsudo [پێناسە یان ڕیپڵەی چات]
-- بۆ سڕینەوەی بەڕێوەبەر لە لیست.
-
+    Check the sudo user list of Bot. 
+**Note:**
+Only for Sudo Users. 
+/addsudo [Username or Reply to a user]
+- To Add A User In Bot's Sudo Users.
+/delsudo [Username or Reply to a user]
+- To Remove A User from Bot's Sudo Users.
 /restart 
-- بۆ ڕێستات کردنەوەی هەموو فایڵەکانی بۆت. 
-
+- Restart Bot [All downloads, cache, raw files will be cleared too]. 
 /maintenance [enable / disable]
-- بۆ چاڵاک کردن و ڕاگرتنی بۆت لە پەخشکردن!
-
+- When enabled Bot goes under maintenance mode. No one can play Music now!
 /update 
-- بۆ نوێ کردنەوەی بۆت.
-
+- Fetch Updates from Server.
 /clean
-- بۆ سڕینەوەی داگیراوەکان.
+- Clean Temp Files and Logs.
 """
 # Add Sudo Users!
 
@@ -69,7 +58,7 @@ async def useradd(_, message: Message):
             await message.reply_text(
                 f"Added **{user.mention}** to Sudo Users."
             )
-            os.system(f"kill -9 {os.getpid()} && python3 -m hama")
+            os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
         else:
             await message.reply_text("Failed")
         return
@@ -82,7 +71,7 @@ async def useradd(_, message: Message):
         await message.reply_text(
             f"Added **{message.reply_to_message.from_user.mention}** to Sudo Users"
         )
-        os.system(f"kill -9 {os.getpid()} && python3 -m hama")
+        os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
     else:
         await message.reply_text("Failed")
     return
@@ -108,7 +97,7 @@ async def userdel(_, message: Message):
             await message.reply_text(
                 f"Removed **{user.mention}** from {MUSIC_BOT_NAME}'s Sudo."
             )
-            return os.system(f"kill -9 {os.getpid()} && python3 -m hama")
+            return os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
         await message.reply_text(f"Something wrong happened.")
         return
     from_user_id = message.from_user.id
@@ -123,7 +112,7 @@ async def userdel(_, message: Message):
         await message.reply_text(
             f"Removed **{mention}** from {MUSIC_BOT_NAME}'s Sudo."
         )
-        return os.system(f"kill -9 {os.getpid()} && python3 -m hama")
+        return os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
     await message.reply_text(f"Something wrong happened.")
 
 
@@ -159,7 +148,7 @@ async def sudoers_list(_, message: Message):
         await message.reply_text(text)
 
 
-# Restart hama
+# Restart Yukki
 
 
 @app.on_message(filters.command("restart") & filters.user(SUDOERS))
@@ -191,15 +180,15 @@ async def theme_func(_, message):
         except Exception:
             pass
     x = await message.reply_text(f"Restarting {MUSIC_BOT_NAME}")
-    os.system(f"kill -9 {os.getpid()} && python3 -m hama")
+    os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
 
 
-## Maintenance hama
+## Maintenance Yukki
 
 
 @app.on_message(filters.command("maintenance") & filters.user(SUDOERS))
 async def maintenance(_, message):
-    usage = "**Usage:**\n/hama [enable|disable]"
+    usage = "**Usage:**\n/Yukki [enable|disable]"
     if len(message.command) != 2:
         return await message.reply_text(usage)
     chat_id = message.chat.id
@@ -260,7 +249,6 @@ async def ban_globally(_, message):
                     pass
             ban_text = f"""
 __**New Global Ban on {MUSIC_BOT_NAME}**__
-
 **Origin:** {message.chat.title} [`{message.chat.id}`]
 **Sudo User:** {from_user.mention}
 **Banned User:** {user.mention}
@@ -311,7 +299,6 @@ __**New Global Ban on {MUSIC_BOT_NAME}**__
                     pass
             ban_text = f"""
 __**New Global Ban on {MUSIC_BOT_NAME}**__
-
 **Origin:** {message.chat.title} [`{message.chat.id}`]
 **Sudo User:** {from_user_mention}
 **Banned User:** {mention}
@@ -405,7 +392,7 @@ async def update(_, message):
     m = subprocess.check_output(["git", "pull"]).decode("UTF-8")
     if str(m[0]) != "A":
         x = await message.reply_text("Found Updates! Pushing Now.")
-        return os.system(f"kill -9 {os.getpid()} && python3 -m hama")
+        return os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
     else:
         await message.reply_text("Already Upto Date")
 
@@ -573,7 +560,6 @@ async def broadcast(_, message):
 
 # Clean
 
-
 @app.on_message(filters.command("clean") & filters.user(SUDOERS))
 async def clean(_, message):
     dir = "downloads"
@@ -583,3 +569,4 @@ async def clean(_, message):
     os.mkdir(dir)
     os.mkdir(dir1)
     await message.reply_text("Successfully cleaned all **temp** dir(s)!")
+
