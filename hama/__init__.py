@@ -109,7 +109,7 @@ async def initiate_bot():
         console.print("├ [yellow]Booted Assistant Client 5")
         await asyncio.sleep(0.5)
         console.print("└ [green]Assistant Clients Booted Successfully!")
-        initial = await startup_send_new("Starting Hama Music Bot...")
+        initial = await startup_send_new("Starting Yukki Music Bot...")
         await asyncio.sleep(0.5)
         all_over = await startup_send_new("Checking Required Directories...")
         console.print(
@@ -225,5 +225,3 @@ def init_db():
 
 
 init_db()
-
-    
