@@ -1,9 +1,8 @@
 import os
-from pyrogram import filters
-from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message)
+from pyrogram import Client, filters
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
-
-@filters.on_message(filters.new_chat_members)
+@Client.on_message(filters.new_chat_members)
 async def auto_welcome(bot: Client, msg: Message):
     first = msg.from_user.first_name
     last = msg.from_user.last_name
