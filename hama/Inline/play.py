@@ -20,7 +20,6 @@ def url_markup(videoid, duration, user_id, query, query_type):
                 callback_data=f"slider F|{query_type}|{query}|{user_id}",
             ),
         ],
-         [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
         [
             InlineKeyboardButton(
                 text="🔎 ئەنجامی زیاتر",
