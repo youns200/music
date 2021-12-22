@@ -22,8 +22,8 @@ def song_markup(videoid, duration, user_id, query, query_type):
             InlineKeyboardButton(
                 text="🗑 Close Search",
                 callback_data=f"forceclose {query}|{user_id}",
-            )
-        ],
+            ),
+       InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm"),],
     ]
     return buttons
 
@@ -44,7 +44,8 @@ def song_download_markup(videoid, user_id):
             InlineKeyboardButton(
                 text="🗑 Close Menu",
                 callback_data=f"forceclose {videoid}|{user_id}",
-            )
+            ),
+          InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm"),
         ],
     ]
     return buttons
