@@ -111,12 +111,12 @@ async def play(_, message: Message):
             await message.reply_photo(
                 photo="Utils/Playlist.jpg",
                 caption=(
-                    "**Usage:** /play [Music Name or Youtube Link or Reply to Audio]\n\nIf you want to play Playlists! Select the one from Below."
+                    "بەکارهێنان: /play [ناوی مۆسیقا یان لینکی یوتوب یان وەڵامدانەوەی دەنگ] ئەگەر دەتەوێت پەخشی لیستەکان بکەیت! یەکێک دیاریبکە لە خوارەوە."
                 ),
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
             return
-        mystic = await message.reply_text("🔍 **Searching**...")
+        mystic = await message.reply_text("🔍 **گەڕان**...")
         query = message.text.split(None, 1)[1]
         (
             title,
@@ -151,17 +151,17 @@ async def startyuplay(_, CallbackQuery):
         )
     if CallbackQuery.from_user.id != int(user_id):
         return await CallbackQuery.answer(
-            "This is not for you! Search You Own Song.", show_alert=True
+            "گەران بۆ گۆرانیەک بکە ، چونکە ئەمە بۆتۆ ڕێگە پێدراو نیە.", show_alert=True
         )
     await CallbackQuery.message.delete()
     title, duration_min, duration_sec, thumbnail = get_yt_info_id(videoid)
     if duration_sec > DURATION_LIMIT:
         return await CallbackQuery.message.reply_text(
-            f"**Duration Limit Exceeded**\n\n**Allowed Duration: **{DURATION_LIMIT_MIN} minute(s)\n**Received Duration:** {duration_min} minute(s)"
+            f"**۰ Limit Exceeded**\n\n**Allowed Duration: **{DURATION_LIMIT_MIN} minute(s)\n**Received Duration:** {duration_min} minute(s)"
         )
-    await CallbackQuery.answer(f"Processing:- {title[:20]}", show_alert=True)
+    await CallbackQuery.answer(f"پڕۆسە:- {title[:20]}", show_alert=True)
     mystic = await CallbackQuery.message.reply_text(
-        f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
+        f"**{MUSIC_BOT_NAME} داگرتن**\n\n**ناو:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
     )
     downloaded_file = await loop.run_in_executor(
         None, download, videoid, mystic, title
@@ -191,10 +191,10 @@ async def search_query_more(_, CallbackQuery):
     query, user_id = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         return await CallbackQuery.answer(
-            "Search Your Own Music. You're not allowed to use this button.",
+            "گەران بۆ گۆرانیەک بکە ، چونکە ئەمە بۆتۆ ڕێگە پێدراو نیە.",
             show_alert=True,
         )
-    await CallbackQuery.answer("Searching More Results")
+    await CallbackQuery.answer("گەڕان بۆ بەدەست هێنانی ئەنجامی زیاتر")
     results = YoutubeSearch(query, max_results=5).to_dict()
     med = InputMediaPhoto(
         media="Utils/Result.JPEG",
@@ -229,7 +229,7 @@ async def popat(_, CallbackQuery):
     i, query, user_id = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         return await CallbackQuery.answer(
-            "This is not for you! Search You Own Song", show_alert=True
+            "گەران بۆ گۆرانیەک بکە ، چونکە ئەمە بۆتۆ ڕێگە پێدراو نیە", show_alert=True
         )
     results = YoutubeSearch(query, max_results=10).to_dict()
     if int(i) == 1:
@@ -283,7 +283,7 @@ async def slider_query_results(_, CallbackQuery):
     what, type, query, user_id = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         return await CallbackQuery.answer(
-            "Search Your Own Music. You're not allowed to use this button.",
+            "گەران بۆ گۆرانیەک بکە ، چونکە ئەمە بۆتۆ ڕێگە پێدراو نیە.",
             show_alert=True,
         )
     what = str(what)
@@ -293,7 +293,7 @@ async def slider_query_results(_, CallbackQuery):
             query_type = 0
         else:
             query_type = int(type + 1)
-        await CallbackQuery.answer("Getting Next Result", show_alert=True)
+        await CallbackQuery.answer("بەدەست هێنانی ئەنجامی داهاتو", show_alert=True)
         (
             title,
             duration_min,
@@ -306,7 +306,7 @@ async def slider_query_results(_, CallbackQuery):
         )
         med = InputMediaPhoto(
             media=thumb,
-            caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
+            caption=f"📎ناو: **{title}\n\n⏳کات:** {duration_min} خوڵەک\n\n__[بۆ بینینی زانیاری لەسەر ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
         )
         return await CallbackQuery.edit_message_media(
             media=med, reply_markup=InlineKeyboardMarkup(buttons)
@@ -316,7 +316,7 @@ async def slider_query_results(_, CallbackQuery):
             query_type = 9
         else:
             query_type = int(type - 1)
-        await CallbackQuery.answer("Getting Previous Result", show_alert=True)
+        await CallbackQuery.answer("بەدەستهێنانی ئەنجامی پێشوو", show_alert=True)
         (
             title,
             duration_min,
@@ -329,7 +329,7 @@ async def slider_query_results(_, CallbackQuery):
         )
         med = InputMediaPhoto(
             media=thumb,
-            caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
+            caption=f"📎ناو: **{title}\n\n⏳کات:** {duration_min} خولەک\n\n__[بۆ بینینی زانیاری لەسەر ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
         )
         return await CallbackQuery.edit_message_media(
             media=med, reply_markup=InlineKeyboardMarkup(buttons)
