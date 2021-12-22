@@ -33,7 +33,7 @@ async def auth(_, message: Message):
     if not message.reply_to_message:
         if len(message.command) != 2:
             await message.reply_text(
-                "Reply to a user's message or give username/user_id."
+                "لە وەڵامی چاتی بەکارهێنەرێک یان ناسنامەی بنوسە."
             )
             return
         user = message.text.split(None, 1)[1]
@@ -50,7 +50,7 @@ async def auth(_, message: Message):
             count += 1
         if int(count) == 20:
             return await message.reply_text(
-                "You can only have 20 Users In Your Groups Authorised Users List (AUL)"
+                "تەنیا دەتوانیت 20 کەس لەگروپەکەت هەڵبژێریت بۆ ئەندامی تایبەت"
             )
         if token not in _check:
             assis = {
@@ -61,11 +61,11 @@ async def auth(_, message: Message):
             }
             await save_authuser(message.chat.id, token, assis)
             await message.reply_text(
-                f"Added to Authorised Users List of this group."
+                f"بەکارهێنەر زیادکرا بۆ لیستی تایبەت لەگروپەکەت."
             )
             return
         else:
-            await message.reply_text(f"Already in the Authorised Users List.")
+            await message.reply_text(f"پێشتر زیادکراوە بۆ لیستی تایبەت.")
         return
     from_user_id = message.from_user.id
     user_id = message.reply_to_message.from_user.id
@@ -78,7 +78,7 @@ async def auth(_, message: Message):
         count += 1
     if int(count) == 20:
         return await message.reply_text(
-            "You can only have 20 Users In Your Groups Authorised Users List (AUL)"
+            "تۆ تەنیا ئەتوانیت لەگروپەکەت دا 20 کەس هەڵبژێریت بۆ ئەندامی تایبەت"
         )
     if token not in _check:
         assis = {
@@ -89,11 +89,11 @@ async def auth(_, message: Message):
         }
         await save_authuser(message.chat.id, token, assis)
         await message.reply_text(
-            f"Added to Authorised Users List of this group."
+            f"بەکارهێنەرە زیادکرا بۆ لیستی تایبەت."
         )
         return
     else:
-        await message.reply_text(f"Already in the Authorised Users List.")
+        await message.reply_text(f"پێشووتر زیادکراوە بۆ لیستی تایبەت.")
 
 
 @app.on_message(filters.command("unauth") & filters.group)
@@ -102,7 +102,7 @@ async def whitelist_chat_func(_, message: Message):
     if not message.reply_to_message:
         if len(message.command) != 2:
             await message.reply_text(
-                "Reply to a user's message or give username/user_id."
+                "تکایە لەڕیپڵەی چاتی ئەندام بنوسە بۆ سڕینەوە یان ناسنامەی بنوسە."
             )
             return
         user = message.text.split(None, 1)[1]
@@ -113,19 +113,19 @@ async def whitelist_chat_func(_, message: Message):
         deleted = await delete_authuser(message.chat.id, token)
         if deleted:
             return await message.reply_text(
-                f"Removed from Authorised Users List of this Group."
+                f"بەکارهێنەر سڕاوە لە لیستی تایبەت لەم گروپەدا."
             )
         else:
-            return await message.reply_text(f"Not an Authorised User.")
+            return await message.reply_text(f"بەکارهێنەرە زیادنەکراوە.")
     user_id = message.reply_to_message.from_user.id
     token = await int_to_alpha(user_id)
     deleted = await delete_authuser(message.chat.id, token)
     if deleted:
         return await message.reply_text(
-            f"Removed from Authorised Users List of this Group."
+            f"بەکارهێنەرە لە لیستی تایبەتلەم گروپەدا سڕاوە."
         )
     else:
-        return await message.reply_text(f"Not an Authorised User.")
+        return await message.reply_text(f"بەکارهێنەرە زیادنەکراوە.")
 
 
 @app.on_message(filters.command("authusers") & filters.group)
@@ -133,14 +133,14 @@ async def authusers(_, message: Message):
     _playlist = await get_authuser_names(message.chat.id)
     if not _playlist:
         return await message.reply_text(
-            f"No Authorised Users in this Group.\n\nAdd Auth users by /auth and remove by /unauth."
+            f"هیچ ئەندامێکی زیادکراو لەم گروپەدا نیە...."
         )
     else:
         j = 0
         m = await message.reply_text(
-            "Fetching Authorised Users... Please Wait"
+            "تکایە چاوەڕوان بە"
         )
-        msg = f"**Authorised Users List[AUL]:**\n\n"
+        msg = f"**لیستی زیادکراوە تایبەتەکان لەم گروپە:**\n\n"
         for note in _playlist:
             _note = await get_authuser(message.chat.id, note)
             user_id = _note["auth_user_id"]
@@ -154,5 +154,5 @@ async def authusers(_, message: Message):
             except Exception:
                 continue
             msg += f"{j}➤ {user}[`{user_id}`]\n"
-            msg += f"    ┗ Added By:- {admin_name}[`{admin_id}`]\n\n"
+            msg += f"    ┗ زیادکراوە لەلایەن:- {admin_name}[`{admin_id}`]\n\n"
         await m.edit_text(msg)
