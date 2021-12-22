@@ -36,6 +36,7 @@ def others_markup(videoid, user_id):
                 callback_data=f"close",
             )
         ],
+        [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
     ]
     return buttons
 
@@ -58,5 +59,6 @@ def download_markup(videoid, user_id):
             ),
             InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
         ],
+      [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
     ]
     return buttons
