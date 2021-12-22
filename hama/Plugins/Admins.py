@@ -30,7 +30,7 @@ from hama.Utilities.youtube import get_yt_info_id
 loop = asyncio.get_event_loop()
 
 
-__MODULE__ = "Voice Chat"
+__MODULE__ = "چاتی دەنگی"
 __HELP__ = """
 
 
@@ -68,9 +68,9 @@ Only for Sudo Users
 async def admins(_, message: Message):
     global get_queue
     if not len(message.command) == 1:
-        return await message.reply_text("Error! Wrong Usage of Command.")
+        return await message.reply_text("هەڵەیەیکی چاوەڕوان نەکراو ڕویدا.")
     if not await is_active_chat(message.chat.id):
-        return await message.reply_text("Nothing is playing on voice chat.")
+        return await message.reply_text("چاتی دەنگی بەتاڵە.")
     chat_id = message.chat.id
     if message.command[0][1] == "a":
         if not await is_music_playing(message.chat.id):
@@ -78,7 +78,7 @@ async def admins(_, message: Message):
         await music_off(chat_id)
         await hama.pytgcalls.pause_stream(chat_id)
         await message.reply_text(
-            f"🎧 Voicechat Paused by {message.from_user.mention}!"
+            f"▶️ چاتی دەنگی وەستا لەلایەن {message.from_user.mention}!"
         )
     if message.command[0][1] == "e":
         if await is_music_playing(message.chat.id):
@@ -86,7 +86,7 @@ async def admins(_, message: Message):
         await music_on(chat_id)
         await hama.pytgcalls.resume_stream(message.chat.id)
         await message.reply_text(
-            f"🎧 Voicechat Resumed by {message.from_user.mention}!"
+            f"⏸ چاتی دەنگی پەخشکراوە لەلایەن {message.from_user.mention}!"
         )
     if message.command[0][1] == "t" or message.command[0][1] == "n":
         try:
@@ -96,14 +96,14 @@ async def admins(_, message: Message):
         await remove_active_chat(chat_id)
         await hama.pytgcalls.leave_group_call(message.chat.id)
         await message.reply_text(
-            f"🎧 Voicechat End/Stopped by {message.from_user.mention}!"
+            f"⏹ چاتی دەنگی کۆتای هات لەلایەن {message.from_user.mention}!"
         )
     if message.command[0][1] == "k":
         Queues.task_done(chat_id)
         if Queues.is_empty(chat_id):
             await remove_active_chat(chat_id)
             await message.reply_text(
-                "No more music in __Queue__ \n\nLeaving Voice Chat"
+                "هیچ گۆرانیەک لە ناو ڕێزدا نیە \nیارمەتی دەر لەچاتی دەنگی دەرچۆ"
             )
             await hama.pytgcalls.leave_group_call(message.chat.id)
             return
@@ -116,7 +116,7 @@ async def admins(_, message: Message):
             aud = 0
             if str(finxx) != "raw":
                 mystic = await message.reply_text(
-                    f"**{MUSIC_BOT_NAME} Playlist Function**\n\n__Downloading Next Music From Playlist....__"
+                    f"**{MUSIC_BOT_NAME} دۆزینەوەی لیستی زیادکراوەکان**\n\n__داگرتنی گۆرانی دواتر لە لیستی زیادکراوەکان....__"
                 )
                 (
                     title,
@@ -124,9 +124,6 @@ async def admins(_, message: Message):
                     duration_sec,
                     thumbnail,
                 ) = get_yt_info_id(videoid)
-                await mystic.edit(
-                    f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
-                )
                 downloaded_file = await loop.run_in_executor(
                     None, download, videoid, mystic, title
                 )
@@ -153,7 +150,7 @@ async def admins(_, message: Message):
                     photo=thumb,
                     reply_markup=InlineKeyboardMarkup(buttons),
                     caption=(
-                        f"<b>__Skipped Voice Chat__</b>\n\n🎥<b>__Started Playing:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n⏳<b>__Duration:__</b> {duration_min} Mins\n👤**__Requested by:__** {mention}"
+                        f"<b>__چاتی دەنگی تێپەڕاندرا__</b>\n\n🎥<b>__دەستپێکی ئیستا:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n⏳<b>__کات:__</b> {duration_min} خوڵەک\n👤**__داواکراوە لەلایەن:__** {mention}"
                     ),
                 )
                 os.remove(thumb)
@@ -198,7 +195,7 @@ async def admins(_, message: Message):
                 final_output = await message.reply_photo(
                     photo=thumb,
                     reply_markup=InlineKeyboardMarkup(buttons),
-                    caption=f"<b>__Skipped Voice Chat__</b>\n\n🎥<b>__Started Playing:__</b> {title} \n⏳<b>__Duration:__</b> {duration_min} \n👤<b>__Requested by:__ </b> {mention}",
+                    caption=f"<b>__تێپەڕێندرا گۆرانی ئیستا__</b>\n\n🎥<b>__دەسپێکی ئیستا:__</b> {title} \n⏳<b>__کات:__</b> {duration_min} \n👤<b>__داواکراوە لەلایەن:__ </b> {mention}",
                 )
             await start_timer(
                 videoid,
