@@ -177,14 +177,14 @@ async def del_cmd(_, message):
     if str(count) == "all":
         buttons = delete_playlist_markuup("Personal", genre)
         return await message.reply_text(
-            f"Confirmation!!\nYou sure you want to delete your whole {genre} playlist?",
+            f"دووپاتکردنەوە!!\nتۆ دڵنیایت کە دەتەوێت هەموو خۆت بسڕیتەوە {genre} لیستی پەخشکردن?",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
         _playlist = await get_playlist_names(message.from_user.id, genre)
     if not _playlist:
         await message.reply_text(
-            f"You have no Playlist on {MUSIC_BOT_NAME}'s Server"
+            f"تۆ هیچ لیستێکی پەخشکردنت نیە لەسەر {MUSIC_BOT_NAME} سێرڤەر"
         )
     else:
         titlex = []
@@ -199,19 +199,19 @@ async def del_cmd(_, message):
                 )
                 if deleted:
                     return await message.reply_text(
-                        f"**Deleted the {count} music in playlist**"
+                        f"**سڕایەوە  {count} مۆسیقا لە لیستی پەخشکردن**"
                     )
                 else:
                     return await message.reply_text(
-                        f"**No such saved music in playlist.**"
+                        f"**هیچ مۆسیقایەکی لەو جۆرە لە لیستی پەخشکردندا هەڵناگیرێت.**"
                     )
-        await message.reply_text("You have no such music in Playlist.")
+        await message.reply_text("تۆ هیچ مۆسیقایەکی لەم شێوەیەت نیە لە لیستی پەخشکردن.")
 
 
 @app.on_message(filters.command("delgroupplaylist"))
 @AdminRightsCheck
 async def delgroupplaylist(_, message):
-    usage = f"Usage:\n\n/delgroupplaylist [Genre] [Numbers between 1-30] ( to delete a particular music in playlist )\n\nor\n\n /delgroupplaylist [Genre] all ( to delete whole playlist )\n\n**Genres:-**\n{' | '.join(options_Genre)}"
+    usage = f"بەکارهێنان:\n\n/delgroupplaylist (ژانر) [ژمارەکان لە نێوان 1-30] ( بۆ سڕینەوەی مۆسیقایەکی تایبەت لە لیستی پەخشکردن )\n\nیان\n\n /delgroupplaylist [ژانر] هەموو (بۆ سڕینەوەی هەموو لیستی پەخشکردن )\n\n**ژانرەکان:-**\n{' | '.join(options_Genre)}"
     if len(message.command) < 3:
         return await message.reply_text(usage)
     genre = message.text.split(None, 2)[1].strip()
@@ -225,7 +225,7 @@ async def delgroupplaylist(_, message):
     if str(count) == "all":
         buttons = delete_playlist_markuup("Group", genre)
         return await message.reply_text(
-            f"Confirmation!!\nYou sure you want to delete Group's whole {genre} playlist?",
+            f"دووپاتکردنەوە!!\nتۆ دڵنیایت کە دەتەوێت تەواوی گروپ بسڕیتەوە {genre} لیستی پەخشکردن?",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
@@ -245,13 +245,13 @@ async def delgroupplaylist(_, message):
                 deleted = await delete_playlist(message.chat.id, note, genre)
                 if deleted:
                     return await message.reply_text(
-                        f"**Deleted the {count} music in group's playlist**"
+                        f"**سڕایەوە {count} مۆسیقا لە لیستی پەخشکردنی گرووپ**"
                     )
                 else:
                     return await message.reply_text(
-                        f"**No such saved music in Group playlist.**"
+                        f"**هیچ مووزیکێکی ئاوا خەزنکراو لە لیستی پەخشکردنی گرووپدا نیە.**"
                     )
-        await message.reply_text("You have no such music in Playlist.")
+        await message.reply_text("تۆ هیچ مۆسیقایەکی لەم شێوەیەت نیە لە لیستی پەخشکردن.")
 
 
 @app.on_callback_query(filters.regex(pattern=r"show_genre"))
