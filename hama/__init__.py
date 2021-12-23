@@ -4,7 +4,7 @@ import time
 from os import listdir, mkdir
 
 from aiohttp import ClientSession
-from config import ASSISTANT_PREFIX, DURATION_LIMIT_MIN, LOG_GROUP_ID
+from config import ASSISTANT_PREFIX, DURATION_LIMIT_MIN, LOG_GROUP_ID, CHANNEL, NAMECH
 from config import MONGO_DB_URI as mango
 from config import MUSIC_BOT_NAME, OWNER_ID, SUDO_USERS, get_queue
 from motor.motor_asyncio import AsyncIOMotorClient as Bot
@@ -45,6 +45,8 @@ LOG_GROUP_ID = LOG_GROUP_ID
 MUSIC_BOT_NAME = MUSIC_BOT_NAME
 DURATION_LIMIT = int(time_to_seconds(f"{DURATION_LIMIT_MIN}:00"))
 ASSISTANT_PREFIX = ASSISTANT_PREFIX
+NAMECH = NAMECH
+CHANNEL = CHANNEL
 
 ### Bot Info
 BOT_ID = 0
@@ -60,7 +62,7 @@ ASSMENTION = ""
 
 async def initiate_bot():
     global pymongodb, SUDOERS, Imp_Modules, OWNER_ID
-    global BOT_ID, BOT_NAME, BOT_USERNAME
+    global BOT_ID, BOT_NAME, BOT_USERNAME, CHANNEL, NAMECH
     global ASSID, ASSNAME, ASSMENTION, ASSUSERNAME
     os.system("clear")
     header = Table(show_header=True, header_style="bold yellow")
