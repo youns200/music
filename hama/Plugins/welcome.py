@@ -1,9 +1,11 @@
 import os
-from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram import filters
+from pyrogram.types import (InlineKeyboardMarkup, Message)
+from hama import (app)
 
-@Client.on_message(filters.new_chat_members)
-async def auto_welcome(bot: Client, msg: Message):
+@app.on_message(filters.new_chat_members, group=welcome_group)
+async def welcome(_, message: Message):
+    chat_id = message.chat.id
     first = msg.from_user.first_name
     last = msg.from_user.last_name
     mention = msg.from_user.mention
