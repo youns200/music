@@ -21,7 +21,6 @@ from hama.Decorators.admins import ActualAdminCB
 from hama.Decorators.permission import PermissionCheck
 from hama.Inline import (custommarkup, dashmarkup, setting_markup,
                           start_pannel, usermarkup, volmarkup)
-from hama.Utilities.ping import get_readable_time
 
 welcome_group = 2
 
