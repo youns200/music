@@ -5,7 +5,7 @@ from hama import MUST_JOIN, app
 
 
 @app.on_message(filters.command("start") & filters.private)
-async def must_join_channel(bot: Client, msg: Message):
+async def must_join_channel(bot: app, msg: Message):
     if not MUST_JOIN:  # Not compulsory
         return
     try:
