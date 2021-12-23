@@ -15,7 +15,7 @@ def start_pannel():
             ],
             [
                 InlineKeyboardButton(
-                    text="🔧 Settings", callback_data="settingm"
+                    text="🔧 ڕێکخستن", callback_data="settingm"
                 )
             ],
          [
@@ -24,12 +24,12 @@ def start_pannel():
                 ),
             ],
         ]
-        return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
+        return f"🎛  ** {MUSIC_BOT_NAME}**", buttons
     if not SUPPORT_CHANNEL and SUPPORT_GROUP:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 فرمانەکان", callback_data="shikhar"
                 ),
             ],
             [
@@ -39,7 +39,7 @@ def start_pannel():
             ],
             [
                 InlineKeyboardButton(
-                    text="📨Support Group", url=f"{SUPPORT_GROUP}"
+                    text="📨گروپی پگشیری", url=f"{SUPPORT_GROUP}"
                 ),
             ],
         ]
@@ -58,7 +58,7 @@ def start_pannel():
             ],
             [
                 InlineKeyboardButton(
-                    text="📨Official Channel", url=f"{SUPPORT_CHANNEL}"
+                    text="📨کەنالی پگشیری", url=f"{SUPPORT_CHANNEL}"
                 ),
             ],
                    [
@@ -127,7 +127,7 @@ def private_panel():
             ],
             [
                 InlineKeyboardButton(
-                    "➕ Add me to your Group",
+                    "➕ زیادم بکە بۆ گروپ چاتەکەت",
                     url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
                 )
             ],
@@ -201,20 +201,20 @@ def private_panel():
 def setting_markup():
     buttons = [
         [
-            InlineKeyboardButton(text="🔈 Audio Quality", callback_data="AQ"),
-            InlineKeyboardButton(text="🎚 Audio Volume", callback_data="AV"),
+            InlineKeyboardButton(text="🔈 کوالێتی دەنگ", callback_data="AQ"),
+            InlineKeyboardButton(text="🎚 قەبارەی دەنگ هاتن", callback_data="AV"),
         ],
         [
             InlineKeyboardButton(
-                text="👥 Authorized Users", callback_data="AU"
+                text="👥 ڕێگەپێدراوەکان", callback_data="AU"
             ),
             InlineKeyboardButton(
-                text="💻 Dashboard", callback_data="Dashboard"
+                text="💻 زانیاریەکان", callback_data="Dashboard"
             ),
         ],
         [
-            InlineKeyboardButton(text="✖️ Close", callback_data="close"),
-            InlineKeyboardButton(text="🔙 Go Back", callback_data="okaybhai"),
+            InlineKeyboardButton(text="✖️ داخستن", callback_data="close"),
+            InlineKeyboardButton(text="🔙 گەرانەوە", callback_data="okaybhai"),
         ],
 [
                 InlineKeyboardButton(
@@ -222,30 +222,30 @@ def setting_markup():
                 ),
             ],
     ]
-    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
+    return f"🔧  **{MUSIC_BOT_NAME} ڕێبەندەکان**", buttons
 
 
 def volmarkup():
     buttons = [
         [
             InlineKeyboardButton(
-                text="🔄 Reset Audio Volume 🔄", callback_data="HV"
+                text="🔄 پێش ڕێکخستن 🔄", callback_data="HV"
             )
         ],
         [
-            InlineKeyboardButton(text="🔈 Low Vol", callback_data="LV"),
-            InlineKeyboardButton(text="🔉 Medium Vol", callback_data="MV"),
+            InlineKeyboardButton(text="🔈 نزم", callback_data="LV"),
+            InlineKeyboardButton(text="🔉 مامناوەندی", callback_data="MV"),
         ],
         [
-            InlineKeyboardButton(text="🔊 High Vol", callback_data="HV"),
-            InlineKeyboardButton(text="🔈 Amplified Vol", callback_data="VAM"),
+            InlineKeyboardButton(text="🔊 بەرز", callback_data="HV"),
+            InlineKeyboardButton(text="🔈 گەورەکراو", callback_data="VAM"),
         ],
         [
             InlineKeyboardButton(
-                text="🔽 Custom Volume 🔽", callback_data="Custommarkup"
+                text="🔽 خواستیار 🔽", callback_data="Custommarkup"
             )
         ],
-        [InlineKeyboardButton(text="🔙 Go back", callback_data="settingm")],
+        [InlineKeyboardButton(text="🔙 گەرانەوە", callback_data="settingm")],
                [
                 InlineKeyboardButton(
                     text=f"{NAMECH}", url=f"{CHANNEL}"
@@ -269,7 +269,7 @@ def custommarkup():
             InlineKeyboardButton(text="+50", callback_data="PFZ"),
             InlineKeyboardButton(text="-50", callback_data="MFZ"),
         ],
-        [InlineKeyboardButton(text="🔼Custom Volume 🔼", callback_data="AV")],
+        [InlineKeyboardButton(text="🔼خواستیار 🔼", callback_data="AV")],
                [
                 InlineKeyboardButton(
                     text=f"{NAMECH}", url=f"{CHANNEL}"
@@ -282,15 +282,15 @@ def custommarkup():
 def usermarkup():
     buttons = [
         [
-            InlineKeyboardButton(text="👥 Everyone", callback_data="EVE"),
-            InlineKeyboardButton(text="🙍 Admins", callback_data="AMS"),
+            InlineKeyboardButton(text="👥 هەموکەس", callback_data="EVE"),
+            InlineKeyboardButton(text="🙍 بەڕێوەبەرەکان", callback_data="AMS"),
         ],
         [
             InlineKeyboardButton(
-                text="📋 Authorized Users Lists", callback_data="USERLIST"
+                text="📋 لیستی بەکارهێنەرە ڕێگەپێدراوەکان", callback_data="USERLIST"
             )
         ],
-        [InlineKeyboardButton(text="🔙 Go back", callback_data="settingm")],
+        [InlineKeyboardButton(text="🔙 گەرانەوە", callback_data="settingm")],
                [
                 InlineKeyboardButton(
                     text=f"{NAMECH}", url=f"{CHANNEL}"
@@ -303,14 +303,14 @@ def usermarkup():
 def dashmarkup():
     buttons = [
         [
-            InlineKeyboardButton(text="✔️ Uptime", callback_data="UPT"),
-            InlineKeyboardButton(text="💾 Ram", callback_data="RAT"),
+            InlineKeyboardButton(text="✔️ کاتی نوێکاری", callback_data="UPT"),
+            InlineKeyboardButton(text="💾 رام", callback_data="RAT"),
         ],
         [
-            InlineKeyboardButton(text="💻 Cpu", callback_data="CPT"),
-            InlineKeyboardButton(text="💽 Disk", callback_data="DIT"),
+            InlineKeyboardButton(text="💻 کوب", callback_data="CPT"),
+            InlineKeyboardButton(text="💽 دیسک", callback_data="DIT"),
         ],
-        [InlineKeyboardButton(text="🔙 Go back", callback_data="settingm")],
+        [InlineKeyboardButton(text="🔙 گەرانەوە", callback_data="settingm")],
                [
                 InlineKeyboardButton(
                     text=f"{NAMECH}", url=f"{CHANNEL}"
