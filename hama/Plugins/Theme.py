@@ -42,7 +42,7 @@ __HELP__ = """
     filters.command(["settheme", f"settheme@{BOT_USERNAME}"]) & filters.group
 )
 async def settheme(_, message):
-    usage = f"This isn't a theme.\n\nSelect from them\n{' | '.join(themes)}\n\nUse 'Random' to get random choice of themes"
+    usage = f"ئەمە بابەتێک نییە.\n\nلێیان دیاریبکە\n{' | '.join(themes)}\n'Random' بەکاربهێنە بۆ بەدەستهێنانی هەڵبژاردنی هەڕەمەکی بابەتەکان"
     if len(message.command) != 2:
         return await message.reply_text(usage)
     theme = message.text.split(None, 1)[1].strip()
@@ -52,7 +52,7 @@ async def settheme(_, message):
         "theme": theme,
     }
     await save_theme(message.chat.id, "theme", note)
-    await message.reply_text(f"Changed thumbnail theme to {theme}")
+    await message.reply_text(f"**بەسەرکەوتوی وێنە بچوکەکە گۆرا بۆ ** {theme}")
 
 
 @app.on_message(filters.command("theme"))
@@ -65,6 +65,6 @@ async def theme_func(_, message):
     else:
         theme = _note["theme"]
     await message.reply_text(
-        f"**{MUSIC_BOT_NAME} Thumbnails Theme**\n\n**Current Theme:-** {theme}\n\n**Available Themes:-** {' | '.join(themes2)} \n\nUse /settheme to change theme."
+        f"**{MUSIC_BOT_NAME} ڕووکاری وێنە بچووکەکان **\n\n**ڕووکاری ئێستا:-** {theme} \n\nبەبەکارهێنانی /settheme بۆ گۆڕینی ڕووکارەکان."
     )
 
