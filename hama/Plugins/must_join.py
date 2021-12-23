@@ -1,10 +1,10 @@
-from pyrogram import Client, filters
+from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
-from config import MUST_JOIN
+from hama import MUST_JOIN, app
 
 
-@Client.on_message(filters.command("start") & filters.private)
+@app.on_message(filters.command("start") & filters.private)
 async def must_join_channel(bot: Client, msg: Message):
     if not MUST_JOIN:  # Not compulsory
         return
