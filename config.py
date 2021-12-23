@@ -18,9 +18,8 @@ SUDO_USERS = list(map(int, getenv("SUDO_USERS", "511311707").split()))
 OWNER_ID = list(map(int, getenv("OWNER_ID", "511311707").split()))
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1001665697505"))
 MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "Music")
-MUST_JOIN = os.environ.get('MUST_JOIN', None)
-    if MUST_JOIN.startswith("@"):
-        MUST_JOIN = MUST_JOIN.replace("@", "")
+MUST_JOIN = getenv('MUST_JOIN', None)
+
 #----
 if str(getenv("SUPPORT_CHANNEL")).strip() == "":
     SUPPORT_CHANNEL = None
