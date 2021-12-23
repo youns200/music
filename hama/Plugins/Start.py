@@ -97,7 +97,7 @@ async def okaybhai(_, CallbackQuery):
 
 @app.on_callback_query(filters.regex("settingm"))
 async def settingm(_, CallbackQuery):
-    await CallbackQuery.answer("Bot Settings ...")
+    await CallbackQuery.answer("ڕێکخستنی بۆت ...")
     text, buttons = setting_markup()
     c_title = CallbackQuery.message.chat.title
     c_id = CallbackQuery.message.chat.id
@@ -112,7 +112,7 @@ async def settingm(_, CallbackQuery):
     else:
         volume = _check["volume"]
     await CallbackQuery.edit_message_text(
-        text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%",
+        text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n\n ✏دەتەوێت چی بگۆڕیت؟",
         reply_markup=InlineKeyboardMarkup(buttons),
     )
 
@@ -125,15 +125,15 @@ async def EVE(_, CallbackQuery):
     chat_id = CallbackQuery.message.chat.id
     is_non_admin = await is_nonadmin_chat(chat_id)
     if not is_non_admin:
-        await CallbackQuery.answer("Changes Saved")
+        await CallbackQuery.answer("گۆرانکاری هەڵگیرا")
         await add_nonadmin_chat(chat_id)
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\nAdmins Commands Mode to **Everyone**\n\nNow anyone present in this group can skip, pause, resume, stop music.\n\nChanges Done By @{checking}",
+            text=f"{text}\n\nمۆدی فەرمانەکانی بەڕێوەبەر بۆ **هەموکەس**\n\nئێستا هەرکەسێک لەم گرووپەدا ئامادەبێت دەتوانێت بازبدا، بوەستێت، دەست پێبکاتەوە، مۆسیقا بوەستێنێت.\n\nگۆڕانکاری لەلایەن @{checking}",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
         await CallbackQuery.answer(
-            "Commands Mode is Already Set To EVERYONE", show_alert=True
+            "مۆدی فەرمانەکان پێشتر دانراوە بۆ هەموو کەسێک", show_alert=True
         )
 
 
@@ -146,13 +146,13 @@ async def AMS(_, CallbackQuery):
     is_non_admin = await is_nonadmin_chat(chat_id)
     if not is_non_admin:
         await CallbackQuery.answer(
-            "Commands Mode is Already Set To ADMINS ONLY", show_alert=True
+            "مۆدی فەرمانەکان هەر ئێستا دانراوە بۆ بەڕێوەبەرەکان تەنها", show_alert=True
         )
     else:
         await CallbackQuery.answer("Changes Saved")
         await remove_nonadmin_chat(chat_id)
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\nSet Commands Mode to **Admins**\n\nNow only Admins present in this group can skip, pause, resume, stop musics.\n\nChanges Done By @{checking}",
+            text=f"{text}\n\nمۆدی فەرمانەکان ڕێک بخە بۆ **بەڕێوەبەرەکان**\n\nئێستا تەنها بەڕێوەبەرانی ئامادە لەم گرووپەدا دەتوانن بازبپەڕن، بوەستن، دەست پێکردنەوە، وەستاندنی مووزیکەکان.\n\nگۆرانکاریەکان لەلایەن @{checking}",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
 
@@ -175,7 +175,7 @@ async def start_markup_check(_, CallbackQuery):
         _check = await get_assistant(c_id, "assistant")
         volume = _check["volume"]
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "AU":
@@ -187,7 +187,7 @@ async def start_markup_check(_, CallbackQuery):
         else:
             current = "Everyone"
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n\nCurrently Who Can Use {MUSIC_BOT_NAME}:- **{current}**\n\n**⁉️ What is This?**\n\n**👥 Everyone :-**Anyone can use {MUSIC_BOT_NAME}'s commands(skip, pause, resume etc) present in this group.\n\n**🙍 Admin Only :-**  Only the admins and authorized users can use all commands of {MUSIC_BOT_NAME}.",
+            text=f"{text}\n\n**گروپ:** {c_title}\n\nCurrently Who Can Use {MUSIC_BOT_NAME}:- **{current}**\n\n**⁉️ What is This?**\n\n**👥 Everyone :-**Anyone can use {MUSIC_BOT_NAME}'s commands(skip, pause, resume etc) present in this group.\n\n**🙍 Admin Only :-**  Only the admins and authorized users can use all commands of {MUSIC_BOT_NAME}.",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "Dashboard":
