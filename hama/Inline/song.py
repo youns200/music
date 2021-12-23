@@ -1,6 +1,6 @@
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
-
+from config import NAMECH, CHANNEL
 
 def song_markup(videoid, duration, user_id, query, query_type):
     buttons = [
@@ -20,10 +20,14 @@ def song_markup(videoid, duration, user_id, query, query_type):
         ],
         [
             InlineKeyboardButton(
-                text="🗑 Close Search",
+                text="🗑 ",
                 callback_data=f"forceclose {query}|{user_id}",
             ),
-       InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm"),],
+               
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return buttons
 
@@ -42,10 +46,12 @@ def song_download_markup(videoid, user_id):
         ],
         [
             InlineKeyboardButton(
-                text="🗑 Close Menu",
+                text="🗑 ",
                 callback_data=f"forceclose {videoid}|{user_id}",
             ),
-          InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm"),
-        ],
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return buttons
