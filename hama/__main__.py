@@ -196,8 +196,8 @@ async def start_command(_, message):
                 parse_mode="markdown",
                 reply_markup=key,
             ) 
-          startpm = f"""*** hello your*** """
-            pp = f"https://t.me/xawnakam_lm/104?single"
+    startpm = f"""*** hello your*** """
+    pp = "https://t.me/xawnakam_lm/104"
     out = private_panel()
     return await app.send_photo(
                 message.chat.id,
