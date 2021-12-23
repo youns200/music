@@ -10,7 +10,7 @@ def start_pannel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
                 ),
             ],
             [
@@ -29,12 +29,12 @@ def start_pannel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان", callback_data="shikhar"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
                 ),
             ],
             [
                 InlineKeyboardButton(
-                    text="🔧 Settings", callback_data="settingm"
+                    text="🔧 ڕێکخستن", callback_data="settingm"
                 )
             ],
             [
@@ -43,17 +43,17 @@ def start_pannel():
                 ),
             ],
         ]
-        return f"🎛  **This is {MUSIC_BOT_NAME}*", buttons
+        return f"🎛  ** {MUSIC_BOT_NAME}*", buttons
     if SUPPORT_CHANNEL and not SUPPORT_GROUP:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
                 ),
             ],
             [
                 InlineKeyboardButton(
-                    text="🔧 Settings", callback_data="settingm"
+                    text="🔧 ڕێکخستن", callback_data="settingm"
                 )
             ],
             [
@@ -67,25 +67,25 @@ def start_pannel():
                 ),
             ],
         ]
-        return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
+        return f"🎛  ** {MUSIC_BOT_NAME}**", buttons
     if SUPPORT_CHANNEL and SUPPORT_GROUP:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
                 ),
             ],
             [
                 InlineKeyboardButton(
-                    text="🔧 Settings", callback_data="settingm"
+                    text="🔧 ڕێکخستن", callback_data="settingm"
                 )
             ],
             [
                 InlineKeyboardButton(
-                    text="📨Official Channel", url=f"{SUPPORT_CHANNEL}"
+                    text="📨کەنالی پگشیری", url=f"{SUPPORT_CHANNEL}"
                 ),
                 InlineKeyboardButton(
-                    text="📨Support Group", url=f"{SUPPORT_GROUP}"
+                    text="📨گروپی پگشیری", url=f"{SUPPORT_GROUP}"
                 ),
             ],
                    [
@@ -102,12 +102,12 @@ def private_panel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
                 ),
             ],
             [
                 InlineKeyboardButton(
-                    "➕ Add me to your Group",
+                    "➕زیادم بکە بۆ گروپ چاتەکەت",
                     url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
                 )
             ],
@@ -117,12 +117,12 @@ def private_panel():
                 ),
             ],
         ]
-        return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
+        return f"🎛  ** {MUSIC_BOT_NAME}**", buttons
     if not SUPPORT_CHANNEL and SUPPORT_GROUP:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
                 ),
             ],
             [
@@ -133,7 +133,7 @@ def private_panel():
             ],
             [
                 InlineKeyboardButton(
-                    text="📨Support Group", url=f"{SUPPORT_GROUP}"
+                    text="📨گروپی پگشیری", url=f"{SUPPORT_GROUP}"
                 ),
             ],
                    [
@@ -142,23 +142,23 @@ def private_panel():
                 ),
             ],
         ]
-        return f"🎛  **This is {MUSIC_BOT_NAME}*", buttons
+        return f"🎛  ** {MUSIC_BOT_NAME}*", buttons
     if SUPPORT_CHANNEL and not SUPPORT_GROUP and CHANNEL and NAMECH:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
                 ),
             ],
             [
                 InlineKeyboardButton(
-                    "➕ Add me to your Group",
+                    "➕ زیادم بکە بۆ گروپ چاتەکەت",
                     url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
                 )
             ],
             [
                 InlineKeyboardButton(
-                    text="📨Official Channel", url=f"{SUPPORT_CHANNEL}"
+                    text="📨کەنالی پگشیری", url=f"{SUPPORT_CHANNEL}"
                 ),
             ],
 [
@@ -167,26 +167,26 @@ def private_panel():
                 ),
             ],
         ]
-        return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
+        return f"🎛  ** {MUSIC_BOT_NAME}**", buttons
     if SUPPORT_CHANNEL and SUPPORT_GROUP:
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
                 ),
             ],
             [
                 InlineKeyboardButton(
-                    "➕ Add me to your Group",
+                    "➕ زیادم بکە بۆ گروپ چاتەکەت",
                     url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
                 )
             ],
             [
                 InlineKeyboardButton(
-                    text="📨Official Channel", url=f"{SUPPORT_CHANNEL}"
+                    text="📨کەنالی پگشیری", url=f"{SUPPORT_CHANNEL}"
                 ),
                 InlineKeyboardButton(
-                    text="📨Support Group", url=f"{SUPPORT_GROUP}"
+                    text="📨گروپی پگشیری", url=f"{SUPPORT_GROUP}"
                 ),
             ],
 [
@@ -195,7 +195,7 @@ def private_panel():
                 ),
             ],
         ]
-        return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
+        return f"🎛  ** {MUSIC_BOT_NAME}**", buttons
 
 
 def setting_markup():
@@ -252,7 +252,7 @@ def volmarkup():
                 ),
             ],
     ]
-    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
+    return f"🔧  **{MUSIC_BOT_NAME} ڕێبەندەکان**", buttons
 
 
 def custommarkup():
@@ -276,7 +276,7 @@ def custommarkup():
                 ),
             ],
     ]
-    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
+    return f"🔧  **{MUSIC_BOT_NAME} ڕێبەندەکان**", buttons
 
 
 def usermarkup():
@@ -297,7 +297,7 @@ def usermarkup():
                 ),
             ],
     ]
-    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
+    return f"🔧  **{MUSIC_BOT_NAME} ڕێبەندەکان**", buttons
 
 
 def dashmarkup():
@@ -317,4 +317,4 @@ def dashmarkup():
                 ),
             ],
     ]
-    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
+    return f"🔧  **{MUSIC_BOT_NAME} ڕێبەندەکان**", buttons
