@@ -26,3 +26,12 @@ if str(getenv("SUPPORT_GROUP")).strip() == "":
     SUPPORT_GROUP = None
 else:
     SUPPORT_GROUP = str(getenv("SUPPORT_GROUP"))
+-------------
+if str(getenv("CHANNEL")).strip() == "":
+    CHANNEL = None
+else:
+    CHANNEL = str(getenv("CHANNEL"))
+if str(getenv("NAMECH")).strip() == "":
+    NAMECH = None
+else:
+    NAMECH = str(getenv("NAMECH"))
