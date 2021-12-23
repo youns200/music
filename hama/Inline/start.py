@@ -1,4 +1,4 @@
-from config import MUSIC_BOT_NAME, SUPPORT_CHANNEL, SUPPORT_GROUP
+from config import MUSIC_BOT_NAME, SUPPORT_CHANNEL, SUPPORT_GROUP, CHANNEL, NAMECH
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
@@ -6,7 +6,7 @@ from hama import BOT_USERNAME
 
 
 def start_pannel():
-    if not SUPPORT_CHANNEL and not SUPPORT_GROUP:
+    if not SUPPORT_CHANNEL and not SUPPORT_GROUP and CHANNEL and NAMECH:
         buttons = [
             [
                 InlineKeyboardButton(
@@ -17,6 +17,11 @@ def start_pannel():
                 InlineKeyboardButton(
                     text="🔧 Settings", callback_data="settingm"
                 )
+            ],
+         [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
             ],
         ]
         return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
@@ -118,7 +123,7 @@ def private_panel():
             ],
         ]
         return f"🎛  **This is {MUSIC_BOT_NAME}*", buttons
-    if SUPPORT_CHANNEL and not SUPPORT_GROUP:
+    if SUPPORT_CHANNEL and not SUPPORT_GROUP and CHANNEL and NAMECH:
         buttons = [
             [
                 InlineKeyboardButton(
@@ -134,6 +139,11 @@ def private_panel():
             [
                 InlineKeyboardButton(
                     text="📨Official Channel", url=f"{SUPPORT_CHANNEL}"
+                ),
+            ],
+[
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
                 ),
             ],
         ]
@@ -159,6 +169,11 @@ def private_panel():
                     text="📨Support Group", url=f"{SUPPORT_GROUP}"
                 ),
             ],
+[
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
         ]
         return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
 
@@ -181,6 +196,11 @@ def setting_markup():
             InlineKeyboardButton(text="✖️ Close", callback_data="close"),
             InlineKeyboardButton(text="🔙 Go Back", callback_data="okaybhai"),
         ],
+[
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
 
