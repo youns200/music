@@ -196,13 +196,12 @@ async def start_command(_, message):
                 parse_mode="markdown",
                 reply_markup=key,
             ) 
-    startpm = f"""*** hello your*** """
-    pp = "https://t.me/xawnakam_lm/104"
+    
     out = private_panel()
     return await app.send_photo(
                 message.chat.id,
-                photo=pp,
-                caption=startpm,
+                photo="Utils/Telegram.JPEG",
+                caption="hello",
                 parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
