@@ -64,13 +64,13 @@ async def timer_checkup_markup(_, CallbackQuery):
             dur_left = db_mem[CallbackQuery.message.chat.id]["left"]
             duration_min = db_mem[CallbackQuery.message.chat.id]["total"]
             return await CallbackQuery.answer(
-                f"Remaining {dur_left} out of {duration_min} Mins.",
+                f"ماوە {dur_left} لە {duration_min} خولەک.",
                 show_alert=True,
             )
-        return await CallbackQuery.answer(f"Not Playing.", show_alert=True)
+        return await CallbackQuery.answer(f"پەخش نەکراوە.", show_alert=True)
     else:
         return await CallbackQuery.answer(
-            f"No Active Voice Chat", show_alert=True
+            f"چاتی دەنگی چاڵاک نیە", show_alert=True
         )
 
 
@@ -92,22 +92,22 @@ async def activevc(_, message: Message):
         current_playing = fetched[0][0]
         user_name = fetched[0][1]
 
-        msg = "**Queued List**\n\n"
-        msg += "**Currently Playing:**"
+        msg = "**لیستی ڕێز**\n\n"
+        msg += "**لە ئێستادا پەخش دەکات:**"
         msg += "\n▶️" + current_playing[:30]
-        msg += f"\n   ╚By:- {user_name}"
-        msg += f"\n   ╚Duration:- Remaining `{dur_left}` out of `{duration_min}` Mins."
+        msg += f"\n   ╚لەلایەن:- {user_name}"
+        msg += f"\n   ╚کات:- ماوە `{dur_left}` لە دەرەوە `{duration_min}` خوڵەک."
         fetched.pop(0)
         if fetched:
             msg += "\n\n"
-            msg += "**Up Next In Queue:**"
+            msg += "**سەرەوەی داهاتوو لە ڕیز:**"
             for song in fetched:
                 name = song[0][:30]
                 usr = song[1]
                 dur = song[2]
                 msg += f"\n⏸️{name}"
-                msg += f"\n   ╠Duration : {dur}"
-                msg += f"\n   ╚Requested by : {usr}\n"
+                msg += f"\n   ╠کات : {dur}"
+                msg += f"\n   ╚داواکراوە لەلایەن : {usr}\n"
         if len(msg) > 4096:
             await mystic.delete()
             filename = "queue.txt"
@@ -115,14 +115,14 @@ async def activevc(_, message: Message):
                 out_file.write(str(msg.strip()))
             await message.reply_document(
                 document=filename,
-                caption=f"**OUTPUT:**\n\n`Queued List`",
+                caption=f"**دەرچوون:**\n\n`لیستی ڕێز`",
                 quote=False,
             )
             os.remove(filename)
         else:
             await mystic.edit(msg)
     else:
-        await message.reply_text(f"Nothing in Queue")
+        await message.reply_text(f"هیچ شتێک لە ڕیزدا نیە")
 
 
 @app.on_message(filters.command("activevc") & filters.user(SUDOERS))
@@ -133,7 +133,7 @@ async def activevc(_, message: Message):
         for chat in chats:
             served_chats.append(int(chat["chat_id"]))
     except Exception as e:
-        await message.reply_text(f"**Error:-** {e}")
+        await message.reply_text(f"**هەڵەڕوویدا:-** {e}")
     text = ""
     j = 0
     for x in served_chats:
@@ -150,10 +150,10 @@ async def activevc(_, message: Message):
             text += f"<b>{j + 1}. {title}</b> [`{x}`]\n"
         j += 1
     if not text:
-        await message.reply_text("No Active Voice Chats")
+        await message.reply_text("چاتی دەنگی چاڵاکرنەکراوە")
     else:
         await message.reply_text(
-            f"**Active Voice Chats:-**\n\n{text}",
+            f"**چاتی دەنگی چاڵاکرا:-**\n\n{text}",
             disable_web_page_preview=True,
         )
 
@@ -162,46 +162,46 @@ async def activevc(_, message: Message):
 async def basffy(_, message):
     if len(message.command) != 2:
         await message.reply_text(
-            "**Usage:**\n/joinassistant [Chat Username or Chat ID]"
+            "**بەکاربێنە:**\n/joinassistant [پێناسە یان ناسنامەی گروپ]"
         )
         return
     chat = message.text.split(None, 2)[1]
     try:
         await userbot.join_chat(chat)
     except Exception as e:
-        await message.reply_text(f"Failed\n**Possible reason could be**:{e}")
+        await message.reply_text(f"سەرکەوتونەبوو\n**هۆکار**:{e}")
         return
-    await message.reply_text("Joined.")
+    await message.reply_text("داخڵ بو.")
 
 
 @app.on_message(filters.command("leavebot") & filters.user(SUDOERS))
 async def baaaf(_, message):
     if len(message.command) != 2:
         await message.reply_text(
-            "**Usage:**\n/leavebot [Chat Username or Chat ID]"
+            "**بەکارهێنەر:**\n/leavebot [پێناسە یان ناسنامەی گروپ]"
         )
         return
     chat = message.text.split(None, 2)[1]
     try:
         await app.leave_chat(chat)
     except Exception as e:
-        await message.reply_text(f"Failed\n**Possible reason could be**:{e}")
+        await message.reply_text(f"سەرکەوتونەبو\n**هۆکار**:{e}")
         print(e)
         return
-    await message.reply_text("Bot has left the chat successfully")
+    await message.reply_text("دەرچۆ بۆت")
 
 
 @app.on_message(filters.command("leaveassistant") & filters.user(SUDOERS))
 async def baujaf(_, message):
     if len(message.command) != 2:
         await message.reply_text(
-            "**Usage:**\n/leave [Chat Username or Chat ID]"
+            "**بەبەکارهێنانی:**\n/leave [ناسمە یان پێناسەی گروپ]"
         )
         return
     chat = message.text.split(None, 2)[1]
     try:
         await userbot.leave_chat(chat)
     except Exception as e:
-        await message.reply_text(f"Failed\n**Possible reason could be**:{e}")
+        await message.reply_text(f"سەرکەوتونەبو\n**هۆکار**:{e}")
         return
-    await message.reply_text("Left.")
+    await message.reply_text("دەرچۆ.")
