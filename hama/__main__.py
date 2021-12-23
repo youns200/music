@@ -10,7 +10,7 @@ from rich.console import Console
 from rich.table import Table
 from youtubesearchpython import VideosSearch
 
-from hama import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME,
+from hama import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME, CHANNEL, NAMECH, 
                    BOT_USERNAME, SUDOERS, app, db, pymongodb, userbot)
 from hama.Core.Logger.Log import (startup_delete_last, startup_edit_last,
                                    startup_send_new)
@@ -200,7 +200,7 @@ async def start_command(_, message):
     out = private_panel()
     return await app.send_photo(
                 message.chat.id,
-                photo="Utils/Telegram.JPEG",
+                photo="https://t.me/xawnakam_lm/93",
                 caption="hello",
                 parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(out[1]),
