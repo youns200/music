@@ -220,11 +220,11 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
                 ],
                 [
                     InlineKeyboardButton(
-                        text="⬅️  Go Back",
+                        text="⬅️ گەرانەوە",
                         callback_data=f"good {videoid}|{user_id}",
                     ),
                     InlineKeyboardButton(
-                        text="🗑 Close Menu", callback_data=f"close2"
+                        text="🗑 داخستن", callback_data=f"close2"
                     ),
                 ],
             ]
@@ -246,18 +246,18 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
                 ],
                 [
                     InlineKeyboardButton(
-                        text="⬅️  Go Back",
+                        text="⬅️  گەرانەوە",
                         callback_data=f"good {videoid}|{user_id}",
                     ),
                     InlineKeyboardButton(
-                        text="🗑 Close Menu", callback_data=f"close2"
+                        text="🗑 داخستن", callback_data=f"close2"
                     ),
                 ],
             ]
         )
     else:
         return await CallbackQuery.message.reply_text(
-            "Video Format Not Found...."
+            "ڤیدیۆیە بارنەکرا...."
         )
     return key
 
@@ -265,20 +265,20 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
 def get_type(type, format, videoid, user_id):
     if type == "audio":
         a1 = InlineKeyboardButton(
-            text=f"Audio Form",
+            text=f"بە ڤیدیۆ",
             callback_data=f"boom audio||{format}||{videoid}",
         )
         a2 = InlineKeyboardButton(
-            text=f"Document Form",
+            text=f"بە فایڵ",
             callback_data=f"boom docaudio||{format}||{videoid}",
         )
     else:
         a1 = InlineKeyboardButton(
-            text=f"Video Form",
+            text=f"بە ڤیدیۆ",
             callback_data=f"boom video||{format}||{videoid}",
         )
         a2 = InlineKeyboardButton(
-            text=f"Document Form",
+            text=f"بە فایڵ",
             callback_data=f"boom docvideo||{format}||{videoid}",
         )
     key = InlineKeyboardMarkup(
@@ -289,11 +289,11 @@ def get_type(type, format, videoid, user_id):
             ],
             [
                 InlineKeyboardButton(
-                    text="⬅️  Go Back",
+                    text="⬅️  گەرانەوە",
                     callback_data=f"good {videoid}|{user_id}",
                 ),
                 InlineKeyboardButton(
-                    text="🗑 Close Menu", callback_data=f"close2"
+                    text="🗑 داخستن", callback_data=f"close2"
                 ),
             ],
         ]
