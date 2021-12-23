@@ -61,6 +61,11 @@ def start_pannel():
                     text="📨Official Channel", url=f"{SUPPORT_CHANNEL}"
                 ),
             ],
+                   [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
         ]
         return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
     if SUPPORT_CHANNEL and SUPPORT_GROUP:
@@ -83,6 +88,11 @@ def start_pannel():
                     text="📨Support Group", url=f"{SUPPORT_GROUP}"
                 ),
             ],
+                   [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
         ]
         return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
 
@@ -100,6 +110,11 @@ def private_panel():
                     "➕ Add me to your Group",
                     url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
                 )
+            ],
+                   [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
             ],
         ]
         return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
@@ -119,6 +134,11 @@ def private_panel():
             [
                 InlineKeyboardButton(
                     text="📨Support Group", url=f"{SUPPORT_GROUP}"
+                ),
+            ],
+                   [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
                 ),
             ],
         ]
@@ -226,6 +246,11 @@ def volmarkup():
             )
         ],
         [InlineKeyboardButton(text="🔙 Go back", callback_data="settingm")],
+               [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
 
@@ -245,6 +270,11 @@ def custommarkup():
             InlineKeyboardButton(text="-50", callback_data="MFZ"),
         ],
         [InlineKeyboardButton(text="🔼Custom Volume 🔼", callback_data="AV")],
+               [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
 
@@ -261,6 +291,11 @@ def usermarkup():
             )
         ],
         [InlineKeyboardButton(text="🔙 Go back", callback_data="settingm")],
+               [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
 
@@ -276,5 +311,10 @@ def dashmarkup():
             InlineKeyboardButton(text="💽 Disk", callback_data="DIT"),
         ],
         [InlineKeyboardButton(text="🔙 Go back", callback_data="settingm")],
+               [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
