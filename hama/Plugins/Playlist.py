@@ -77,7 +77,7 @@ async def play_playlist_cmd(_, message):
             await message.reply_photo(
                 photo=thumb,
                 caption=(
-                    f"**{MUSIC_BOT_NAME}'s Playlist Feature**\nSelect the Playlist you want to play!.\n\nYou can play someone else's playlist too:-\n- /playplaylist [Username]\n- /playplaylist [USER ID](if user has deleted acc)\n- /playplaylist [Reply to a User]"
+                    f"**{MUSIC_BOT_NAME}** تایبەتمەندی لیستی پەخشکردن \n لیستی پەخشکردن دەسنیشان بکە کە دەتەوێت یاری بکەیت!. \n\n تۆ دەتوانیت لیستی پەخشکردنی کەسێکی تر بکەیت هەروەها:- \n- /Playlist لیستی پەخشکردن [ناوی بەکارهێنەر] \n- /Playlist لیستی پەخشکردن [ناسنامەی بەکارهێنەر] (ئەگەر بەکارهێنەری ئەی سی سڕایەوە) \n- /playlist [وەڵامدانەوەی بەکارهێنەرێک]"
                 ),
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
@@ -93,7 +93,7 @@ async def play_playlist_cmd(_, message):
         hmo = await message.reply_photo(
             photo=thumb,
             caption=(
-                f"**{MUSIC_BOT_NAME}'s Playlist Feature**\nSelect the Playlist you want to play!.\n\nYou can play someone else's playlist too:-\n- /playplaylist [Username]\n- /playplaylist [USER ID](if user has deleted acc)\n- /playplaylist [Reply to a User]"
+                f"**{MUSIC_BOT_NAME}** تایبەتمەندی لیستی پەخشکردن \n لیستی پەخشکردن دەسنیشان بکە کە دەتەوێت یاری بکەیت!. \n\n تۆ دەتوانیت لیستی پەخشکردنی کەسێکی تر بکەیت هەروەها:- \n- /Playlist لیستی پەخشکردن [ناوی بەکارهێنەر] \n- /Playlist لیستی پەخشکردن [ناسنامەی بەکارهێنەر] (ئەگەر بەکارهێنەری ئەی سی سڕایەوە) \n- /playlist [وەڵامدانەوەی بەکارهێنەرێک]"
             ),
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -109,7 +109,7 @@ async def playlist(_, message):
     buttons = check_markup(user_name, user_id, "abcd")
     await message.reply_photo(
         photo=thumb,
-        caption=(f"**{MUSIC_BOT_NAME} Playlist Feature**\n\nSelect The Playlist, You want to **check!**"),
+        caption=(f"**{MUSIC_BOT_NAME} تایبەتمەندی لیستی پەخشکردن**\n\nلیستی پەخشکردن دیاریبکە، دەتەوێت **پشکنین!**"),
         reply_markup=InlineKeyboardMarkup(buttons),
     )
     return
@@ -163,7 +163,7 @@ options_Genre = [
 
 @app.on_message(filters.command("delmyplaylist"))
 async def del_cmd(_, message):
-    usage = f"Usage:\n\n/delmyplaylist [Genre] [Numbers between 1-30] ( to delete a particular music in playlist )\n\nor\n\n/delmyplaylist [Genre] all ( to delete whole playlist )\n\n**Genres:-**\n{' | '.join(options_Genre)}"
+    usage = f"بەکارهێنان:\n\n/delmyplaylist [ژانرەکان] [ژمارەکان لە نێوان 1-30] ( بۆ سڕینەوەی مۆسیقایەکی تایبەت لە لیستی پەخشکردن )\n\nیان\n\n/delmyplaylist [ژانرەکان] all ( بۆ سڕینەوەی هەموو لیستی پەخشکردن )\n\n**ژانرەکان:-**\n{' | '.join(options_Genre)}"
     if len(message.command) < 3:
         return await message.reply_text(usage)
     genre = message.text.split(None, 2)[1].strip()
