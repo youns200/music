@@ -2,7 +2,7 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
 from hama import db_mem
-
+from config import CHANNEL, NAMECH
 
 def url_markup(videoid, duration, user_id, query, query_type):
     buttons = [
@@ -30,7 +30,7 @@ def url_markup(videoid, duration, user_id, query, query_type):
                 callback_data=f"forceclose {query}|{user_id}",
             ),
         ],
-      [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+        [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}"),],
     ]
     return buttons
 
@@ -47,7 +47,7 @@ def url_markup2(videoid, duration, user_id):
                 callback_data=f"forceclose {videoid}|{user_id}",
             ),
         ],
-      [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+      [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
@@ -97,7 +97,7 @@ def search_markup(
                 text=">", callback_data=f"popat 1|{query}|{user_id}"
             ),
         ],
-      [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+      [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
@@ -152,7 +152,7 @@ def search_markup2(
                 text=">", callback_data=f"popat 2|{query}|{user_id}"
             ),
         ],
-   [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+       [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
@@ -170,8 +170,8 @@ def secondary_markup(videoid, user_id):
                 text="⚙ ڕێبەندەکان", callback_data=f"other {videoid}|{user_id}"
             ),
             InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
-        ],
-        [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+        ],     
+      [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
@@ -199,7 +199,7 @@ def primary_markup(videoid, user_id, current_time, total_time):
             ),
             InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
         ],
-       [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+            [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
@@ -224,7 +224,7 @@ def timer_markup(videoid, user_id, current_time, total_time):
             ),
             InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
         ],
-         [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+               [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
@@ -247,7 +247,7 @@ def audio_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
         [InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close")],
-        [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+             [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
@@ -267,7 +267,7 @@ def audio_timer_markup_start(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
         [InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close")],
-        [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+      [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
@@ -281,6 +281,6 @@ audio_markup2 = InlineKeyboardMarkup(
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
         [InlineKeyboardButton("🗑 داخستن", callback_data="close")],
-        [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+            [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
 )
