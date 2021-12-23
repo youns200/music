@@ -117,7 +117,7 @@ async def initiate_bot():
     console.print(f"└[green] ID :- {ASSID}!")
     await run()
     console.print(f"\n[red]Stopping Bot")
-    startpm = f""" hello your """
+    
 
 
 @app.on_message(filters.command("start") & filters.private)
@@ -196,6 +196,7 @@ async def start_command(_, message):
                 parse_mode="markdown",
                 reply_markup=key,
             ) 
+          startpm = f"""*** hello your*** """
             pp = f"https://t.me/xawnakam_lm/104?single"
     out = private_panel()
     return await app.send_photo(
