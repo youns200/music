@@ -56,7 +56,7 @@ async def play_playlist_cmd(_, message):
                     userid = user.id
                     third_name = user.first_name
                 except Exception as e:
-                    return await message.reply_text("User not found")
+                    return await message.reply_text("بەکارهێنەر نەدۆزرایەوە")
             user_id = message.from_user.id
             user_name = message.from_user.first_name
             buttons = third_playlist_markup(
@@ -65,7 +65,7 @@ async def play_playlist_cmd(_, message):
             hmo = await message.reply_photo(
                 photo=thumb,
                 caption=(
-                    f"**{MUSIC_BOT_NAME}'s Playlist Feature**\nSelect the Playlist you want to play!.\n\nYou can play someone else's playlist too:-\n- /playplaylist [Username]\n- /playplaylist [USER ID](if user has deleted acc)\n- /playplaylist [Reply to a User]"
+                    f"**{MUSIC_BOT_NAME}** تایبەتمەندی لیستی پەخشکردن \n لیستی پەخشکردن دەسنیشان بکە کە دەتەوێت یاری بکەیت!. \n\n تۆ دەتوانیت لیستی پەخشکردنی کەسێکی تر بکەیت هەروەها:- \n- /Playlist لیستی پەخشکردن [ناوی بەکارهێنەر] \n- /Playlist لیستی پەخشکردن [ناسنامەی بەکارهێنەر] (ئەگەر بەکارهێنەری ئەی سی سڕایەوە) \n- /playlist [وەڵامدانەوەی بەکارهێنەرێک]"
                 ),
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
