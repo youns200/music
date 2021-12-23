@@ -12,7 +12,7 @@ def AssistantAdd(mystic):
             b = await app.get_chat_member(message.chat.id, ASSID)
             if b.status == "kicked":
                 return await message.reply_text(
-                    f"Assistant Account[{ASSID}] is banned.\nUnban it first to use Music Bot\n\nUsername: @{ASSUSERNAME}"
+                    f"ئەژمێری یاریدەدەر[{ASSID}] قەدەغەکراوە.\nیەکەم جار بۆ بەکارهێنانی مووزیک بۆت\n\nناوی بەکارهێنەر: @{ASSUSERNAME}"
                 )
         except UserNotParticipant:
             if message.chat.username:
@@ -22,7 +22,7 @@ def AssistantAdd(mystic):
                     pass
                 except Exception as e:
                     await message.reply_text(
-                        f"__Assistant Failed To Join__\n\n**Reason**: {e}"
+                        f"__یاریدەدەر سەرکەوتوو نەبوو بۆ چوونە ناوەوە__\n\n**هۆکار**: {e}"
                     )
                     return
             else:
@@ -36,13 +36,13 @@ def AssistantAdd(mystic):
                         )
                     await userbot.join_chat(invitelink)
                     await message.reply(
-                        f"{ASSMENTION} Joined Successfully",
+                        f"{ASSMENTION} بە سەرکەوتوویی چووە پاڵ",
                     )
                 except UserAlreadyParticipant:
                     pass
                 except Exception as e:
                     await message.reply_text(
-                        f"__Assistant Failed To Join__\n\n**Reason**: {e}"
+                        f"__یاریدەدەر سەرکەوتوو نەبوو بۆ چوونە ناوەوە__\n\n**هۆکار**: {e}"
                     )
                     return
         return await mystic(_, message)
