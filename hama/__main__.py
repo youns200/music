@@ -195,10 +195,14 @@ async def start_command(_, message):
                 caption=searched_text,
                 parse_mode="markdown",
                 reply_markup=key,
-            )
+            ) 
+            pp = f"https://t.me/xawnakam_lm/104?single"
     out = private_panel()
-    return await message.reply_text(
-        startpm,
+    return await app.send_photo(
+                message.chat.id,
+                photo=pp,
+                caption=startpm,
+                parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
 
