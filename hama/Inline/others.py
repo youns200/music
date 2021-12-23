@@ -2,7 +2,7 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
 from hama import db_mem
-
+from config import CHANNEL, NAMECH
 
 def others_markup(videoid, user_id):
     if videoid not in db_mem:
@@ -36,7 +36,7 @@ def others_markup(videoid, user_id):
                 callback_data=f"close",
             )
         ],
-        [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+              [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
@@ -59,6 +59,6 @@ def download_markup(videoid, user_id):
             ),
             InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
         ],
-      [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+      [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
