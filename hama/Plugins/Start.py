@@ -46,25 +46,25 @@ async def welcome(_, message: Message):
         await add_served_chat(chat_id)
     if chat_id in await blacklisted_chats():
         await message.reply_text(
-            f"Hushh, Your chat group[{message.chat.title}] has been blacklisted!\n\nAsk any Sudo User to whitelist your chat"
+            f" گروپی چاتەکەت[{message.chat.title}] لە لیستی ڕەشدا گیراوە داوا لە هەر بەکارهێنەرێکی سۆدۆ بکە بۆ لیستی سپیکردنی چاتەکەت"
         )
         await app.leave_chat(chat_id)
     for member in message.new_chat_members:
         try:
             if member.id in OWNER_ID:
                 return await message.reply_text(
-                    f"{MUSIC_BOT_NAME}'s Owner[{member.mention}] has just joined your chat."
+                    f"{MUSIC_BOT_NAME} خاوەن[{member.mention}]  ئێستا پەیوەندی بە چاتەکەتەوە کردووە."
                 )
             if member.id in SUDOERS:
                 return await message.reply_text(
-                    f"A member of {MUSIC_BOT_NAME}'s Sudo User[{member.mention}] has just joined your chat."
+                    f"ئەندامێکی {MUSIC_BOT_NAME} بەکارهێنەری Sudo [{member.mention}] ئێستا پەیوەندی بە چاتەکەتەوە کردووە."
                 )
             if member.id == ASSID:
                 await remove_active_chat(chat_id)
             if member.id == BOT_ID:
                 out = start_pannel()
                 await message.reply_text(
-                    f"Welcome To {MUSIC_BOT_NAME}\n\nPromote me as administrator in your group otherwise I will not function properly.",
+                    f"بەخێربێیت بۆ {MUSIC_BOT_NAME}\n\nمن وەک بەڕێوەبەر لە گروپەکەت بەرزبکەرەوە ئەگەر نا من بە باشی کار ناکەم.",
                     reply_markup=InlineKeyboardMarkup(out[1]),
                 )
                 return
@@ -79,7 +79,7 @@ async def useradd(_, message: Message):
     await asyncio.gather(
         message.delete(),
         message.reply_text(
-            f"Thanks for having me in {message.chat.title}.\n{MUSIC_BOT_NAME} is alive.\n\nFor any assistance or help, checkout our support group and channel.",
+            f"سوپاس بۆ ئەوەی منم لە ژوورەوە بوو {message.chat.title}.\n{MUSIC_BOT_NAME}  زیندووە.\n\nبۆ هەر هاوکاری و یارمەتییەک، پشکنین بۆ گرووپ و کەناڵی پشتیوانیمان بکرێت.",
             reply_markup=InlineKeyboardMarkup(out[1]),
         ),
     )
@@ -90,7 +90,7 @@ async def okaybhai(_, CallbackQuery):
     await CallbackQuery.answer("Going Back ...")
     out = start_pannel()
     await CallbackQuery.edit_message_text(
-        text=f"Thanks for having me in {CallbackQuery.message.chat.title}.\n{MUSIC_BOT_NAME}is alive.\n\nFor any assistance or help, checkout our support group and channel.",
+        text=f"سوپاس بۆ ئەوەی منم لە ژوورەوە بوو {message.chat.title}.\n{MUSIC_BOT_NAME}  زیندووە.\n\nبۆ هەر هاوکاری و یارمەتییەک، پشکنین بۆ گرووپ و کەناڵی پشتیوانیمان بکرێت..",
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
 
@@ -168,9 +168,9 @@ async def start_markup_check(_, CallbackQuery):
     c_id = CallbackQuery.message.chat.id
     chat_id = CallbackQuery.message.chat.id
     if command == "AQ":
-        await CallbackQuery.answer("Already in Best Quality", show_alert=True)
+        await CallbackQuery.answer("پێشتر لە باشترین کوالێتی دا", show_alert=True)
     if command == "AV":
-        await CallbackQuery.answer("Bot Settings ...")
+        await CallbackQuery.answer("ڕێکبەندەکانی بۆت ...")
         text, buttons = volmarkup()
         _check = await get_assistant(c_id, "assistant")
         volume = _check["volume"]
@@ -179,7 +179,7 @@ async def start_markup_check(_, CallbackQuery):
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "AU":
-        await CallbackQuery.answer("Bot Settings ...")
+        await CallbackQuery.answer("ڕێکبەندەکانی بۆت...")
         text, buttons = usermarkup()
         is_non_admin = await is_nonadmin_chat(chat_id)
         if not is_non_admin:
@@ -187,7 +187,7 @@ async def start_markup_check(_, CallbackQuery):
         else:
             current = "Everyone"
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**گروپ:** {c_title}\n\nCurrently Who Can Use {MUSIC_BOT_NAME}:- **{current}**\n\n**⁉️ What is This?**\n\n**👥 Everyone :-**Anyone can use {MUSIC_BOT_NAME}'s commands(skip, pause, resume etc) present in this group.\n\n**🙍 Admin Only :-**  Only the admins and authorized users can use all commands of {MUSIC_BOT_NAME}.",
+            text=f"{text}\n\n**گروپ:** {c_title}\n\nدۆخی ئیستا بۆ بەکارهێنانی فرمانەکانی {MUSIC_BOT_NAME}:- **{current}**\n\n**⁉️ *دەتەوێ بە کێ ڕێگە بدەی کە من بە کار بێنێت؟*\n\nئەگەر، *هەموو کەسێک *هەڵبژێریت، ئەوا هەموو کەسێک دەستی بە فەرمانەکانی من دەگات.\nئەگەر *بەکارهێنەرە ڕێپێدراوەکان *هەڵبژێریت، تەنیا بەڕێوەبەرەکان و گرووپێکی چکۆلە لەو بەکارهێنەرانەی کە هەڵتبژاردوون دەستیان بە فەرمانەکانم دەگات. {MUSIC_BOT_NAME}.",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "Dashboard":
@@ -196,16 +196,16 @@ async def start_markup_check(_, CallbackQuery):
         _check = await get_assistant(c_id, "assistant")
         volume = _check["volume"]
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n\nCheck {MUSIC_BOT_NAME}'s System Stats In the DashBoard Here! More Functions adding very soon! Keep on Checking Support Channel.",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە::** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n\nپشکنینی {MUSIC_BOT_NAME} ئامارەکانی سیستەم لە داشبۆرد لێرە! کرداری زیاتر زۆر زوو زیاد دەکات! بەردەوامبە لە پشکنینی کەناڵی پشتگیری .",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "Custommarkup":
-        await CallbackQuery.answer("Bot Settings ...")
+        await CallbackQuery.answer("ڕێکبەندەکانی بۆت ...")
         text, buttons = custommarkup()
         _check = await get_assistant(c_id, "assistant")
         volume = _check["volume"]
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "LV":
@@ -215,13 +215,13 @@ async def start_markup_check(_, CallbackQuery):
         volume = 25
         try:
             await hama.pytgcalls.change_volume_call(c_id, volume)
-            await CallbackQuery.answer("Setting Audio Changes ...")
+            await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
+            return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
         await save_assistant(c_id, "assistant", assis)
         text, buttons = volmarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "MV":
@@ -231,13 +231,13 @@ async def start_markup_check(_, CallbackQuery):
         volume = 50
         try:
             await hama.pytgcalls.change_volume_call(c_id, volume)
-            await CallbackQuery.answer("Setting Audio Changes ...")
+            await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
+            return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
         await save_assistant(c_id, "assistant", assis)
         text, buttons = volmarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "HV":
@@ -247,13 +247,13 @@ async def start_markup_check(_, CallbackQuery):
         volume = 100
         try:
             await hama.pytgcalls.change_volume_call(c_id, volume)
-            await CallbackQuery.answer("Setting Audio Changes ...")
+            await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
-        await save_assistant(c_id, "assistant", assis)
+            return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
+          await save_assistant(c_id, "assistant", assis)
         text, buttons = volmarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "VAM":
@@ -263,13 +263,13 @@ async def start_markup_check(_, CallbackQuery):
         volume = 200
         try:
             await hama.pytgcalls.change_volume_call(c_id, volume)
-            await CallbackQuery.answer("Setting Audio Changes ...")
+            await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
-        await save_assistant(c_id, "assistant", assis)
+            return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
+          await save_assistant(c_id, "assistant", assis)
         text, buttons = volmarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "PTEN":
@@ -285,13 +285,13 @@ async def start_markup_check(_, CallbackQuery):
         }
         try:
             await hama.pytgcalls.change_volume_call(c_id, volume)
-            await CallbackQuery.answer("Setting Audio Changes ...")
+            await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
-        await save_assistant(c_id, "assistant", assis)
+            return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
+          await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "MTEN":
@@ -307,13 +307,13 @@ async def start_markup_check(_, CallbackQuery):
         }
         try:
             await hama.pytgcalls.change_volume_call(c_id, volume)
-            await CallbackQuery.answer("Setting Audio Changes ...")
+            await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
-        await save_assistant(c_id, "assistant", assis)
+            return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
+          await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "PTF":
@@ -329,13 +329,13 @@ async def start_markup_check(_, CallbackQuery):
         }
         try:
             await hama.pytgcalls.change_volume_call(c_id, volume)
-            await CallbackQuery.answer("Setting Audio Changes ...")
+            await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
-        await save_assistant(c_id, "assistant", assis)
+            return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
+          await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "MTF":
@@ -351,13 +351,13 @@ async def start_markup_check(_, CallbackQuery):
         }
         try:
             await hama.pytgcalls.change_volume_call(c_id, volume)
-            await CallbackQuery.answer("Setting Audio Changes ...")
+            await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
-        await save_assistant(c_id, "assistant", assis)
+            return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
+          await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "PFZ":
@@ -373,13 +373,13 @@ async def start_markup_check(_, CallbackQuery):
         }
         try:
             await hama.pytgcalls.change_volume_call(c_id, volume)
-            await CallbackQuery.answer("Setting Audio Changes ...")
+            await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
-        await save_assistant(c_id, "assistant", assis)
+            return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
+          await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "MFZ":
@@ -395,13 +395,13 @@ async def start_markup_check(_, CallbackQuery):
         }
         try:
             await hama.pytgcalls.change_volume_call(c_id, volume)
-            await CallbackQuery.answer("Setting Audio Changes ...")
+            await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
-            return await CallbackQuery.answer("No active Group Call...")
-        await save_assistant(c_id, "assistant", assis)
+            return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
+          await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
-            text=f"{text}\n\n**Group:** {c_title}\n**Group ID:** {c_id}\n**Volume Level:** {volume}%\n**Audio Quality:** Default Best",
+            text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "USERLIST":
@@ -410,15 +410,15 @@ async def start_markup_check(_, CallbackQuery):
         _playlist = await get_authuser_names(CallbackQuery.message.chat.id)
         if not _playlist:
             return await CallbackQuery.edit_message_text(
-                text=f"{text}\n\nNo Authorized Users Found\n\nYou can allow any non-admin to use my admin commands by /auth and delete by using /unauth",
+                text=f"{text}\n\nهیچ بەکارهێنەرێکی ڕێگەپێدراو نەدۆزرایەوە تۆ دەتوانیت ڕێگە بە هیچ بەڕێوەبەرێک بدەیت بۆ بەکارهێنانی فەرمانەکانی بەڕێوەبەرەکەم بە /auth سڕینەوە بە بەکارهێنانی /unauth",
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
         else:
             j = 0
             await CallbackQuery.edit_message_text(
-                "Fetching Authorised Users... Please Wait"
+                "گرتنی بەکارهێنەرە تایبەکراوەکان تکایه چاوەڕوان بکه"
             )
-            msg = f"**Authorised Users List[AUL]:**\n\n"
+            msg = f"**لیستی بەکارهێنەرە ڕێگەپێدراوەکان :**\n\n"
             for note in _playlist:
                 _note = await get_authuser(
                     CallbackQuery.message.chat.id, note
@@ -434,7 +434,7 @@ async def start_markup_check(_, CallbackQuery):
                 except Exception:
                     continue
                 msg += f"{j}➤ {user}[`{user_id}`]\n"
-                msg += f"    ┗ Added By:- {admin_name}[`{admin_id}`]\n\n"
+                msg += f"    ┗ زیادکرا لەلایەن:- {admin_name}[`{admin_id}`]\n\n"
             await CallbackQuery.edit_message_text(
                 msg, reply_markup=InlineKeyboardMarkup(buttons)
             )
