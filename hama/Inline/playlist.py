@@ -1,6 +1,6 @@
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
-
+from config import CHANNEL, NAMECH
 
 def check_markup(user_name, user_id, videoid):
     buttons = [
@@ -14,7 +14,11 @@ def check_markup(user_name, user_id, videoid):
                 callback_data=f"playlist_check {user_id}|Personal|{videoid}",
             ),
         ],
-        [InlineKeyboardButton(text="🗑 Close Menu", callback_data="close")],
+        [InlineKeyboardButton(text="🗑 Close Menu", callback_data="close"),
+         InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return buttons
 
@@ -31,7 +35,11 @@ def playlist_markup(user_name, user_id, videoid):
                 callback_data=f"show_genre {user_id}|Personal|{videoid}",
             ),
         ],
-        [InlineKeyboardButton(text="🗑 Close Menu", callback_data="close")],
+        [InlineKeyboardButton(text="🗑 Close Menu", callback_data="close"),
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return buttons
 
@@ -85,6 +93,11 @@ def play_genre_playlist(user_id, type, videoid):
             ),
             InlineKeyboardButton(text="🗑 Close Menu", callback_data="close"),
         ],
+               [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return buttons
 
@@ -137,6 +150,11 @@ def add_genre_markup(user_id, type, videoid):
             ),
             InlineKeyboardButton(text="🗑 Close Menu", callback_data="close"),
         ],
+               [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return buttons
 
@@ -179,6 +197,11 @@ def check_genre_markup(type, videoid, user_id):
             ),
         ],
         [InlineKeyboardButton(text="🗑 Close Menu", callback_data="close")],
+               [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return buttons
 
@@ -202,6 +225,11 @@ def third_playlist_markup(user_name, user_id, third_name, userid, videoid):
             ),
         ],
         [InlineKeyboardButton(text="🗑 Close", callback_data="close")],
+               [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return buttons
 
@@ -215,7 +243,12 @@ def paste_queue_markup(url):
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
         [InlineKeyboardButton(text="Checkout Queued Playlist", url=f"{url}")],
-        [InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close")],
+        [InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close"),
+         InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
+      
     ]
     return buttons
 
@@ -230,6 +263,11 @@ def fetch_playlist(user_name, type, genre, user_id, url):
         ],
         [InlineKeyboardButton(text="Checkout Playlist", url=f"{url}")],
         [InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close")],
+               [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return buttons
 
@@ -243,5 +281,10 @@ def delete_playlist_markuup(type, genre):
             ),
             InlineKeyboardButton(text="No!", callback_data=f"close"),
         ],
+               [
+                InlineKeyboardButton(
+                    text=f"{NAMECH}", url=f"{CHANNEL}"
+                ),
+            ],
     ]
     return buttons
