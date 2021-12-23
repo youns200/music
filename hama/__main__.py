@@ -117,7 +117,7 @@ async def initiate_bot():
     console.print(f"└[green] ID :- {ASSID}!")
     await run()
     console.print(f"\n[red]Stopping Bot")
-
+    start = f""" hello your """
 
 
 @app.on_message(filters.command("start") & filters.private)
@@ -198,7 +198,7 @@ async def start_command(_, message):
             )
     out = private_panel()
     return await message.reply_text(
-        home_text_pm,
+        start,
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
 
