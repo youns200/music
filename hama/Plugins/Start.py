@@ -87,10 +87,10 @@ async def useradd(_, message: Message):
 
 @app.on_callback_query(filters.regex("okaybhai"))
 async def okaybhai(_, CallbackQuery):
-    await CallbackQuery.answer("Going Back ...")
+    await CallbackQuery.answer("گەرانەوە ...")
     out = start_pannel()
     await CallbackQuery.edit_message_text(
-        text=f"سوپاس بۆ ئەوەی منم لە ژوورەوە بوو {message.chat.title}.\n{MUSIC_BOT_NAME}  زیندووە.\n\nبۆ هەر هاوکاری و یارمەتییەک، پشکنین بۆ گرووپ و کەناڵی پشتیوانیمان بکرێت..",
+        text=f"سوپاس بۆ ئەوەی منم لە ژوورەوە بوو {CallbackQuery.message.chat.title}.\n{MUSIC_BOT_NAME}  زیندووە.\n\nبۆ هەر هاوکاری و یارمەتییەک، پشکنین بۆ گرووپ و کەناڵی پشتیوانیمان بکرێت..",
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
 
@@ -233,7 +233,7 @@ async def start_markup_check(_, CallbackQuery):
             await hama.pytgcalls.change_volume_call(c_id, volume)
             await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
-            return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
+           return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
         await save_assistant(c_id, "assistant", assis)
         text, buttons = volmarkup()
         await CallbackQuery.edit_message_text(
@@ -266,7 +266,7 @@ async def start_markup_check(_, CallbackQuery):
             await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
             return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
-          await save_assistant(c_id, "assistant", assis)
+         await save_assistant(c_id, "assistant", assis)
         text, buttons = volmarkup()
         await CallbackQuery.edit_message_text(
             text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
@@ -288,7 +288,7 @@ async def start_markup_check(_, CallbackQuery):
             await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
             return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
-          await save_assistant(c_id, "assistant", assis)
+         await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
             text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
@@ -310,7 +310,7 @@ async def start_markup_check(_, CallbackQuery):
             await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
             return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
-          await save_assistant(c_id, "assistant", assis)
+         await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
             text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
@@ -332,7 +332,7 @@ async def start_markup_check(_, CallbackQuery):
             await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
             return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
-          await save_assistant(c_id, "assistant", assis)
+         await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
             text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
@@ -354,7 +354,7 @@ async def start_markup_check(_, CallbackQuery):
             await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
             return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
-          await save_assistant(c_id, "assistant", assis)
+         await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
             text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
@@ -376,7 +376,7 @@ async def start_markup_check(_, CallbackQuery):
             await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
             return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
-          await save_assistant(c_id, "assistant", assis)
+         await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
             text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
@@ -398,7 +398,7 @@ async def start_markup_check(_, CallbackQuery):
             await CallbackQuery.answer("ڕێکخستنی گۆڕانکاریەکانی دەنگ ...")
         except:
             return await CallbackQuery.answer("پەیوەندی گروپ چالاک نیە...")
-          await save_assistant(c_id, "assistant", assis)
+         await save_assistant(c_id, "assistant", assis)
         text, buttons = custommarkup()
         await CallbackQuery.edit_message_text(
             text=f"{text}\n\n**گروپ:** {c_title}\n**ناسنامە:** {c_id}\n**قەبارەی دەنگ هاتن:** {volume}%\n**کواڵێتی دەنگ:** باشترین",
