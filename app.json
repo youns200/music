@@ -1,7 +1,6 @@
 {
   "name": " Music Bot",
   "description": "A Telegram Music Bot with proper functions written in Python with Pyrogram and Py-Tgcalls.",
-  "repository": "https://github.com/hama-maqsood/musicenn",
   "logo": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
   "keywords": [
   "python3",
@@ -46,6 +45,16 @@
       "required": true
     },
     "MUSIC_BOT_NAME": {
+      "description": "A name for your Music Bot.",
+      "value": "",
+      "required": true
+    },
+"CHANNEL": {
+      "description": "A name for your Music Bot.",
+      "value": "",
+      "required": true
+    },
+"NAMECH": {
       "description": "A name for your Music Bot.",
       "value": "",
       "required": true
