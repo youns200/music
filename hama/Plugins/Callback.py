@@ -40,7 +40,7 @@ async def forceclose(_, CallbackQuery):
     query, user_id = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         return await CallbackQuery.answer(
-            "You're not allowed to close this.", show_alert=True
+            "ڕێگەت پێنەدراوە ئەمە دابخەیت.", show_alert=True
         )
     await CallbackQuery.message.delete()
     await CallbackQuery.answer()
@@ -56,35 +56,35 @@ async def admin_risghts(_, CallbackQuery):
     command = CallbackQuery.matches[0].group(1)
     if not await is_active_chat(CallbackQuery.message.chat.id):
         return await CallbackQuery.answer(
-            "Nothing is playing on voice chat.", show_alert=True
+            "هیچ شتێک لە قسەکردنی دەنگیدا نییە.", show_alert=True
         )
     chat_id = CallbackQuery.message.chat.id
     if command == "pausecb":
         if not await is_music_playing(chat_id):
             return await CallbackQuery.answer(
-                "Music is already Paused", show_alert=True
+                "مۆسیقا هەرئێستا وەستاوە", show_alert=True
             )
         await music_off(chat_id)
         await hama.pytgcalls.pause_stream(chat_id)
         await CallbackQuery.message.reply_text(
-            f"🎧 Voicechat Paused by {CallbackQuery.from_user.mention}!",
+            f"🎧 چاتێکی دەنگی وەستاوە لەلایەن {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
         )
         await CallbackQuery.message.delete()
-        await CallbackQuery.answer("Paused", show_alert=True)
+        await CallbackQuery.answer("وەستاوە", show_alert=True)
     if command == "resumecb":
         if await is_music_playing(chat_id):
             return await CallbackQuery.answer(
-                "Music is already Resumed.", show_alert=True
+                "مۆسیقا هەرئێستا دەستپێکراوە.", show_alert=True
             )
         await music_on(chat_id)
         await hama.pytgcalls.resume_stream(chat_id)
         await CallbackQuery.message.reply_text(
-            f"🎧 Voicechat Resumed by {CallbackQuery.from_user.mention}!",
+            f"🎧 دەنگی چات دەستی پێکردەوە لەلایەن {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
         )
         await CallbackQuery.message.delete()
-        await CallbackQuery.answer("Resumed", show_alert=True)
+        await CallbackQuery.answer("دەستی پێکردەوە", show_alert=True)
     if command == "stopcb":
         try:
             Queues.clear(chat_id)
@@ -93,22 +93,22 @@ async def admin_risghts(_, CallbackQuery):
         await remove_active_chat(chat_id)
         await hama.pytgcalls.leave_group_call(chat_id)
         await CallbackQuery.message.reply_text(
-            f"🎧 Voicechat End/Stopped by {CallbackQuery.from_user.mention}!",
+            f"🎧 دەنگی چات کۆتایی پێ هات لەلایەن {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
         )
         await CallbackQuery.message.delete()
-        await CallbackQuery.answer("Stopped", show_alert=True)
+        await CallbackQuery.answer("کۆتایی پێ هات", show_alert=True)
     if command == "skipcb":
         Queues.task_done(chat_id)
         if Queues.is_empty(chat_id):
             await remove_active_chat(chat_id)
             await CallbackQuery.message.reply_text(
-                f"No more music in __Queue__ \n\nLeaving Voice Chat..Button Used By :- {CallbackQuery.from_user.mention}"
+                f"چیتر مۆسیقا نیە لە __ ڕیز __ \n\nجێهێشتنی دەنگی چات . دوگمەی بەکارهێنراو لەلایەن :- {CallbackQuery.from_user.mention}"
             )
             await hama.pytgcalls.leave_group_call(chat_id)
             await CallbackQuery.message.delete()
             await CallbackQuery.answer(
-                "Skipped. No more music in Queue", show_alert=True
+                "بە لێشاوی چیتر مۆسیقا لە ڕیزدا نیە", show_alert=True
             )
             return
         else:
@@ -124,7 +124,7 @@ async def admin_risghts(_, CallbackQuery):
                     "Skipped! Playlist Playing....", show_alert=True
                 )
                 mystic = await CallbackQuery.message.reply_text(
-                    f"**{MUSIC_BOT_NAME} Playlist Function**\n\n__Downloading Next Music From Playlist....__\n\nButton Used By :- {CallbackQuery.from_user.mention}"
+                    f"**{MUSIC_BOT_NAME} کرداری لیستی پەخشکردن**\n\n__داگرتنی مۆسیقای داهاتوو لە لیستی پەخشکردن....__\n\nدوگمەی بەکارهێنراو لەلایەن :- {CallbackQuery.from_user.mention}"
                 )
                 (
                     title,
@@ -133,7 +133,7 @@ async def admin_risghts(_, CallbackQuery):
                     thumbnail,
                 ) = get_yt_info_id(videoid)
                 await mystic.edit(
-                    f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
+                    f"**{MUSIC_BOT_NAME} داگرتنی**\n\n**ناونیشان:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
                 )
                 downloaded_file = await loop.run_in_executor(
                     None, download, videoid, mystic, title
@@ -170,7 +170,7 @@ async def admin_risghts(_, CallbackQuery):
                     photo=thumb,
                     reply_markup=InlineKeyboardMarkup(buttons),
                     caption=(
-                        f"<b>__Skipped Voice Chat__</b>\n\n🎥<b>__Started Playing:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n⏳<b>__Duration:__</b> {duration_min} Mins\n👤**__Requested by:__** {mention}"
+                        f"<b>__چاتی دەنگی لێدا__</b>\n\n🎥<b>__دەستیکرد بەژەنینی مۆسیقا:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n⏳<b>__ماوە:__</b> {duration_min} \n👤**__داواکراوە لەلایەن:__** {mention}"
                     ),
                 )
                 os.remove(thumb)
@@ -218,7 +218,7 @@ async def admin_risghts(_, CallbackQuery):
                 final_output = await CallbackQuery.message.reply_photo(
                     photo=thumb,
                     reply_markup=InlineKeyboardMarkup(buttons),
-                    caption=f"<b>__Skipped Voice Chat__</b>\n\n🎥<b>__Started Playing:__</b> {title} \n⏳<b>__Duration:__</b> {duration_min} \n👤<b>__Requested by:__ </b> {mention}",
+                    caption=f"<b>__چاتی دەنگی لێدا__</b>\n\n🎥<b>__دەستیکرد بەژەنینی مۆسیقا:__</b> {title} \n⏳<b>__ماوە:__</b> {duration_min} \n👤<b>__داواکراوە لەلایەن:__ </b> {mention}",
                 )
             await start_timer(
                 videoid,
@@ -253,7 +253,7 @@ async def play_playlist(_, CallbackQuery):
     elif smex == "Personal":
         if CallbackQuery.from_user.id != int(user_id):
             return await CallbackQuery.answer(
-                "This is not for you! Play your own playlist", show_alert=True
+                "ئەمە بۆ تۆ نیە! پەخشکردنی لیستی پەخشکردنی خۆت", show_alert=True
             )
         _playlist = await get_playlist_names(user_id, type)
         third_name = CallbackQuery.from_user.first_name
@@ -264,15 +264,15 @@ async def play_playlist(_, CallbackQuery):
         user_id = CallbackQuery.message.chat.id
         third_name = chat_title
     else:
-        return await CallbackQuery.answer("Error In Playlist.")
+        return await CallbackQuery.answer("هەڵە لە لیستی پەخشکردن.")
     if not _playlist:
         return await CallbackQuery.answer(
-            f"This User has no playlist on servers.", show_alert=True
+            f"ئەم بەکارهێنەرە هیچ لیستێکی پەخشکردنی نیە لەسەر سێرڤەرەکان.", show_alert=True
         )
     else:
         await CallbackQuery.message.delete()
         mystic = await CallbackQuery.message.reply_text(
-            f"Starting Playlist Of {third_name}.\n\nRequested By:- {CallbackQuery.from_user.first_name}"
+            f"دەستکردن بە لیستی پەخشکردن لە {third_name}.\n\nداواکراوە لەلایەن:- {CallbackQuery.from_user.first_name}"
         )
         msg = f"Queued Playlist:\n\n"
         j = 0
@@ -312,7 +312,7 @@ async def play_playlist(_, CallbackQuery):
                     thumbnail,
                 ) = get_yt_info_id(videoid)
                 mystic = await mystic.edit(
-                    f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
+                    f"**{MUSIC_BOT_NAME} داگرتن**\n\n**ناونیشان:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
                 )
                 downloaded_file = await loop.run_in_executor(
                     None, download, videoid, mystic, title
@@ -330,7 +330,7 @@ async def play_playlist(_, CallbackQuery):
                     )
                 except Exception as e:
                     return await mystic.edit(
-                        "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
+                        "هەڵە لە چوونە پاڵ دەنگی چات. دڵنیابە لەوەی کە چات دەنگی چالاک کراوە."
                     )
                 theme = await check_theme(chat_id)
                 chat_title = await specialfont_to_normal(chat_title)
@@ -357,7 +357,7 @@ async def play_playlist(_, CallbackQuery):
                 got_queue.append(to_append)
                 await music_on(chat_id)
                 await add_active_chat(chat_id)
-                cap = f"🎥<b>__Playing:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n💡<b>__Info:__</b> [Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n👤**__Requested by:__** {CallbackQuery.from_user.mention}"
+                cap = f"🎥<b>__گۆرانی ژەنین:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={videoid}) \n💡<b>__زانیاری:__</b> [زانیاری زیاتر بهێنە](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n👤**__داواکراوە لەلایەن:__** {CallbackQuery.from_user.mention}"
                 final_output = await CallbackQuery.message.reply_photo(
                     photo=thumb,
                     reply_markup=InlineKeyboardMarkup(buttons),
@@ -367,7 +367,7 @@ async def play_playlist(_, CallbackQuery):
         await mystic.delete()
         if for_p == 1:
             m = await CallbackQuery.message.reply_text(
-                "Pasting Queued Playlist to Bin"
+                "لکاندنی لیستی پەخشکردنی ڕیزکراو بۆ بین"
             )
             link = await paste_queue(msg)
             preview = link + "/preview.png"
@@ -376,7 +376,7 @@ async def play_playlist(_, CallbackQuery):
             if await isPreviewUp(preview):
                 await CallbackQuery.message.reply_photo(
                     photo=preview,
-                    caption=f"This is Queued Playlist of {third_name}.\n\nPlayed by :- {CallbackQuery.from_user.mention}",
+                    caption=f"ئەمە لیستی پەخشکردنی ڕیزکراوە لە {third_name}.\n\nپەخشکراوە لەلایەن :- {CallbackQuery.from_user.mention}",
                     quote=False,
                     reply_markup=InlineKeyboardMarkup(buttons),
                 )
@@ -388,7 +388,7 @@ async def play_playlist(_, CallbackQuery):
                 await m.delete()
         else:
             await CallbackQuery.message.reply_text(
-                "Only 1 Music in Playlist.. No more music to add in queue."
+                "تەنها 1 مووزیک لە لیستی پەخش کردن. چیتر مووزیک بۆ زیادکردن لە ڕیزدا نیە."
             )
         if for_t == 1:
             await start_timer(
@@ -415,14 +415,14 @@ async def group_playlist(_, CallbackQuery):
         )
         if not a.can_manage_voice_chats:
             return await CallbackQuery.answer(
-                "You don't have the required permission to perform this action.\nPermission: MANAGE VOICE CHATS",
+                "تۆ مۆڵەتی پێویستت نیە بۆ ئەنجامدانی ئەم کردارە. مۆڵەت: بەڕێوەبردنی دەنگ چاتەکان",
                 show_alert=True,
             )
         user_id = CallbackQuery.message.chat.id
     _count = await get_playlist_names(user_id, genre)
     if not _count:
         sex = await CallbackQuery.message.reply_text(
-            f"Welcome To {MUSIC_BOT_NAME}'s Playlist Feature.\n\nGenerating Your  Playlist In Database...Please wait.\n\nGenre:- {genre}"
+            f"بەخێربێیت بۆ {MUSIC_BOT_NAME} تایبەتمەندی لیستی پەخشکردن.\n\nدروستکردنی لیستی پەخشکردنەکەت لە بنکەی زانیاریدا تکایه چاوەڕوان بکه.\n\n:- {genre}"
         )
         await asyncio.sleep(2)
         await sex.delete()
@@ -432,7 +432,7 @@ async def group_playlist(_, CallbackQuery):
     count = int(count)
     if count == 50:
         return await CallbackQuery.answer(
-            "Sorry! You can only have 50 music in a playlist.",
+            "ببووره! تۆ تەنها دەتوانیت 50 مۆسیقات هەبێت لە لیستی پەخشکردن.",
             show_alert=True,
         )
     loop = asyncio.get_event_loop()
@@ -442,7 +442,7 @@ async def group_playlist(_, CallbackQuery):
     title = title[:50]
     if _check:
         return await CallbackQuery.message.reply_text(
-            f"{CallbackQuery.from_user.mention}, Its already in the Playlist!"
+            f"{CallbackQuery.from_user.mention}, پێشتر لە لیستی پەخشکردندایە!"
         )
     assis = {
         "videoid": videoid,
@@ -452,7 +452,7 @@ async def group_playlist(_, CallbackQuery):
     await save_playlist(user_id, videoid, assis, genre)
     Name = CallbackQuery.from_user.first_name
     return await CallbackQuery.message.reply_text(
-        f"Added to {type}'s {genre} Playlist by {CallbackQuery.from_user.mention}"
+        f"زیادکرا بۆ لیستی پەخشکردن لەلایەن {CallbackQuery.from_user.mention}"
     )
 
 
@@ -470,22 +470,22 @@ async def check_playlist(_, CallbackQuery):
     _playlist = await get_playlist_names(user_id, genre)
     if not _playlist:
         return await CallbackQuery.answer(
-            f"No {genre} Playlist on servers. Try adding musics in playlist.",
+            f" لیستی پەخش کردن لەسەر سێرڤەرەکان. هەوڵ بدە مۆسیقا زیادبکە لە لیستی پەخشکردن.",
             show_alert=True,
         )
     else:
         j = 0
         await CallbackQuery.answer()
         await CallbackQuery.message.delete()
-        msg = f"Fetched Playlist:\n\n"
+        msg = f"لیستی پەخشی هەڵچنراو:\n\n"
         for shikhar in _playlist:
             j += 1
             _note = await get_playlist(user_id, shikhar, genre)
             title = _note["title"]
             duration = _note["duration"]
             msg += f"{j}- {title[:60]}\n"
-            msg += f"    Duration- {duration} Min(s)\n\n"
-        m = await CallbackQuery.message.reply_text("Pasting Playlist to Bin")
+            msg += f"    ماوە- {duration}\n\n"
+        m = await CallbackQuery.message.reply_text("لکاندنی لیستی پەخشکردن بۆ بین")
         link = await paste_queue(msg)
         preview = link + "/preview.png"
         url = link + "/index.txt"
@@ -495,7 +495,7 @@ async def check_playlist(_, CallbackQuery):
         if await isPreviewUp(preview):
             await CallbackQuery.message.reply_photo(
                 photo=preview,
-                caption=f"This is Playlist of {user_name}.",
+                caption=f"ئەمە لیستی پەخشکردنە لە {user_name}.",
                 quote=False,
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
@@ -521,7 +521,7 @@ async def del_playlist(_, CallbackQuery):
         )
         if not a.can_manage_voice_chats:
             return await CallbackQuery.answer(
-                "You don't have the required permission to perform this action.\nPermission: MANAGE VOICE CHATS",
+                "تۆ مۆڵەتی پێویستت نیە بۆ ئەنجامدانی ئەم کردارە. مۆڵەت: بەڕێوەبردنی دەنگ چاتەکان",
                 show_alert=True,
             )
         user_id = CallbackQuery.message.chat.id
@@ -529,7 +529,7 @@ async def del_playlist(_, CallbackQuery):
     _playlist = await get_playlist_names(user_id, genre)
     if not _playlist:
         return await CallbackQuery.answer(
-            "Group has no Playlist on Bot's Server", show_alert=True
+            "گروپ هیچ لیستێکی پەخشکردنی نیە لەسەر سێرڤەری بۆت", show_alert=True
         )
     else:
         await CallbackQuery.message.delete()
