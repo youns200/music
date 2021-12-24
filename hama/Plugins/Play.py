@@ -116,7 +116,7 @@ async def play(_, message: Message):
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
             return
-        mystic = await message.reply_text("🔍 **گەڕان**...")
+        mystic = await message.reply_text("🔍")
         query = message.text.split(None, 1)[1]
         (
             title,
@@ -162,7 +162,7 @@ async def startyuplay(_, CallbackQuery):
     await CallbackQuery.answer(f"پڕۆسە:- {title[:20]}", show_alert=True)
   
     downloaded_file = await loop.run_in_executor(
-        None, download, videoid, mystic, title
+        None, download, videoid, title
     )
     raw_path = await convert(downloaded_file)
     theme = await check_theme(chat_id)
