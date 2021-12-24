@@ -160,9 +160,11 @@ async def startyuplay(_, CallbackQuery):
             f"**۰ ماوەی درێژکراوەی سنوور: {DURATION_LIMIT_MIN} ماوەی دیاریکراوی خولەک: {duration_min} خولەک"
         )
     await CallbackQuery.answer(f"پڕۆسە:- {title[:20]}", show_alert=True)
-  
+    mystic = await CallbackQuery.message.reply_text(
+        f""
+    )
     downloaded_file = await loop.run_in_executor(
-        None, download, videoid, title
+        None, download, videoid, mystic, title
     )
     raw_path = await convert(downloaded_file)
     theme = await check_theme(chat_id)
@@ -195,7 +197,7 @@ async def search_query_more(_, CallbackQuery):
     await CallbackQuery.answer("گەڕان بۆ بەدەست هێنانی ئەنجامی زیاتر")
     results = YoutubeSearch(query, max_results=5).to_dict()
     med = InputMediaPhoto(
-        media="Utils/Result.jpg",
+        media="Utils/Result.JPEG",
         caption=(
             f"1️⃣<b>{results[0]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[0]['id']})__</u>\n\n2️⃣<b>{results[1]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[1]['id']})__</u>\n\n3️⃣<b>{results[2]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[2]['id']})__</u>\n\n4️⃣<b>{results[3]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[3]['id']})__</u>\n\n5️⃣<b>{results[4]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[4]['id']})__</u>"
         ),
