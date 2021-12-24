@@ -48,36 +48,6 @@ def play_genre_playlist(user_id, type, videoid):
     buttons = [
         [
             InlineKeyboardButton(
-                text=f"Bollywood",
-                callback_data=f"play_playlist {user_id}|{type}|Bollywood",
-            ),
-            InlineKeyboardButton(
-                text=f"Hollywood",
-                callback_data=f"play_playlist {user_id}|{type}|Hollywood",
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text=f"Party",
-                callback_data=f"play_playlist {user_id}|{type}|Party",
-            ),
-            InlineKeyboardButton(
-                text=f"Lofi",
-                callback_data=f"play_playlist {user_id}|{type}|Lofi",
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text=f"Sad",
-                callback_data=f"play_playlist {user_id}|{type}|Sad",
-            ),
-            InlineKeyboardButton(
-                text=f"Weeb",
-                callback_data=f"play_playlist {user_id}|{type}|Weeb",
-            ),
-        ],
-        [
-            InlineKeyboardButton(
                 text=f"Punjabi",
                 callback_data=f"play_playlist {user_id}|{type}|Punjabi",
             ),
@@ -106,36 +76,6 @@ def add_genre_markup(user_id, type, videoid):
     buttons = [
         [
             InlineKeyboardButton(
-                text=f"✚ Weeb",
-                callback_data=f"add_playlist {videoid}|{type}|Weeb",
-            ),
-            InlineKeyboardButton(
-                text=f"✚ Sad",
-                callback_data=f"add_playlist {videoid}|{type}|Sad",
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text=f"✚ Party",
-                callback_data=f"add_playlist {videoid}|{type}|Party",
-            ),
-            InlineKeyboardButton(
-                text=f"✚ Lofi",
-                callback_data=f"add_playlist {videoid}|{type}|Lofi",
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text=f"✚ Bollywood",
-                callback_data=f"add_playlist {videoid}|{type}|Bollywood",
-            ),
-            InlineKeyboardButton(
-                text=f"✚ Hollywood",
-                callback_data=f"add_playlist {videoid}|{type}|Hollywood",
-            ),
-        ],
-        [
-            InlineKeyboardButton(
                 text=f"✚ Punjabi",
                 callback_data=f"add_playlist {videoid}|{type}|Punjabi",
             ),
@@ -161,32 +101,6 @@ def add_genre_markup(user_id, type, videoid):
 
 def check_genre_markup(type, videoid, user_id):
     buttons = [
-        [
-            InlineKeyboardButton(
-                text=f"Weeb", callback_data=f"check_playlist {type}|Weeb"
-            ),
-            InlineKeyboardButton(
-                text=f"Sad", callback_data=f"check_playlist {type}|Sad"
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text=f"Party", callback_data=f"check_playlist {type}|Party"
-            ),
-            InlineKeyboardButton(
-                text=f"Lofi", callback_data=f"check_playlist {type}|Lofi"
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text=f"Bollywood",
-                callback_data=f"check_playlist {type}|Bollywood",
-            ),
-            InlineKeyboardButton(
-                text=f"Hollywood",
-                callback_data=f"check_playlist {type}|Hollywood",
-            ),
-        ],
         [
             InlineKeyboardButton(
                 text=f"Punjabi",
