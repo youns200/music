@@ -32,7 +32,7 @@ def playlist_markup(user_name, user_id, videoid):
     buttons = [
         [
           InlineKeyboardButton(
-                text=f"play,
+                text=f"play",
                 callback_data=f"show_genre {user_id}|Group|{videoid}",
             ),
             InlineKeyboardButton(
@@ -89,20 +89,15 @@ def add_genre_markup(user_id, type, videoid):
     buttons = [
         [
             InlineKeyboardButton(
-                text=f"✚ Punjabi",
+                text=f"✚ بەڵێ",
                 callback_data=f"add_playlist {videoid}|{type}|Punjabi",
             ),
             InlineKeyboardButton(
-                text=f"✚ Others",
-                callback_data=f"add_playlist {videoid}|{type}|Others",
+                text=f"➖ نەخێر",
+                callback_data=f"goback {videoid}|{user_id}",
             ),
         ],
-        [
-            InlineKeyboardButton(
-                text="⬅️ گەرانەوە", callback_data=f"goback {videoid}|{user_id}"
-            ),
-            InlineKeyboardButton(text="🗑 داخستن", callback_data="close"),
-        ],
+       
                [
                 InlineKeyboardButton(
                     text=f"{NAMECH}", url=f"{CHANNEL}"
