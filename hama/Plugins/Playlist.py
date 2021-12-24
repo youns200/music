@@ -232,7 +232,7 @@ async def delgroupplaylist(_, message):
         _playlist = await get_playlist_names(message.chat.id, genre)
     if not _playlist:
         await message.reply_text(
-            f"You have no Playlist on {MUSIC_BOT_NAME}'s Server"
+            f"تۆ هیچ لیستێکی پەخشکردنت نیە لەسەر {MUSIC_BOT_NAME} سێرڤەر"
         )
     else:
         titlex = []
