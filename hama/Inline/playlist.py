@@ -4,7 +4,12 @@ from config import CHANNEL, NAMECH
 
 def check_markup(user_name, user_id, videoid):
     buttons = [
-        [
+        [ 
+          
+         InlineKeyboardButton(
+                text=f"chek",
+                callback_data=f"playlist_check {user_id}|Group|{videoid}",
+            ),
             InlineKeyboardButton(
                 text=f"گروپ لیست",
                 callback_data=f"playlist_check {user_id}|Group|{videoid}",
@@ -26,6 +31,10 @@ def check_markup(user_name, user_id, videoid):
 def playlist_markup(user_name, user_id, videoid):
     buttons = [
         [
+          InlineKeyboardButton(
+                text=f"play,
+                callback_data=f"show_genre {user_id}|Group|{videoid}",
+            ),
             InlineKeyboardButton(
                 text=f"گروپ لیست",
                 callback_data=f"show_genre {user_id}|Group|{videoid}",
@@ -47,6 +56,10 @@ def playlist_markup(user_name, user_id, videoid):
 def play_genre_playlist(user_id, type, videoid):
     buttons = [
         [
+          InlineKeyboardButton(
+                text=f"playi",
+                callback_data=f"play_playlist {user_id}|{type}|Punjabi",
+            ),
             InlineKeyboardButton(
                 text=f"Punjabi",
                 callback_data=f"play_playlist {user_id}|{type}|Punjabi",
@@ -102,6 +115,10 @@ def add_genre_markup(user_id, type, videoid):
 def check_genre_markup(type, videoid, user_id):
     buttons = [
         [
+          InlineKeyboardButton(
+                text=f"check_genre_markup",
+                callback_data=f"check_playlist {type}|Punjabi",
+            ),
             InlineKeyboardButton(
                 text=f"Punjabi",
                 callback_data=f"check_playlist {type}|Punjabi",
