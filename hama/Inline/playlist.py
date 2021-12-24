@@ -85,21 +85,17 @@ def add_genre_markup(user_id, type, videoid):
 def check_genre_markup(type, videoid, user_id):
     buttons = [
         [
-          InlineKeyboardButton(
-                text=f"check_genre_markup",
+          
+            InlineKeyboardButton(
+                text=f"پەخشکردن",
                 callback_data=f"check_playlist {type}|Punjabi",
             ),
             InlineKeyboardButton(
-                text=f"Punjabi",
-                callback_data=f"check_playlist {type}|Punjabi",
+                text=f"نەخێر", callback_data=f"close"
             ),
-            InlineKeyboardButton(
-                text=f"Others", callback_data=f"check_playlist {type}|Others"
-            ),
-        ],
-        [InlineKeyboardButton(text="🗑 داخستن", callback_data="close")],
-               [
-                InlineKeyboardButton(
+        ],   
+      [
+      InlineKeyboardButton(
                     text=f"{NAMECH}", url=f"{CHANNEL}"
                 ),
             ],
