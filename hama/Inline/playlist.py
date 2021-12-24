@@ -5,12 +5,7 @@ from config import CHANNEL, NAMECH
 def check_markup(user_name, user_id, videoid):
     buttons = [
         [ 
-          
-         InlineKeyboardButton(
-                text=f"chek",
-                callback_data=f"playlist_check {user_id}|Group|{videoid}",
-            ),
-            InlineKeyboardButton(
+      InlineKeyboardButton(
                 text=f"🎶گروپ لیست",
                 callback_data=f"playlist_check {user_id}|Group|{videoid}",
             ),
