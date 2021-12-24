@@ -151,7 +151,6 @@ options = [
 
 options_Genre = [
     "Punjabi",
-    "Others",
 ]
 
 
