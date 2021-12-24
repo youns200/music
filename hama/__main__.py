@@ -199,7 +199,7 @@ async def start_command(_, message):
     out = private_panel()
     return await app.send_photo(
                 message.chat.id,
-                photo="https://t.me/xawnakam_lm/93",
+                photo="Utils/1 (1).jpg",
                 caption= "ڕێگەت پێدەدات بۆ پەخشکردنی مۆسیقا و ڤیدیۆ لەسەر گروپەکان لە ڕێگەی چاتەکانی ڤیدیۆی تەلگرامی نوێ!/n💡 هەموو فەرمانەکانی بۆت بدۆزەرەوە و چۆن کار دەکەن بە کلیک کردن لەسەر دوگمەی فەرمانەکانی 📚",
                 parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(out[1]),
