@@ -73,9 +73,9 @@ async def on_stream_end(client: PyTgCalls, update: Update) -> None:
                     duration_sec,
                     thumbnail,
                 ) = get_yt_info_id(afk)
-                mystic = await mystic.edit(
-                    f"**{MUSIC_BOT_NAME} داگرتن**\n\n**ناونیشان:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
-                )
+               # mystic = await mystic.edit(
+                  #  f"**{MUSIC_BOT_NAME} داگرتن**\n\n**ناونیشان:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
+               # )
                 loop = asyncio.get_event_loop()
                 downloaded_file = await loop.run_in_executor(
                     None, download, afk, mystic, title
