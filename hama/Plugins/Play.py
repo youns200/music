@@ -161,7 +161,7 @@ async def startyuplay(_, CallbackQuery):
         )
     await CallbackQuery.answer(f"پڕۆسە:- {title[:20]}", show_alert=True)
     mystic = await CallbackQuery.message.reply_text(
-        f""
+        f"🔍 :- {title[:50]}"
     )
     downloaded_file = await loop.run_in_executor(
         None, download, videoid, mystic, title
