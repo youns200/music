@@ -51,20 +51,11 @@ def playlist_markup(user_name, user_id, videoid):
 
 def play_genre_playlist(user_id, type, videoid):
     buttons = [
-        [            
-          InlineKeyboardButton(
-                text=f"🔁دەستپێکردنی پەخشکردن",
-                callback_data=f"play_playlist {user_id}|{type}|Punjabi",
-            ),
+        [InlineKeyboardButton(text=f"🔁دەستپێکردنی پەخشکردن",callback_data=f"play_playlist {user_id}|{type}|Punjabi",),
             InlineKeyboardButton(
                 text="⬅️ گەرانەوە",
-                callback_data=f"main_playlist {videoid}|{type}|{user_id}",
-            ),
-               [
-                InlineKeyboardButton(
-                    text=f"{NAMECH}", url=f"{CHANNEL}"
-                ),
-            ],
+                callback_data=f"main_playlist {videoid}|{type}|{user_id}",)],
+               [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
