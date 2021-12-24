@@ -11,11 +11,11 @@ def check_markup(user_name, user_id, videoid):
                 callback_data=f"playlist_check {user_id}|Group|{videoid}",
             ),
             InlineKeyboardButton(
-                text=f"گروپ لیست",
+                text=f"🎶گروپ لیست",
                 callback_data=f"playlist_check {user_id}|Group|{videoid}",
             ),
             InlineKeyboardButton(
-                text=f"{user_name[:8]} لیست",
+                text=f"🔣{user_name[:8]} لیست",
                 callback_data=f"playlist_check {user_id}|Personal|{videoid}",
             ),
         ],
@@ -31,16 +31,12 @@ def check_markup(user_name, user_id, videoid):
 def playlist_markup(user_name, user_id, videoid):
     buttons = [
         [
-          InlineKeyboardButton(
-                text=f"play",
+            InlineKeyboardButton(
+                text=f"🎶گروپ لیست",
                 callback_data=f"show_genre {user_id}|Group|{videoid}",
             ),
             InlineKeyboardButton(
-                text=f"گروپ لیست",
-                callback_data=f"show_genre {user_id}|Group|{videoid}",
-            ),
-            InlineKeyboardButton(
-                text=f"{user_name[:8]} لیست",
+                text=f"🔣{user_name[:8]} لیست ",
                 callback_data=f"show_genre {user_id}|Personal|{videoid}",
             ),
         ],
@@ -55,27 +51,15 @@ def playlist_markup(user_name, user_id, videoid):
 
 def play_genre_playlist(user_id, type, videoid):
     buttons = [
-        [
+        [            
           InlineKeyboardButton(
-                text=f"playi",
+                text=f"🔁دەستپێکردنی پەخشکردن",
                 callback_data=f"play_playlist {user_id}|{type}|Punjabi",
             ),
-            InlineKeyboardButton(
-                text=f"Punjabi",
-                callback_data=f"play_playlist {user_id}|{type}|Punjabi",
-            ),
-            InlineKeyboardButton(
-                text=f"Others",
-                callback_data=f"play_playlist {user_id}|{type}|Others",
-            ),
-        ],
-        [
             InlineKeyboardButton(
                 text="⬅️ گەرانەوە",
                 callback_data=f"main_playlist {videoid}|{type}|{user_id}",
             ),
-            InlineKeyboardButton(text="🗑 داخستن", callback_data="close"),
-        ],
                [
                 InlineKeyboardButton(
                     text=f"{NAMECH}", url=f"{CHANNEL}"
@@ -136,7 +120,7 @@ def third_playlist_markup(user_name, user_id, third_name, userid, videoid):
     buttons = [
         [
             InlineKeyboardButton(
-                text=f"گروپ لیست",
+                text=f"🎶گروپ لیست",
                 callback_data=f"show_genre {user_id}|Group|{videoid}",
             ),
             InlineKeyboardButton(
