@@ -65,7 +65,7 @@ async def play_playlist_cmd(_, message):
             hmo = await message.reply_photo(
                 photo=thumb,
                 caption=(
-                    f"**{MUSIC_BOT_NAME}** تایبەتمەندی لیستی پەخشکردن \n لیستی پەخشکردن دەسنیشان بکە کە دەتەوێت یاری بکەیت!. \n\n تۆ دەتوانیت لیستی پەخشکردنی کەسێکی تر بکەیت هەروەها:- \n- /Playlist لیستی پەخشکردن [ناوی بەکارهێنەر] \n- /Playlist لیستی پەخشکردن [ناسنامەی بەکارهێنەر] (ئەگەر بەکارهێنەری ئەی سی سڕایەوە) \n- /playlist [وەڵامدانەوەی بەکارهێنەرێک]"
+                    f"** دەتەوێت چ لیستێکی پەخش بکەیت؟**"
                 ),
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
@@ -77,7 +77,7 @@ async def play_playlist_cmd(_, message):
             await message.reply_photo(
                 photo=thumb,
                 caption=(
-                    f"**{MUSIC_BOT_NAME}** تایبەتمەندی لیستی پەخشکردن \n لیستی پەخشکردن دەسنیشان بکە کە دەتەوێت یاری بکەیت!. \n\n تۆ دەتوانیت لیستی پەخشکردنی کەسێکی تر بکەیت هەروەها:- \n- /Playlist لیستی پەخشکردن [ناوی بەکارهێنەر] \n- /Playlist لیستی پەخشکردن [ناسنامەی بەکارهێنەر] (ئەگەر بەکارهێنەری ئەی سی سڕایەوە) \n- /playlist [وەڵامدانەوەی بەکارهێنەرێک]"
+                    f"** دەتەوێت چ لیستێکی پەخش بکەیت؟**"
                 ),
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
@@ -93,7 +93,7 @@ async def play_playlist_cmd(_, message):
         hmo = await message.reply_photo(
             photo=thumb,
             caption=(
-                f"**{MUSIC_BOT_NAME}** تایبەتمەندی لیستی پەخشکردن \n لیستی پەخشکردن دەسنیشان بکە کە دەتەوێت یاری بکەیت!. \n\n تۆ دەتوانیت لیستی پەخشکردنی کەسێکی تر بکەیت هەروەها:- \n- /Playlist لیستی پەخشکردن [ناوی بەکارهێنەر] \n- /Playlist لیستی پەخشکردن [ناسنامەی بەکارهێنەر] (ئەگەر بەکارهێنەری ئەی سی سڕایەوە) \n- /playlist [وەڵامدانەوەی بەکارهێنەرێک]"
+                f"** دەتەوێت چ لیستێکی پەخش بکەیت؟**"
             ),
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -109,7 +109,7 @@ async def playlist(_, message):
     buttons = check_markup(user_name, user_id, "abcd")
     await message.reply_photo(
         photo=thumb,
-        caption=(f"**{MUSIC_BOT_NAME} تایبەتمەندی لیستی پەخشکردن**\n\nلیستی پەخشکردن دیاریبکە، دەتەوێت **پشکنین!**"),
+        caption=(f"** دەتەوێت چ لیستێکی پەخش بکەیت؟**"),
         reply_markup=InlineKeyboardMarkup(buttons),
     )
     return
@@ -150,12 +150,6 @@ options = [
 ]
 
 options_Genre = [
-    "Rock",
-    "Sad",
-    "Party",
-    "Lofi",
-    "Bollywood",
-    "Hollywood",
     "Punjabi",
     "Others",
 ]
