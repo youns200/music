@@ -111,7 +111,7 @@ async def play(_, message: Message):
             await message.reply_photo(
                 photo="Utils/Playlist.jpg",
                 caption=(
-                    "بەکارهێنان: /play [ناوی مۆسیقا یان لینکی یوتوب یان وەڵامدانەوەی دەنگ] ئەگەر دەتەوێت پەخشی لیستەکان بکەیت! یەکێک دیاریبکە لە خوارەوە."
+                    "دەتەوێت چ لیستێکی پەخش بکەیت؟"
                 ),
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
@@ -160,9 +160,7 @@ async def startyuplay(_, CallbackQuery):
             f"**۰ ماوەی درێژکراوەی سنوور: {DURATION_LIMIT_MIN} ماوەی دیاریکراوی خولەک: {duration_min} خولەک"
         )
     await CallbackQuery.answer(f"پڕۆسە:- {title[:20]}", show_alert=True)
-    mystic = await CallbackQuery.message.reply_text(
-        f"**{MUSIC_BOT_NAME} داگرتن**\n\n**ناو:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
-    )
+  
     downloaded_file = await loop.run_in_executor(
         None, download, videoid, mystic, title
     )
