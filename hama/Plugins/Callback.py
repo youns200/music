@@ -19,7 +19,7 @@ from hama.Database.queue import (add_active_chat, is_active_chat,
                                   remove_active_chat)
 from hama.Decorators.admins import AdminRightsCheckCB
 from hama.Decorators.checker import checkerCB
-from hama.Inline import (audio_markup, audio_markup2, download_markup, paste_queue_markup, primary_markup)
+from hama.Inline import (audio_markup, audio_markup2, download_markup, primary_markup)
 from hama.Utilities.changers import time_to_seconds
 from hama.Utilities.chat import specialfont_to_normal
 from hama.Utilities.paste import isPreviewUp, paste_queue
