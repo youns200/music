@@ -13,7 +13,7 @@ from hama.Core.PyTgCalls.Downloader import download
 from hama.Decorators.assistant import AssistantAdd
 from hama.Decorators.checker import checker
 from hama.Decorators.permission import PermissionCheck
-from hama.Inline import (playlist_markup, search_markup, search_markup2,
+from hama.Inline import (search_markup, search_markup2,
                           url_markup, url_markup2)
 from hama.Utilities.changers import seconds_to_min, time_to_seconds
 from hama.Utilities.chat import specialfont_to_normal
@@ -103,19 +103,6 @@ async def play(_, message: Message):
             caption=f"📎ناونیشان: **{title}\n\n⏳ماوە:** {duration_min}\n\n__[زانیاری زیاتر بهێنە دەربارەی ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
-    else:
-        if len(message.command) < 2:
-            buttons = playlist_markup(
-                message.from_user.first_name, message.from_user.id, "abcd"
-            )
-            await message.reply_photo(
-                photo="Utils/Playlist.jpg",
-                caption=(
-                    "دەتەوێت چ لیستێکی پەخش بکەیت؟"
-                ),
-                reply_markup=InlineKeyboardMarkup(buttons),
-            )
-            return
         mystic = await message.reply_text("🔍")
         query = message.text.split(None, 1)[1]
         (
