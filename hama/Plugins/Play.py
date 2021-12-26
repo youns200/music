@@ -184,7 +184,7 @@ async def search_query_more(_, CallbackQuery):
     await CallbackQuery.answer("گەڕان بۆ بەدەست هێنانی ئەنجامی زیاتر")
     results = YoutubeSearch(query, max_results=5).to_dict()
     med = InputMediaPhoto(
-        media="Utils/1(10).jpg",
+        media="Utils/1(2).jpg",
         caption=(
             f"1️⃣<b>{results[0]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[0]['id']})__</u>\n\n2️⃣<b>{results[1]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[1]['id']})__</u>\n\n3️⃣<b>{results[2]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[2]['id']})__</u>\n\n4️⃣<b>{results[3]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[3]['id']})__</u>\n\n5️⃣<b>{results[4]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[4]['id']})__</u>"
         ),
