@@ -104,27 +104,7 @@ async def play(_, message: Message):
             reply_markup=InlineKeyboardMarkup(buttons),
         )
 
-        mystic = await message.reply_text("🔍")
-        query = message.text.split(None, 1)[1]
-        (
-            title,
-            duration_min,
-            duration_sec,
-            thumb,
-            videoid,
-            mystic,
-        ) = get_yt_info_query(query)
-        await mystic.delete()
-        buttons = url_markup(
-            videoid, duration_min, message.from_user.id, query, 0
-        )
-        return await message.reply_photo(
-            photo=thumb,
-            caption=f"📎ناونیشان: **{title}\n\n⏳ماوە:** {duration_min}\n\n__[زانیاری زیاتر بهێنە دەربارەی ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
-            reply_markup=InlineKeyboardMarkup(buttons),
-        )
-
-
+       
 @app.on_callback_query(filters.regex(pattern=r"hama"))
 async def startyuplay(_, CallbackQuery):
     if CallbackQuery.message.chat.id not in db_mem:
