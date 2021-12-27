@@ -12,6 +12,7 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
 from youtubesearchpython import VideosSearch
 
 from hama import MUSIC_BOT_NAME, app
+from config import CHANNEL, NAMECH
 from hama.Utilities.changers import time_to_seconds
 from hama.Utilities.download import get_formats, get_type
 
@@ -66,13 +67,13 @@ async def ytdata(_, CallbackQuery):
 
 inl = InlineKeyboardMarkup(
     [[InlineKeyboardButton(text="داگرتن....", callback_data=f"down")],
-     [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+      [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
 ]
 )
 
 upl = InlineKeyboardMarkup(
     [[InlineKeyboardButton(text="بارکردن....", callback_data=f"down")],
-    [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+     [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
 ]
 )
 
@@ -92,6 +93,7 @@ def inl_mark(videoid, user_id):
                 text="🗑 ", callback_data=f"close2"
             ),
         ],
+       [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
@@ -235,7 +237,7 @@ async def boom(_, CallbackQuery):
 def p_mark(link, channel):
     buttons = [
         [InlineKeyboardButton(text="بینینی ڤیدیۆ لە یوتوب", url=f"{link}")],
-        [InlineKeyboardButton(text="˹𝚇𝙰𝚆𝙽𝙰𝙺𝙰𝙼˼💛🔒", url=f"https://t.me/xawnakam_lm")],
+         [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
