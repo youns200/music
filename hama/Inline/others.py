@@ -9,17 +9,6 @@ def others_markup(videoid, user_id):
         db_mem[videoid] = {}
     db_mem[videoid]["check"] = 1
     buttons = [
-  
-        [
-            InlineKeyboardButton(
-                text="✚ لیستی تۆ",
-                callback_data=f"your_playlist {videoid}|{user_id}",
-            ),
-            InlineKeyboardButton(
-                text="✚ لیستی گروپ",
-                callback_data=f"group_playlist {videoid}|{user_id}",
-            ),
-        ],
         [
             InlineKeyboardButton(
                 text="⬇️ داگرتنی ڤیدیۆ و گۆرانی",
