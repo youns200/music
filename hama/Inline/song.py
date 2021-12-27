@@ -55,3 +55,25 @@ def song_download_markup(videoid, user_id):
             ],
     ]
     return buttons
+#new
+def download_markup(videoid, user_id):
+    buttons = [
+        [
+            InlineKeyboardButton(
+                text="⬇️ داگرتنی گۆرانی",
+                callback_data=f"gets audio|{videoid}|{user_id}",
+            ),
+            InlineKeyboardButton(
+                text="⬇️ داگرتنی ڤیدیۆ",
+                callback_data=f"gets video|{videoid}|{user_id}",
+            ),
+        ],
+        [
+            InlineKeyboardButton(
+                text="⬅️ گەرانەوە", callback_data=f"goback {videoid}|{user_id}"
+            ),
+            InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
+        ],
+      [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
+    ]
+    return buttons
