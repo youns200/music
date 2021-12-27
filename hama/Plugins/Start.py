@@ -79,7 +79,7 @@ async def useradd(_, message: Message):
     await asyncio.gather(
         message.delete(),
         message.reply_text(
-            f"سوپاس بۆ ئەوەی منم لە ژوورەوە بوو {message.chat.title}.\n{MUSIC_BOT_NAME}  زیندووە.\n\nبۆ هەر هاوکاری و یارمەتییەک، پشکنین بۆ گرووپ و کەناڵی پشتیوانیمان بکرێت.",
+            f"سووپاس بۆ هەڵبژاردنی من بۆ  {message.chat.title}.\n\nدەتوانیت بۆ بەدەست گەشتنی هەر هەوالێک لەسەر من\nپەیوەندی بەم گروپە یان کەناڵەی \nپشگیری منەوە بکەن سوپاس🌹",
             reply_markup=InlineKeyboardMarkup(out[1]),
         ),
     )
@@ -90,7 +90,7 @@ async def okaybhai(_, CallbackQuery):
     await CallbackQuery.answer("گەرانەوە ...")
     out = start_pannel()
     await CallbackQuery.edit_message_text(
-        text=f"سوپاس بۆ ئەوەی منم لە ژوورەوە بوو {CallbackQuery.message.chat.title}.\n{MUSIC_BOT_NAME}  زیندووە.\n\nبۆ هەر هاوکاری و یارمەتییەک، پشکنین بۆ گرووپ و کەناڵی پشتیوانیمان بکرێت..",
+        text=f"سووپاس بۆ هەڵبژاردنی من بۆ {CallbackQuery.message.chat.title}...",
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
 
@@ -183,7 +183,7 @@ async def start_markup_check(_, CallbackQuery):
         text, buttons = usermarkup()
         is_non_admin = await is_nonadmin_chat(chat_id)
         if not is_non_admin:
-            current = "Admins Only"
+            current = "تەنیا بەڕێوەبەر"
         else:
             current = "Everyone"
         await CallbackQuery.edit_message_text(
