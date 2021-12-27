@@ -103,8 +103,39 @@ async def play(_, message: Message):
             caption=f"📎ناونیشان: **{title}\n\n⏳ماوە:** {duration_min}\n\n__[زانیاری زیاتر بهێنە دەربارەی ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
+    else:
+        if len(message.command) < 2:
+            buttons = search_markup(
+                message.from_user.first_name, message.from_user.id, "abcd"
+            )
+            await message.reply_photo(
+                photo="Utils/Playlist.jpg",
+                caption=(
+                    "دەتەوێت چ لیستێکی پەخش بکەیت؟"
+                ),
+                reply_markup=InlineKeyboardMarkup(buttons),
+            )
+            return
+        mystic = await message.reply_text("🔍")
+        query = message.text.split(None, 1)[1]
+        (
+            title,
+            duration_min,
+            duration_sec,
+            thumb,
+            videoid,
+        ) = get_yt_info_query(query)
+        await mystic.delete()
+        buttons = url_markup(
+            videoid, duration_min, message.from_user.id, query, 0
+        )
+        return await message.reply_photo(
+            photo=thumb,
+            caption=f"📎ناونیشان: **{title}\n\n⏳ماوە:** {duration_min}\n\n__[زانیاری زیاتر بهێنە دەربارەی ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
+            reply_markup=InlineKeyboardMarkup(buttons),
+        )
 
-       
+
 @app.on_callback_query(filters.regex(pattern=r"hama"))
 async def startyuplay(_, CallbackQuery):
     if CallbackQuery.message.chat.id not in db_mem:
@@ -166,7 +197,7 @@ async def search_query_more(_, CallbackQuery):
     await CallbackQuery.answer("گەڕان بۆ بەدەست هێنانی ئەنجامی زیاتر")
     results = YoutubeSearch(query, max_results=5).to_dict()
     med = InputMediaPhoto(
-        media="Utils/1(2).jpg",
+        media="Utils/1(10).jpg",
         caption=(
             f"1️⃣<b>{results[0]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[0]['id']})__</u>\n\n2️⃣<b>{results[1]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[1]['id']})__</u>\n\n3️⃣<b>{results[2]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[2]['id']})__</u>\n\n4️⃣<b>{results[3]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[3]['id']})__</u>\n\n5️⃣<b>{results[4]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[4]['id']})__</u>"
         ),
