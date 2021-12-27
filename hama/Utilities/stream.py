@@ -183,7 +183,7 @@ async def start_stream_audio(
             duration_min,
             duration_sec,
             final_output,
-            #CallbackQuery.message.chat.id,
-            #CallbackQuery.from_user.id,
+            CallbackQuery.message.chat.id,
+            CallbackQuery.from_user.id,
             1,
         )
