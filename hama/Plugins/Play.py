@@ -18,7 +18,6 @@ from hama.Inline import (search_markup, search_markup2,
 from hama.Utilities.changers import seconds_to_min, time_to_seconds
 from hama.Utilities.chat import specialfont_to_normal
 from hama.Utilities.stream import start_stream, start_stream_audio
-from hama.Utilities.theme import check_theme
 from hama.Utilities.thumbnails import gen_thumb
 from hama.Utilities.url import get_url
 from hama.Utilities.youtube import (get_yt_info_id, get_yt_info_query,
@@ -167,9 +166,8 @@ async def startyuplay(_, CallbackQuery):
         None, download, videoid, mystic, title
     )
     raw_path = await convert(downloaded_file)
-    theme = await check_theme(chat_id)
     chat_title = await specialfont_to_normal(chat_title)
-    thumb = await gen_thumb(thumbnail, title, user_id, theme, chat_title)
+    thumb = await gen_thumb(thumbnail, title, user_id, chat_title)
     if chat_id not in db_mem:
         db_mem[chat_id] = {}
     await start_stream(
@@ -197,7 +195,7 @@ async def search_query_more(_, CallbackQuery):
     await CallbackQuery.answer("گەڕان بۆ بەدەست هێنانی ئەنجامی زیاتر")
     results = YoutubeSearch(query, max_results=5).to_dict()
     med = InputMediaPhoto(
-        media="Utils/1(10).jpg",
+        media="Utils/r.jpg",
         caption=(
             f"1️⃣<b>{results[0]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[0]['id']})__</u>\n\n2️⃣<b>{results[1]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[1]['id']})__</u>\n\n3️⃣<b>{results[2]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[2]['id']})__</u>\n\n4️⃣<b>{results[3]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[3]['id']})__</u>\n\n5️⃣<b>{results[4]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[4]['id']})__</u>"
         ),
