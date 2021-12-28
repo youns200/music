@@ -97,8 +97,8 @@ async def play(_, message: Message):
         ) = get_yt_info_query(query)
         await mystic.delete()
         buttons = url_markup2(videoid, duration_min, message.from_user.id)
-        return await message.reply_photo(
-            photo=thumb,
+        return await message.reply_video(
+            video="https://t.me/asalakann/13759",
             caption=f"📎ناونیشان: **{title}\n\n⏳ماوە:** {duration_min}\n\n__[زانیاری زیاتر بهێنە دەربارەی ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -128,8 +128,8 @@ async def play(_, message: Message):
         buttons = url_markup(
             videoid, duration_min, message.from_user.id, query, 0
         )
-        return await message.reply_photo(
-            photo=thumb,
+        return await message.reply_video(
+            video="https://t.me/asalakann/13759",
             caption=f"📎ناونیشان: **{title}\n\n⏳ماوە:** {duration_min}\n\n__[زانیاری زیاتر بهێنە دەربارەی ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
