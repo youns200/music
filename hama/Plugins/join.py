@@ -1,5 +1,5 @@
 import asyncio
-from hama import CHANNEL, app, db_mem
+from hama import chanel, app, db_mem
 from pyrogram import Client
 from pyrogram import filters
 from pyrogram.errors import FloodWait, UserNotParticipant
@@ -9,12 +9,12 @@ from hama.Inline import join
 
 async def handle_force_subscribe(bot, message):
     try:
-        invite_link = await bot.create_chat_invite_link(int(hama.CHANNEL))
+        invite_link = await bot.create_chat_invite_link(int(hama.chanel))
     except FloodWait as e:
         await asyncio.sleep(e.x)
         return 400
     try:
-        user = await bot.get_chat_member(int(hama.CHANNEL), message.from_user.id)
+        user = await bot.get_chat_member(int(hama.chanel), message.from_user.id)
         if user.status == "kicked":
             await bot.send_message(
                 chat_id=message.from_user.id,
