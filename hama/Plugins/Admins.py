@@ -22,7 +22,6 @@ from hama.Decorators.checker import checker, checkerCB
 from hama.Inline import audio_markup, primary_markup
 from hama.Utilities.changers import time_to_seconds
 from hama.Utilities.chat import specialfont_to_normal
-from hama.Utilities.theme import check_theme
 from hama.Utilities.thumbnails import gen_thumb
 from hama.Utilities.timer import start_timer
 from hama.Utilities.youtube import get_yt_info_id
@@ -136,10 +135,9 @@ async def admins(_, message: Message):
                         ),
                     ),
                 )
-                theme = await check_theme(chat_id)
                 chat_title = await specialfont_to_normal(message.chat.title)
                 thumb = await gen_thumb(
-                    thumbnail, title, message.from_user.id, theme, chat_title
+                    thumbnail, title, message.from_user.id, chat_title
                 )
                 buttons = primary_markup(
                     videoid, message.from_user.id, duration_min, duration_min
