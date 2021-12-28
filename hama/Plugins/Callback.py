@@ -23,7 +23,6 @@ from hama.Inline import (audio_markup, audio_markup2, download_markup, primary_m
 from hama.Utilities.changers import time_to_seconds
 from hama.Utilities.chat import specialfont_to_normal
 from hama.Utilities.paste import isPreviewUp, paste_queue
-from hama.Utilities.theme import check_theme
 from hama.Utilities.thumbnails import gen_thumb
 from hama.Utilities.timer import start_timer
 from hama.Utilities.youtube import get_yt_info_id
@@ -145,7 +144,6 @@ async def admin_risghts(_, CallbackQuery):
                         ),
                     ),
                 )
-                theme = await check_theme(chat_id)
                 chat_title = await specialfont_to_normal(
                     CallbackQuery.message.chat.title
                 )
@@ -153,7 +151,6 @@ async def admin_risghts(_, CallbackQuery):
                     thumbnail,
                     title,
                     CallbackQuery.from_user.id,
-                    theme,
                     chat_title,
                 )
                 buttons = primary_markup(
