@@ -2,7 +2,7 @@ import asyncio
 from os import path
 
 from pyrogram import filters
-from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
+from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, InputMediaDocument, Message,
                             Voice)
 from youtube_search import YoutubeSearch
 
@@ -128,7 +128,7 @@ async def play(_, message: Message):
         buttons = url_markup(
             videoid, duration_min, message.from_user.id, query, 0
         )
-        return await med = InputMediaDocument(
+            med = InputMediaDocument(
             media="https://t.me/asalakan_N/1070777",
             caption=f"📎ناونیشان: **{title}\n\n⏳ماوە:** {duration_min}\n\n__[زانیاری زیاتر بهێنە دەربارەی ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
             reply_markup=InlineKeyboardMarkup(buttons),
