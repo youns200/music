@@ -59,6 +59,10 @@ async def welcome(_, message: Message):
                 return await message.reply_text(
                     f"ئەندامێکی {MUSIC_BOT_NAME} بەکارهێنەری Sudo [{member.mention}] ئێستا پەیوەندی بە چاتەکەتەوە کردووە."
                 )
+            if member.id :
+                return await message.reply_text(
+                    f"بەخێربیت [{member.mention}] ئێستا پەیوەندی بە چاتەکەتەوە کردووە."
+                )
             if member.id == ASSID:
                 await remove_active_chat(chat_id)
             if member.id == BOT_ID:
@@ -405,7 +409,7 @@ async def start_markup_check(_, CallbackQuery):
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if command == "USERLIST":
-        await CallbackQuery.answer("Auth Users!")
+        await CallbackQuery.answer("ڕێگەپێدراوەکان!")
         text, buttons = usermarkup()
         _playlist = await get_authuser_names(CallbackQuery.message.chat.id)
         if not _playlist:
