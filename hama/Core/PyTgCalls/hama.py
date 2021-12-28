@@ -21,7 +21,6 @@ from hama.Inline import (audio_markup, audio_timer_markup_start,
                           primary_markup, timer_markup)
 from hama.Utilities.changers import time_to_seconds
 from hama.Utilities.chat import specialfont_to_normal
-from hama.Utilities.theme import check_theme
 from hama.Utilities.thumbnails import gen_thumb
 from hama.Utilities.timer import start_timer
 from hama.Utilities.youtube import get_yt_info_id
