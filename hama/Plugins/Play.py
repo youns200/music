@@ -128,8 +128,8 @@ async def play(_, message: Message):
         buttons = url_markup(
             videoid, duration_min, message.from_user.id, query, 0
         )
-            med = InputMediaDocument(
-            media="https://t.me/asalakan_N/1070777",
+        return await message.reply_photo(
+            photo="https://t.me/asalakan_N/1070777",
             caption=f"📎ناونیشان: **{title}\n\n⏳ماوە:** {duration_min}\n\n__[زانیاری زیاتر بهێنە دەربارەی ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
