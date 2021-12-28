@@ -7,26 +7,7 @@ from hama.Database import _get_theme, get_theme, save_theme
 from hama.Decorators.permission import PermissionCheck
 
 themes = [
-    "blue",
-    "black",
-    "red",
-    "green",
-    "grey",
-    "orange",
-    "pink",
-    "yellow",
     "Random",
-]
-
-themes2 = [
-    "blue",
-    "black",
-    "red",
-    "green",
-    "grey",
-    "orange",
-    "pink",
-    "yellow",
 ]
 
 __MODULE__ = "Theme"
@@ -53,18 +34,4 @@ async def settheme(_, message):
     }
     await save_theme(message.chat.id, "theme", note)
     await message.reply_text(f"**بەسەرکەوتوی وێنە بچوکەکە گۆرا بۆ ** {theme}")
-
-
-@app.on_message(filters.command("theme"))
-@PermissionCheck
-async def theme_func(_, message):
-    await message.delete()
-    _note = await get_theme(message.chat.id, "theme")
-    if not _note:
-        theme = "Random"
-    else:
-        theme = _note["theme"]
-    await message.reply_text(
-        f"**{MUSIC_BOT_NAME} ڕووکاری وێنە بچووکەکان **\n\n**ڕووکاری ئێستا:-** {theme} \n\nبەبەکارهێنانی /settheme بۆ گۆڕینی ڕووکارەکان."
-    )
 
