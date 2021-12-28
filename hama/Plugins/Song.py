@@ -35,12 +35,12 @@ __HELP__ = """
 async def play(_, message: Message):
     if message.sender_chat:
         return await message.reply_text(
-            "You're an __Anonymous Admin__ in this Chat Group!\nRevert back to User Account From Admin Rights."
+            "تۆ __Anonymous Admin__ لەم گروپەی چات! گەڕانەوە بۆ ئەژمێری بەکارهێنەر لە مافەکانی بەڕێوەبەر."
         )
     await message.delete()
     url = get_url(message)
     if url:
-        mystic = await message.reply_text("🔄 پرۆسەکردنی URL... تکایه چاوەڕوان بکه !")
+        mystic = await message.reply_text("🔍")
         query = message.text.split(None, 1)[1]
         (
             title,
@@ -64,7 +64,7 @@ async def play(_, message: Message):
                 "**بەکارهێنانی:**\n\n/song [یوتوب URL یان ناوی گۆرانی]\nکیوری تایبەت دادەبەزێنێت"
             )
             return
-        mystic = await message.reply_text("🔍 گەڕان بۆ دۆزینەوە...")
+        mystic = await message.reply_text("🔍")
         query = message.text.split(None, 1)[1]
         (
             title,
