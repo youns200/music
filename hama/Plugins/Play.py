@@ -7,7 +7,7 @@ from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
 from youtube_search import YoutubeSearch
 
 from hama import (BOT_USERNAME, DURATION_LIMIT, DURATION_LIMIT_MIN,
-                   MUSIC_BOT_NAME, app, db_mem)
+                   MUSIC_BOT_NAME, app, db_mem, chanel)
 from hama.Core.PyTgCalls.Converter import convert
 from hama.Core.PyTgCalls.Downloader import download
 from hama.Decorators.assistant import AssistantAdd
@@ -34,7 +34,7 @@ loop = asyncio.get_event_loop()
 @AssistantAdd
 async def play(_, message: Message):
     await message.delete()
-        if hama.CHANNEL:
+        if hama.chanel:
       fsub = await handle_force_subscribe(_, message: Message)
       if fsub == 400:
         return
