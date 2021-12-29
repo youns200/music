@@ -61,7 +61,7 @@ async def welcome(_, message: Message):
                 )
             if member.id :
                 return await message.reply_text(
-                    f"<b>بەخێربیت [{member.mention}] بۆ {message.chat.title} </b>",
+                    f"**بەخێربیت [{member.mention}] بۆ {message.chat.title} **",
                     reply_markup=InlineKeyboardMarkup(welcome),
                 )
             if member.id == ASSID:
