@@ -7,7 +7,7 @@ from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
 from youtube_search import YoutubeSearch
 
 from hama import (BOT_USERNAME, DURATION_LIMIT, DURATION_LIMIT_MIN,
-                   MUSIC_BOT_NAME, app, db_mem, chanel)
+                   MUSIC_BOT_NAME, app, db_mem)
 from hama.Core.PyTgCalls.Converter import convert
 from hama.Core.PyTgCalls.Downloader import download
 from hama.Decorators.assistant import AssistantAdd
