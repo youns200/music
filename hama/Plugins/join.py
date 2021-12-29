@@ -10,12 +10,12 @@ from hama.Inline import join
 @app.on_message(filters.command(["play", f"start"]))
 async def handle_force_subscribe(_, message):
     try:
-        invite_link = await app.create_chat_invite_link(int(chanel))
+        invite_link = await app.create_chat_invite_link(f"chanel")
     except FloodWait as e:
         await asyncio.sleep(e.x)
         return 400
     try:
-        user = await app.get_chat_member(int(chanel), message.from_user.id)
+        user = await app.get_chat_member((f"chanel"), message.from_user.id)
         if user.status == "kicked":
             await app.send_message(
                 chat_id=message.from_user.id,
