@@ -33,11 +33,7 @@ loop = asyncio.get_event_loop()
 @PermissionCheck
 @AssistantAdd
 async def play(_, message: Message):
-    await message.delete()
-     if hama.chanel:
-      fsub = await handle_force_subscribe(_, message: Message)
-      if fsub == 400:
-        return
+    await message.delete()     
     if message.chat.id not in db_mem:
         db_mem[message.chat.id] = {}
     if message.sender_chat:
