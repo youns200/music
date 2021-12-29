@@ -20,7 +20,7 @@ from hama.Database import (add_nonadmin_chat, add_served_chat,
 from hama.Decorators.admins import ActualAdminCB
 from hama.Decorators.permission import PermissionCheck
 from hama.Inline import (custommarkup, dashmarkup, setting_markup,
-                          start_pannel, usermarkup, volmarkup)
+                          start_pannel, usermarkup, volmarkup, welcome)
 
 welcome_group = 2
 
@@ -61,7 +61,8 @@ async def welcome(_, message: Message):
                 )
             if member.id :
                 return await message.reply_text(
-                    f"بەخێربیت [{member.mention}] ئێستا پەیوەندی بە چاتەکەتەوە کردووە."
+                    f"<b>بەخێربیت [{member.mention}] بۆ {message.chat.title} </b>",
+                    reply_markup=InlineKeyboardMarkup(welcome),
                 )
             if member.id == ASSID:
                 await remove_active_chat(chat_id)
