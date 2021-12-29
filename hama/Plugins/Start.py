@@ -8,7 +8,7 @@ from pyrogram import filters
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
-from hama import ASSID, BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
+from hama import ASSID, BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app, CHANNEL, NAMECH
 from hama import boottime as bot_start_time
 from hama import db
 from hama.Core.PyTgCalls import hama
