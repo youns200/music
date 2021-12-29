@@ -7,7 +7,7 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 
 from hama.Inline import join
 
-async def handle_force_subscribe(app, message):
+async def handle_force_subscribe(_, message):
     try:
         invite_link = await app.create_chat_invite_link(int(hama.chanel))
     except FloodWait as e:
