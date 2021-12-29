@@ -3,7 +3,7 @@ import os
 import shutil
 
 from config import get_queue
-from pyrogram.types import InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardMarkup, CallbackQuery
 from pytgcalls import StreamType
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
