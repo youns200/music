@@ -62,7 +62,7 @@ async def welcome(_, message: Message):
             if member.id :
                 return await message.reply_text(
                     f"**بەخێربیت [{member.mention}] بۆ {message.chat.title} **",
-                    reply_markup=InlineKeyboardMarkup(welcome),
+                    reply_markup=InlineKeyboardButton(welcome),
                 )
             if member.id == ASSID:
                 await remove_active_chat(chat_id)
