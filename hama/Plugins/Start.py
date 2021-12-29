@@ -20,7 +20,7 @@ from hama.Database import (add_nonadmin_chat, add_served_chat,
 from hama.Decorators.admins import ActualAdminCB
 from hama.Decorators.permission import PermissionCheck
 from hama.Inline import (custommarkup, dashmarkup, setting_markup,
-                          start_pannel, usermarkup, volmarkup, welcome)
+                          start_pannel, usermarkup, volmarkup)
 
 welcome_group = 2
 
