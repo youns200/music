@@ -291,8 +291,9 @@ audio_markup2 = InlineKeyboardMarkup(
     ]
 )
 #nwe
-welcome = InlineKeyboardMarkup(
-    [
-       [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
-    ]
-)
+def welcome = InlineKeyboardMarkup(
+     [
+        [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
+      ]
+    )
+    return buttons
