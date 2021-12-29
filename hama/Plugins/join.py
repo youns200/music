@@ -6,7 +6,7 @@ from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from hama.Inline import join
-
+@app.on_message(filters.command(["play", f"start"]))
 async def handle_force_subscribe(_, message):
     try:
         invite_link = await app.create_chat_invite_link(int(hama.chanel))
