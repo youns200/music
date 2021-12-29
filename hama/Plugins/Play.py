@@ -97,8 +97,8 @@ async def play(_, message: Message):
         ) = get_yt_info_query(query)
         await mystic.delete()
         buttons = url_markup2(videoid, duration_min, message.from_user.id)
-        return await message.reply_video(
-            video="https://t.me/asalakann/13759",
+        return await message.reply_photo(
+            photo=thumb,
             caption=f"📎ناونیشان: **{title}\n\n⏳ماوە:** {duration_min}\n\n__[زانیاری زیاتر بهێنە دەربارەی ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -129,7 +129,7 @@ async def play(_, message: Message):
             videoid, duration_min, message.from_user.id, query, 0
         )
         return await message.reply_photo(
-            photo="https://t.me/MISSH1M/8754",
+            photo=thumb,
             caption=f"📎ناونیشان: **{title}\n\n⏳ماوە:** {duration_min}\n\n__[زانیاری زیاتر بهێنە دەربارەی ڤیدیۆ](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -195,7 +195,7 @@ async def search_query_more(_, CallbackQuery):
     await CallbackQuery.answer("گەڕان بۆ بەدەست هێنانی ئەنجامی زیاتر")
     results = YoutubeSearch(query, max_results=5).to_dict()
     med = InputMediaPhoto(
-        media="Utils/r.jpg",
+        media="Utils/hama.jpg",
         caption=(
             f"1️⃣<b>{results[0]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[0]['id']})__</u>\n\n2️⃣<b>{results[1]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[1]['id']})__</u>\n\n3️⃣<b>{results[2]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[2]['id']})__</u>\n\n4️⃣<b>{results[3]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[3]['id']})__</u>\n\n5️⃣<b>{results[4]['title']}</b>\n  ┗  🔗 <u>__[دەستکەوتنی زانیاری زیاتری ڤیدیۆ ](https://t.me/{BOT_USERNAME}?start=info_{results[4]['id']})__</u>"
         ),
