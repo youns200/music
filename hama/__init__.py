@@ -4,7 +4,7 @@ import time
 from os import listdir, mkdir
 
 from aiohttp import ClientSession
-from config import ASSISTANT_PREFIX, DURATION_LIMIT_MIN, LOG_GROUP_ID, CHANNEL, NAMECH
+from config import ASSISTANT_PREFIX, DURATION_LIMIT_MIN, LOG_GROUP_ID, CHANNEL, NAMECH, MUST_JOIN
 from config import MONGO_DB_URI as mango
 from config import MUSIC_BOT_NAME, OWNER_ID, SUDO_USERS, get_queue
 from motor.motor_asyncio import AsyncIOMotorClient as Bot
@@ -47,7 +47,7 @@ DURATION_LIMIT = int(time_to_seconds(f"{DURATION_LIMIT_MIN}:00"))
 ASSISTANT_PREFIX = ASSISTANT_PREFIX
 NAMECH = NAMECH
 CHANNEL = CHANNEL
-
+MUST_JOIN = MUST_JOIN
 
 ### Bot Info
 BOT_ID = 0
