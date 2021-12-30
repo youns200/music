@@ -18,7 +18,6 @@ SUDO_USERS = list(map(int, getenv("SUDO_USERS", "511311707").split()))
 OWNER_ID = list(map(int, getenv("OWNER_ID", "511311707").split()))
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1001665697505"))
 MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "Music")
-chanel = int(getenv("chanel", "-1001291631036"))
 
 #----
 if str(getenv("SUPPORT_CHANNEL")).strip() == "":
@@ -38,5 +37,9 @@ if str(getenv("NAMECH")).strip() == "":
     NAMECH = None
 else:
     NAMECH = str(getenv("NAMECH"))
+#-----
+if str(getenv("MUST_JOIN")).strip() == "":
+    MUST_JOIN = None
+else:
+    MUST_JOIN = str(getenv("MUST_JOIN"))
 
-    
