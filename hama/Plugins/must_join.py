@@ -47,7 +47,7 @@ async def must_join_channel(bot: Client, msg: Message):
                 link = chat_info.invite_link
             try:
                 await msg.reply_text(
-                    f"{message.from_user.mention} [ئێرە دابگرە]({link}) جۆین بکە بۆ ئەوەی بتوانی بەکاربێنی !",
+                    f"{msg.from_user.mention} [ئێرە دابگرە]({link}) جۆین بکە بۆ ئەوەی بتوانی بەکاربێنی !",
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup([
                         [InlineKeyboardButton("✨ جۆین ✨", url=link)]
