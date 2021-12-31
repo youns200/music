@@ -32,7 +32,7 @@ async def must_join_channel(bot: Client, msg: Message):
         print(f"I'm not admin in the MUST_JOIN chat : {MUST_JOIN} !")
 
         
-@app.on_message(["play", f"play@{BOT_USERNAME}", "help", f"help@{BOT_USERNAME}", "skip", f"skip@{BOT_USERNAME}", "stop", f"stop@{BOT_USERNAME}", "end", f"end@{BOT_USERNAME}"] & filters.group, group=-1)
+@app.on_message(filters.command(["play", f"play@{BOT_USERNAME}", "help", f"help@{BOT_USERNAME}", "skip", f"skip@{BOT_USERNAME}", "stop", f"stop@{BOT_USERNAME}", "end", f"end@{BOT_USERNAME}"]) & filters.group, group=-1)
 async def must_join_channel(bot: Client, msg: Message):
     if not MUST_JOIN:  # Not compulsory
         return
