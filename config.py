@@ -7,17 +7,17 @@ load_dotenv()
 # VARS
 
 get_queue = {}
-STRING = getenv("STRING_SESSION", "AgAeQXjYUNrcZ1_gKt-4iyIW9YPMrzUXhNyP2C9qK8iRa7uc8IKR_a09AHcBkrNjOPO5cmyEqhc180s6TvIB4AkXSiujJeF5L1FKJrvMhAMI1esyBf28MWDsh718aVRWcHmfqsSLisGQMNYr37h2TF31PEALD6_dB1L16QXOR8be7gpLlhGppa2cUJ0Lj9dKQNc3psSrV2a5548OLEbf5V-MzzLO0dVOWx5fuPtPwg1oJWJBSv5SStT8_LiObxbLdlF0iy8fKded82virFdijCg7HdjbfD9I9N6SUTqWtP51Rzb3NlmO37PzojZMU8drJkoqlAx6WHrfK_kictou4MQ0Z4b_4QA")
+STRING = getenv("STRING_SESSION", "AgAFMtyBFABiSiyyCEKgl6gj8qT91g8OIoboTFzpLWXnoT2OnIrapcNIvZrm8MYTwUbriWYGnJDXW9AG_39NJ8ERSKJqHOp1LPd8wvgkimfJQdCv7Z2AxmE6x2bfoC3lIn8TYYJzPt02nVMzUQc6jcG85EmLAuVnCZFA6X1gjYKhw7dH2w8rlkte03KEUfx3I27PP1pU6XZD_ZQXBLhMcaIOglTpLNonoPE6ccBWEqzRs7ENG3kXW-CG6nj2bFLmaWmY6RjhhIgRS9G9yiVDJA6Hpuyv-U-x3pS9JG6QTOsCdMK_xPelUYWRisbnZDEYrrzN3CaASjJZv-0hchq4bA5LaOkGgwA")
 BOT_TOKEN = getenv("BOT_TOKEN", "2100441086:AAEGGfcEENlB_xd2wXTNq1Elrrm5v1c5Ym8")
 API_ID = int(getenv("API_ID", "6699478"))
 API_HASH = getenv("API_HASH", "28e67d90d53ce22e01d330141824b1da")
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", "1000"))
+DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", "60"))
 ASSISTANT_PREFIX = list(getenv("ASSISTANT_PREFIX", ".").split())
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://hamat:hamat@cluster0.i9wpi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://music:music@cluster0.jodqj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "511311707").split()))
 OWNER_ID = list(map(int, getenv("OWNER_ID", "511311707").split()))
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1001665697505"))
-MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "Music")
+MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "Music Bot")
 
 #----
 if str(getenv("SUPPORT_CHANNEL")).strip() == "":
