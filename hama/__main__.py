@@ -197,10 +197,10 @@ async def start_command(_, message):
                 reply_markup=key,
             ) 
     out = private_panel()
-    return await app.send_photo(
+    return await app.send_audio(
                 message.chat.id,
-                photo="https://t.me/xawnakam_lm/111",
-                caption= "ڕێگەت پێدەدات بۆ پەخشکردنی مۆسیقا و ڤیدیۆ لەسەر گروپەکان لە ڕێگەی چاتەکانی ڤیدیۆی تەلگرامی نوێ!/n💡 هەموو فەرمانەکانی بۆت بدۆزەرەوە و چۆن کار دەکەن بە کلیک کردن لەسەر دوگمەی فەرمانەکانی 📚",
+                audio="https://t.me/xawnakam_lm/35",
+                caption= "ڕێگەت پێدەدات بۆ پەخشکردنی مۆسیقا و ڤیدیۆ لەسەر گروپەکان لە ڕێگەی چاتەکانی ڤیدیۆی تەلگرامی نوێ!\n💡 هەموو فەرمانەکانی بۆت بدۆزەرەوە و چۆن کار دەکەن بە کلیک کردن لەسەر دوگمەی فەرمانەکانی 📚",
                 parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
