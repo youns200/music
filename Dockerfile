@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:15.0.0
+FROM nikolaik/python-nodejs:latest
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ffmpeg \
     && apt-get clean \
