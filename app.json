@@ -11,7 +11,7 @@
   "telegram-bot",
   "pyrogram"
   ],
-  "repository": "https://github.com/hama-maqsood/musicenn",
+  "repository": "https://github.com/hama-maqsood/musickuu",
   "stack": "container",
   "env": {
     "API_ID": {
