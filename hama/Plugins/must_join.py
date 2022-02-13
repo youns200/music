@@ -38,8 +38,8 @@ async def must_join_channel(bot: Client, msg: Message):
         return
     try:
         try:
-        from_user_id = msg.from_user.id
-        from_user_mention = msg.from_user.mention
+           from_user_id = msg.from_user.id
+           from_user_mention = msg.from_user.mention
             await bot.get_chat_member(MUST_JOIN, from_user_id)
         except UserNotParticipant:
             if MUST_JOIN.isalpha():
