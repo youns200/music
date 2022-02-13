@@ -11,9 +11,10 @@ from hama.Utilities.changers import int_to_alpha
 def AdminRightsCheck(mystic):
     async def wrapper(_, message):
         if message.sender_chat:
-            return await message.reply_text(
-                "**تۆ __Anonymous Admin__ گەڕانەوە بۆ ئەژمێری بەکارهێنەر**."
-            )
+        return await message.reply_video(
+            video="https://telegra.ph/file/fe47e4f1962ebd29be16a.mp4",
+            caption="**تکایە بەڕێزم وەک لە فێرکاریەکە دیارە ئەنجام بدە بۆ ئەوەی بتوانم یارمەتیت بدەم 💜**",
+        )
         is_non_admin = await is_nonadmin_chat(message.chat.id)
         if not is_non_admin:
             member = await app.get_chat_member(
@@ -35,9 +36,10 @@ def AdminRightsCheck(mystic):
 def AdminActual(mystic):
     async def wrapper(_, message):
         if message.sender_chat:
-            return await message.reply_text(
-                "**تۆ __Anonymous Admin__ گەڕانەوە بۆ ئەژمێری بەکارهێنەر**."
-            )
+        return await message.reply_video(
+            video="https://telegra.ph/file/fe47e4f1962ebd29be16a.mp4",
+            caption="**تکایە بەڕێزم وەک لە فێرکاریەکە دیارە ئەنجام بدە بۆ ئەوەی بتوانم یارمەتیت بدەم 💜**",
+        )
         member = await app.get_chat_member(
             message.chat.id, message.from_user.id
         )
