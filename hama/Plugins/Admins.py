@@ -25,7 +25,6 @@ from hama.Utilities.chat import specialfont_to_normal
 from hama.Utilities.thumbnails import gen_thumb
 from hama.Utilities.timer import start_timer
 from hama.Utilities.youtube import get_yt_info_id
-from hama.Database import blacklisted_chats, is_gbanned_user
 
 loop = asyncio.get_event_loop()
 
@@ -66,16 +65,6 @@ Only for Sudo Users
 @AdminRightsCheck
 @checker
 async def admins(_, message: Message):
-    chat_id = message.chat.id
-    user_id = message.from_user.id
-    if chat_id in await blacklisted_chats():
-        await message.reply(
-            "❗️ ئەم گرووپە بڵۆک کراوە تکایە پەیوەندی بکە بەگروپی پشگیری بۆ چاڵاکردنی من."
-        )
-        return await app.leave_chat(chat_id)
-    if await is_gbanned_user(user_id):
-        await message.reply_text(f"❗️ **تۆ بڵۆک کراویت لەلای من !**")
-        return
     global get_queue
     if not len(message.command) == 1:
         return await message.reply_text("هەڵەیەیکی چاوەڕوان نەکراو ڕویدا.")
