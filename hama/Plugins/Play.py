@@ -47,7 +47,7 @@ async def play(_, message: Message):
     if await is_gbanned_user(message.from_user.id):
         await message.reply_text(f"❗️ **تۆ بڵۆک کراویت لەلای من !**")
         return
-    if m.sender_chat:
+    if message.sender_chat:
         return await message.reply_video(
             video="https://telegra.ph/file/fe47e4f1962ebd29be16a.mp4",
             caption="**تکایە بەڕێزم وەک لە فێرکاریەکە دیارە ئەنجام بدە بۆ ئەوەی بتوانم یارمەتیت بدەم 💜**",
