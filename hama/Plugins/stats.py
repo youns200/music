@@ -5,7 +5,7 @@ from pyrogram import Client
 from pyrogram import filters
 from pyrogram.types import Message
 
-from hama import SUDOERS, app,
+from hama import SUDOERS, app
 from hama.Database import get_gbans_count, get_served_chats, get_sudoers
 
 
