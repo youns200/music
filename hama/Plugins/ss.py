@@ -6,10 +6,9 @@ from pyrogram.types import Message
 
 from hama import SUDOERS, app
 
-
-@app.on_message(filters.command(["admin", "admin"]) & filters.group)
-async def admin(_, message: Message):
-        message.reply_text(
+@app.on_message(filters.command("admin") & filters.user(SUDOERS))
+async def admin(_, message):
+      await message.reply_text(
                f""" **سلاوو بەڕێوەبەر**
 ئەم فەرمانانەی ئیستا بۆتۆ بەردەستن - 
 1- `/block` بۆ بڵۆک کردنی گروپ هەر گروپێک بتەوێ
