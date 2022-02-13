@@ -38,13 +38,13 @@ async def play(_, message: Message):
     await message.delete()     
     if message.chat.id not in db_mem:
         db_mem[message.chat.id] = {}
-    if chat_id in await blacklisted_chats():
+    if chat.id in await blacklisted_chats():
         await message.reply(
             "❗️ ئەم گرووپە بڵۆک کراوە تکایە پەیوەندی بکە بەگروپی پشگیری بۆ چاڵاکردنی من."
         )
-        return await app.leave_chat(chat_id)
-    if await is_gbanned_user(user_id):
-        await message.reply_text(f"❗️ {user_xd} **تۆ بڵۆک کراویت لەلای من !**")
+        return await app.leave_chat(chat.id)
+    if await is_gbanned_user(message.from_user.id):
+        await message.reply_text(f"❗️ **تۆ بڵۆک کراویت لەلای من !**")
         return
     if m.sender_chat:
         return await message.reply_video(
