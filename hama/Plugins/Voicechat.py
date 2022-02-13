@@ -215,7 +215,7 @@ async def leave_all(client, message):
     failed = 0
     
     msg = await message.reply("🔄 یارمەتی دەر لەگروپەکان دەرەچێ!")
-    async for dialog in user.iter_dialogs():
+    async for dialog in userbot.iter_dialogs():
         try:
             await userbot.leave_chat(dialog.chat.id)
             await remove_active_chat(dialog.chat.id)
@@ -241,6 +241,6 @@ async def bot_kicked(c: Client, m: Message):
     chat_id = m.chat.id
     left_member = m.left_chat_member
     if left_member.id == bot_id:
-        await user.leave_chat(chat_id)
+        await userbot.leave_chat(chat_id)
         await remove_served_chat(chat_id)
         await remove_active_chat(chat_id)
