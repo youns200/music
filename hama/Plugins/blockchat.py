@@ -9,7 +9,7 @@ from hama.Database import blacklist_chat, blacklisted_chats, whitelist_chat
 async def blacklist_chat_func(_, message: Message):
     if len(message.command) != 2:
         return await message.reply_text(
-            "**Usage:**\n/blacklistchat [CHAT_ID]"
+            "**فرمان:**\n/black [CHAT_ID]"
         )
     chat_id = int(message.text.strip().split()[1])
     if chat_id in await blacklisted_chats():
