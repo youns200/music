@@ -217,7 +217,7 @@ async def leave_all(client, message):
     msg = await message.reply("🔄 یارمەتی دەر لەگروپەکان دەرەچێ!")
     async for dialog in user.iter_dialogs():
         try:
-            await user.leave_chat(dialog.chat.id)
+            await userbot.leave_chat(dialog.chat.id)
             await remove_active_chat(dialog.chat.id)
             left += 1
             await msg.edit(
