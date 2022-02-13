@@ -158,7 +158,7 @@ async def activevc(_, message: Message):
         )
 
 
-@app.on_message(filters.command("joinassistant") & filters.user(SUDOERS))
+@app.on_message(filters.command("join") & filters.user(SUDOERS))
 async def basffy(_, message):
     if len(message.command) != 2:
         await message.reply_text(
@@ -191,7 +191,7 @@ async def baaaf(_, message):
     await message.reply_text("دەرچۆ بۆت")
 
 
-@app.on_message(filters.command("leaveassistant") & filters.user(SUDOERS))
+@app.on_message(filters.command("leave") & filters.user(SUDOERS))
 async def baujaf(_, message):
     if len(message.command) != 2:
         await message.reply_text(
@@ -205,3 +205,42 @@ async def baujaf(_, message):
         await message.reply_text(f"سەرکەوتونەبو\n**هۆکار**:{e}")
         return
     await message.reply_text("دەرچۆ.")
+
+@app.on_message(filters.command("leaveall") & filters.user(SUDOERS))
+async def leave_all(client, message):
+    if message.from_user.id not in SUDOERS:
+        return
+
+    left = 0
+    failed = 0
+    
+    msg = await message.reply("🔄 یارمەتی دەر لەگروپەکان دەرەچێ!")
+    async for dialog in user.iter_dialogs():
+        try:
+            await user.leave_chat(dialog.chat.id)
+            await remove_active_chat(dialog.chat.id)
+            left += 1
+            await msg.edit(
+                f"یوسەر بۆت لەگروپەکان دەرەچێ...\n\nدەرچۆن: {left} لە گروپ.\nسەرکەوتونەبوو: {failed} ."
+            )
+        except BaseException:
+            failed += 1
+            await msg.edit(
+                f"یارمەتی دەر لەگروپەکان دەرەچێ وا...\n\nدەرچۆ لە: {left} گرووپ.\nسەرکەوتونەبوو: {failed} ."
+            )
+        await asyncio.sleep(0.7)
+    await msg.delete()
+    await Client.send_message(
+        message.chat.id, f"✅ دەرچوەکان: {left} .\n❌ سەرکەوتو نەبوو لە: {failed} گروپ."
+    )
+
+
+@app.on_message(filters.left_chat_member)
+async def bot_kicked(c: Client, m: Message):
+    bot_id = (await c.get_me()).id
+    chat_id = m.chat.id
+    left_member = m.left_chat_member
+    if left_member.id == bot_id:
+        await user.leave_chat(chat_id)
+        await remove_served_chat(chat_id)
+        await remove_active_chat(chat_id)
