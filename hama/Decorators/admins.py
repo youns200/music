@@ -11,7 +11,7 @@ from hama.Utilities.changers import int_to_alpha
 def AdminRightsCheck(mystic):
     async def wrapper(_, message):
         if message.sender_chat:
-        return await message.reply_video(
+            return await message.reply_video(
             video="https://telegra.ph/file/fe47e4f1962ebd29be16a.mp4",
             caption="**تکایە بەڕێزم وەک لە فێرکاریەکە دیارە ئەنجام بدە بۆ ئەوەی بتوانم یارمەتیت بدەم 💜**",
         )
@@ -36,7 +36,7 @@ def AdminRightsCheck(mystic):
 def AdminActual(mystic):
     async def wrapper(_, message):
         if message.sender_chat:
-        return await message.reply_video(
+            return await message.reply_video(
             video="https://telegra.ph/file/fe47e4f1962ebd29be16a.mp4",
             caption="**تکایە بەڕێزم وەک لە فێرکاریەکە دیارە ئەنجام بدە بۆ ئەوەی بتوانم یارمەتیت بدەم 💜**",
         )
