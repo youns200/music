@@ -53,11 +53,11 @@ async def welcome(_, message: Message):
         try:
             if member.id in OWNER_ID:
                 return await message.reply_text(
-                    f"**{message.from_user.mention()} خاوەن بۆت پەیوەندی بەگرووپ چاتەکەتەوە کرد**"
+                    f"**{member.mention} خاوەن بۆت پەیوەندی بەگرووپ چاتەکەتەوە کرد**"
                 )
             if member.id in SUDOERS:
                 return await message.reply_text(
-                    f"** بەڕێوەبەرێکی بۆت پەیوەندی بەگروپەکەتەوە کرد بەڕێز {message.from_user.mention()}**"
+                    f"** بەڕێوەبەرێکی بۆت پەیوەندی بەگروپەکەتەوە کرد بەڕێز {member.mention}**"
                 )
             if member.id :
                 return await message.reply_text(
