@@ -83,15 +83,6 @@ async def welcome(_, message: Message):
 @app.on_message(filters.command(["help", "start"]) & filters.group)
 @PermissionCheck
 async def useradd(_, message: Message):
-    user_id = message.from_user.id
-    if chat_id in await blacklisted_chats():
-        await message.reply(
-            "❗️ ئەم گرووپە بڵۆک کراوە تکایە پەیوەندی بکە بەگروپی پشگیری بۆ چاڵاکردنی من."
-        )
-        return await app.leave_chat(chat_id)
-    if await is_gbanned_user(user_id):
-        await message.reply_text(f"❗️ **تۆ بڵۆک کراویت لەلای من !**")
-        return
     out = start_pannel()
     await asyncio.gather(
         message.delete(),
@@ -118,10 +109,6 @@ async def okaybhai(_, CallbackQuery):
 
 @app.on_callback_query(filters.regex("settingm"))
 async def settingm(_, CallbackQuery):
-    user_id = CallbackQuery.from_user.id
-    if await is_gbanned_user(user_id):
-        await CallbackQuery.answer("ببوورە تۆ بڵۆک کراویت ناتوانیت بۆت بەکاربێنی 🚫!", show_alert=True)
-        return
     await CallbackQuery.answer("ڕێکخستنی بۆت ...")
     text, buttons = setting_markup()
     c_title = CallbackQuery.message.chat.title
@@ -145,10 +132,6 @@ async def settingm(_, CallbackQuery):
 @app.on_callback_query(filters.regex("EVE"))
 @ActualAdminCB
 async def EVE(_, CallbackQuery):
-    user_id = CallbackQuery.from_user.id
-    if await is_gbanned_user(user_id):
-        await CallbackQuery.answer("ببوورە تۆ بڵۆک کراویت ناتوانیت بۆت بەکاربێنی 🚫!", show_alert=True)
-        return
     checking = CallbackQuery.from_user.username
     text, buttons = usermarkup()
     chat_id = CallbackQuery.message.chat.id
@@ -169,10 +152,6 @@ async def EVE(_, CallbackQuery):
 @app.on_callback_query(filters.regex("AMS"))
 @ActualAdminCB
 async def AMS(_, CallbackQuery):
-    user_id = CallbackQuery.from_user.id
-    if await is_gbanned_user(user_id):
-        await CallbackQuery.answer("ببوورە تۆ بڵۆک کراویت ناتوانیت بۆت بەکاربێنی 🚫!", show_alert=True)
-        return
     checking = CallbackQuery.from_user.username
     text, buttons = usermarkup()
     chat_id = CallbackQuery.message.chat.id
@@ -196,10 +175,6 @@ async def AMS(_, CallbackQuery):
     )
 )
 async def start_markup_check(_, CallbackQuery):
-    user_id = CallbackQuery.from_user.id
-    if await is_gbanned_user(user_id):
-        await CallbackQuery.answer("ببوورە تۆ بڵۆک کراویت ناتوانیت بۆت بەکاربێنی 🚫!", show_alert=True)
-        return
     command = CallbackQuery.matches[0].group(1)
     c_title = CallbackQuery.message.chat.title
     c_id = CallbackQuery.message.chat.id
