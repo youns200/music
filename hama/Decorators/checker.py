@@ -6,13 +6,14 @@ from hama.Database import blacklisted_chats, is_gbanned_user, is_on_off
 def checker(mystic):
     async def wrapper(_, message):
         if message.sender_chat:
-            return await message.reply_text(
-                "**تۆ __Anonymous Admin__ لەم گروپەی چات! گەڕانەوە بۆ ئەژمێری بەکارهێنەر لە مافەکانی بەڕێوەبەر**."
-            )
+        return await message.reply_video(
+            video="https://telegra.ph/file/fe47e4f1962ebd29be16a.mp4",
+            caption="**تکایە بەڕێزم وەک لە فێرکاریەکە دیارە ئەنجام بدە بۆ ئەوەی بتوانم یارمەتیت بدەم 💜**",
+        )
         blacklisted_chats_list = await blacklisted_chats()
         if message.chat.id in blacklisted_chats_list:
             await message.reply_text(
-                f"**لیستی ڕەش **\n\nچاتەکەت لەلایەن بەکارهێنەرانی سۆدۆوە لیستی ڕەشی لێدراوە. پرسیار لە هەر __SUDO USER__ بکە بۆ لیستی سپی. لیستی بەکارهێنەرانی Sudo بپشکنە [لێرەوە](https://t.me/{BOT_USERNAME}?start=sudolist)"
+                f"**لیستی ڕەش **\n\nچاتەکەت لەلایەن بەکارهێنەرانی سۆدۆوە لیستی ڕەشی لێدراوە. پرسیار لە هەر __SUDO USER__ بکە بۆ لیستی سپی. لیستی بەکارهێنەرانی Sudo [ئێرە دابگرە ](https://t.me/{BOT_USERNAME}?start=sudolist)"
             )
             return await app.leave_chat(message.chat.id)
         if await is_on_off(1):
@@ -22,7 +23,7 @@ def checker(mystic):
                 )
         if await is_gbanned_user(message.from_user.id):
             return await message.reply_text(
-                f"**چاتەکەت لەلایەن بەکارهێنەرانی سۆدۆوە لیستی ڕەشی لێدراوە. پرسیار لە هەر __SUDO USER__ بکە بۆ لیستی سپی. لیستی بەکارهێنەرانی Sudo بپشکنە** [لێرەوە](https://t.me/{BOT_USERNAME}?start=sudolist)"
+                f"**چاتەکەت لەلایەن بەکارهێنەرانی سۆدۆوە لیستی ڕەشی لێدراوە. پرسیار لە هەر بکە بۆ لیستی سپی. لیستی بەکارهێنەرانی ** [ئێرە دابگرە](https://t.me/{BOT_USERNAME}?start=sudolist)"
             )
         return await mystic(_, message)
 
