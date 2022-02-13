@@ -22,6 +22,8 @@ from hama.Utilities.thumbnails import gen_thumb
 from hama.Utilities.url import get_url
 from hama.Utilities.youtube import (get_yt_info_id, get_yt_info_query,
                                      get_yt_info_query_slider)
+from hama.Database import blacklisted_chats, is_gbanned_user
+
 
 loop = asyncio.get_event_loop()
 
