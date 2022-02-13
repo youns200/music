@@ -583,3 +583,20 @@ async def clean(_, message):
     os.mkdir(dir)
     os.mkdir(dir1)
     await message.reply_text("Successfully cleaned all **temp** dir(s)!")
+
+@app.on_message(filters.command("leavebot") & filters.user(SUDOERS))
+async def bot_leave_group(_, message):
+    if len(message.command) != 2:
+        await message.reply_text(
+            "**فرمان:**\n\n» /leavebot [chat id]"
+        )
+        return
+    chat = message.text.split(None, 2)[1]
+    try:
+        await app.leave_chat(chat)
+        await remove_served_chat(chat)
+    except Exception as e:
+        await message.reply_text(f"❌ سەرکەوتو نەبوو \n\nهۆکار: `{e}`")
+        print(e)
+        return
+    await message.reply_text(f"✅ بەسەرکەوتوی بۆت دەرچۆ لە:\n\n💭 » `{chat}`")
