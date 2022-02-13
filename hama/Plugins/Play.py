@@ -36,9 +36,18 @@ async def play(_, message: Message):
     await message.delete()     
     if message.chat.id not in db_mem:
         db_mem[message.chat.id] = {}
-    if message.sender_chat:
-        return await message.reply_text(
-            "تۆ __Anonymous Admin__ لەم گروپەی چات! گەڕانەوە بۆ ئەژمێری بەکارهێنەر لە مافەکانی بەڕێوەبەر."
+    if chat_id in await blacklisted_chats():
+        await message.reply(
+            "❗️ ئەم گرووپە بڵۆک کراوە تکایە پەیوەندی بکە بەگروپی پشگیری بۆ چاڵاکردنی من."
+        )
+        return await app.leave_chat(chat_id)
+    if await is_gbanned_user(user_id):
+        await message.reply_text(f"❗️ {user_xd} **تۆ بڵۆک کراویت لەلای من !**")
+        return
+    if m.sender_chat:
+        return await message.reply_video(
+            video="https://telegra.ph/file/fe47e4f1962ebd29be16a.mp4",
+            caption="**تکایە بەڕێزم وەک لە فێرکاریەکە دیارە ئەنجام بدە بۆ ئەوەی بتوانم یارمەتیت بدەم 💜**",
         )
     audio = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
