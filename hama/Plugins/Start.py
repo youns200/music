@@ -52,11 +52,11 @@ async def welcome(_, message: Message):
     for member in message.new_chat_members:
         try:
             if member.id in OWNER_ID:
-            return await message.reply_text(
+                return await message.reply_text(
                     f"**{message.from_user.mention()} خاوەن بۆت پەیوەندی بەگرووپ چاتەکەتەوە کرد**"
                 )
-        if member.id in SUDOERS:
-            return await message.reply_text(
+            if member.id in SUDOERS:
+                return await message.reply_text(
                     f"** بەڕێوەبەرێکی بۆت پەیوەندی بەگروپەکەتەوە کرد بەڕێز {message.from_user.mention()}**"
                 )
             if member.id :
