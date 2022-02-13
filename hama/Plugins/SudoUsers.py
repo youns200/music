@@ -121,7 +121,7 @@ async def userdel(_, message: Message):
     removed = await remove_sudo(user_id)
     if removed:
         await message.reply_text(
-            f"Removed **{mention}** from {MUSIC_BOT_NAME}'s Sudo."
+            f"لادرا **{mention}** لە {MUSIC_BOT_NAME} بەڕێوەبەری"
         )
         return os.system(f"kill -9 {os.getpid()} && python3 -m hama")
     await message.reply_text(f"Something wrong happened.")
@@ -130,7 +130,7 @@ async def userdel(_, message: Message):
 @app.on_message(filters.command("sudolist"))
 async def sudoers_list(_, message: Message):
     sudoers = await get_sudoers()
-    text = "⭐️<u> **Owners:**</u>\n"
+    text = "⭐️<u> **داڕێژەر:**</u>\n"
     sex = 0
     for x in OWNER_ID:
         try:
@@ -148,13 +148,13 @@ async def sudoers_list(_, message: Message):
                 user = user.first_name if not user.mention else user.mention
                 if smex == 0:
                     smex += 1
-                    text += "\n⭐️<u> **Sudo Users:**</u>\n"
+                    text += "\n⭐️<u> **لیستی بەڕێوەبەرەکان:**</u>\n"
                 sex += 1
                 text += f"{sex}➤ {user}\n"
             except Exception:
                 continue
     if not text:
-        await message.reply_text("No Sudo Users")
+        await message.reply_text("هیچ بەڕێوەبەرێک نیە")
     else:
         await message.reply_text(text)
 
@@ -197,9 +197,9 @@ async def theme_func(_, message):
 ## Maintenance hama
 
 
-@app.on_message(filters.command("maintenance") & filters.user(SUDOERS))
+@app.on_message(filters.command("hama") & filters.user(SUDOERS))
 async def maintenance(_, message):
-    usage = "**Usage:**\n/hama [enable|disable]"
+    usage = "**فرمان:**\n/hama [enable|disable]"
     if len(message.command) != 2:
         return await message.reply_text(usage)
     chat_id = message.chat.id
@@ -208,11 +208,11 @@ async def maintenance(_, message):
     if state == "enable":
         user_id = 1
         await add_on(user_id)
-        await message.reply_text("Enabled for Maintenance")
+        await message.reply_text("چاودێری چاڵاکرا")
     elif state == "disable":
         user_id = 1
         await add_off(user_id)
-        await message.reply_text("Maintenance Mode Disabled")
+        await message.reply_text("چاودێری ڕاگیرا")
     else:
         await message.reply_text(usage)
 
@@ -224,7 +224,7 @@ async def maintenance(_, message):
 async def ban_globally(_, message):
     if not message.reply_to_message:
         if len(message.command) < 2:
-            await message.reply_text("**Usage:**\n/gban [USERNAME | USER_ID]")
+            await message.reply_text("**فرمان:**\n/gban [USERNAME | USER_ID]")
             return
         user = message.text.split(None, 2)[1]
         if "@" in user:
@@ -233,12 +233,12 @@ async def ban_globally(_, message):
         from_user = message.from_user
         if user.id == from_user.id:
             return await message.reply_text(
-                "You want to gban yourself? How Fool!"
+                "ناتوانم تۆ دەربکەم!"
             )
         elif user.id == BOT_ID:
-            await message.reply_text("Should i block myself? Lmao Ded!")
+            await message.reply_text("ناتوانم خۆم دەربکەم")
         elif user.id in SUDOERS:
-            await message.reply_text("You want to block a sudo user? KIDXZ")
+            await message.reply_text("ناتوانم بەڕێوەبەر دەر بکەم")
         else:
             await add_gban_user(user.id)
             served_chats = []
@@ -246,7 +246,7 @@ async def ban_globally(_, message):
             for chat in chats:
                 served_chats.append(int(chat["chat_id"]))
             m = await message.reply_text(
-                f"**Initializing Gobal Ban on {user.mention}**\n\nExpected Time : {len(served_chats)}"
+                f"**دەرکردنی {user.mention}**\n\nکات : {len(served_chats)}"
             )
             number_of_chats = 0
             for sex in served_chats:
@@ -259,13 +259,13 @@ async def ban_globally(_, message):
                 except Exception:
                     pass
             ban_text = f"""
-__**New Global Ban on {MUSIC_BOT_NAME}**__
+__**دەرکراوی نوێ {MUSIC_BOT_NAME}**__
 
-**Origin:** {message.chat.title} [`{message.chat.id}`]
-**Sudo User:** {from_user.mention}
-**Banned User:** {user.mention}
-**Banned User ID:** `{user.id}`
-**Chats:** {number_of_chats}"""
+**گروپ:** {message.chat.title} [`{message.chat.id}`]
+**بەڕێوەبەر:** {from_user.mention}
+**دەرکراو:** {user.mention}
+**ئایدی دەرکراو:** `{user.id}`
+**گروپەکان:** {number_of_chats}"""
             try:
                 await m.delete()
             except Exception:
@@ -281,15 +281,15 @@ __**New Global Ban on {MUSIC_BOT_NAME}**__
     mention = message.reply_to_message.from_user.mention
     sudoers = await get_sudoers()
     if user_id == from_user_id:
-        await message.reply_text("You want to block yourself? How Fool!")
+        await message.reply_text("ناتوانم تۆ دەربکەم!")
     elif user_id == BOT_ID:
-        await message.reply_text("Should i block myself? Lmao Ded!")
+        await message.reply_text("ناتوانم خۆم دەربکەم")
     elif user_id in sudoers:
-        await message.reply_text("You want to block a sudo user? KIDXZ")
+        await message.reply_text("ناتوانم بەڕێوەبەرەکان دەربکەم")
     else:
         is_gbanned = await is_gbanned_user(user_id)
         if is_gbanned:
-            await message.reply_text("Already Gbanned.")
+            await message.reply_text("باندکراوا.")
         else:
             await add_gban_user(user_id)
             served_chats = []
@@ -297,7 +297,7 @@ __**New Global Ban on {MUSIC_BOT_NAME}**__
             for chat in chats:
                 served_chats.append(int(chat["chat_id"]))
             m = await message.reply_text(
-                f"**Initializing Gobal Ban on {mention}**\n\nExpected Time : {len(served_chats)}"
+                f"**دەرکراو {mention}**\n\nکاتی پێویست : {len(served_chats)}"
             )
             number_of_chats = 0
             for sex in served_chats:
@@ -310,13 +310,13 @@ __**New Global Ban on {MUSIC_BOT_NAME}**__
                 except Exception:
                     pass
             ban_text = f"""
-__**New Global Ban on {MUSIC_BOT_NAME}**__
+__**دەرکراوی نوێ  {MUSIC_BOT_NAME}**__
 
-**Origin:** {message.chat.title} [`{message.chat.id}`]
-**Sudo User:** {from_user_mention}
-**Banned User:** {mention}
-**Banned User ID:** `{user_id}`
-**Chats:** {number_of_chats}"""
+**گروپ:** {message.chat.title} [`{message.chat.id}`]
+**بەڕێوەبەر:** {from_user_mention}
+**دەرکراو:** {mention}
+**ئایدی دەرکراو:** `{user_id}`
+**گروپەکان:** {number_of_chats}"""
             try:
                 await m.delete()
             except Exception:
@@ -333,7 +333,7 @@ async def unban_globally(_, message):
     if not message.reply_to_message:
         if len(message.command) != 2:
             await message.reply_text(
-                "**Usage:**\n/ungban [USERNAME | USER_ID]"
+                "**فرمان:**\n/ungban [USERNAME | USER_ID]"
             )
             return
         user = message.text.split(None, 1)[1]
@@ -343,38 +343,38 @@ async def unban_globally(_, message):
         from_user = message.from_user
         sudoers = await get_sudoers()
         if user.id == from_user.id:
-            await message.reply_text("You want to unblock yourself?")
+            await message.reply_text("من ناتوانم خۆم لە بڵۆک لادەم?")
         elif user.id == BOT_ID:
-            await message.reply_text("Should i unblock myself?")
+            await message.reply_text("ناتوانم بۆت لە بڵۆک لادەم")
         elif user.id in sudoers:
-            await message.reply_text("Sudo users can't be blocked/unblocked.")
+            await message.reply_text("ناتوانم داڕێژەر دەربکەم و بڵۆکی لادەم.")
         else:
             is_gbanned = await is_gbanned_user(user.id)
             if not is_gbanned:
-                await message.reply_text("He's already free, why bully him?")
+                await message.reply_text("پێشر لارداوا?")
             else:
                 await remove_gban_user(user.id)
-                await message.reply_text(f"Ungbanned!")
+                await message.reply_text(f"بڵوکی لادرا ئەزیزم!")
         return
     from_user_id = message.from_user.id
     user_id = message.reply_to_message.from_user.id
     mention = message.reply_to_message.from_user.mention
     sudoers = await get_sudoers()
     if user_id == from_user_id:
-        await message.reply_text("You want to unblock yourself?")
+        await message.reply_text("ناتوانم تۆ لە بڵۆک لادەم")
     elif user_id == BOT_ID:
         await message.reply_text(
-            "Should i unblock myself? But i'm not blocked."
+            "ناتوانم خۆم لە بڵۆک لادەم"
         )
     elif user_id in sudoers:
-        await message.reply_text("Sudo users can't be blocked/unblocked.")
+        await message.reply_text("ناتوانم داڕێژەر بڵۆک بکەم.")
     else:
         is_gbanned = await is_gbanned_user(user_id)
         if not is_gbanned:
-            await message.reply_text("He's already free, why bully him?")
+            await message.reply_text("دەرکراوی لادراوە")
         else:
             await remove_gban_user(user_id)
-            await message.reply_text(f"Ungbanned!")
+            await message.reply_text(f"لادرا لە دەرکردنی!")
 
 
 chat_watcher_group = 5
@@ -393,7 +393,7 @@ async def chat_watcher_func(_, message):
         except Exception:
             return
         await message.reply_text(
-            f"{checking} is globally banned by Sudo Users and has been kicked out of the chat.\n\n**Possible Reason:** Potential Spammer and Abuser."
+            f"{checking} بەهۆی سپام کردن لەلایەن بەڕێوەبەرەوە دەرکراوە."
         )
 
 
