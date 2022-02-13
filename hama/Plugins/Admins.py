@@ -66,12 +66,13 @@ Only for Sudo Users
 @AdminRightsCheck
 @checker
 async def admins(_, message: Message):
+    chat_id = message.chat.id
     user_id = message.from_user.id
-    if message.chat.id in await blacklisted_chats():
+    if chat_id in await blacklisted_chats():
         await message.reply(
             "❗️ ئەم گرووپە بڵۆک کراوە تکایە پەیوەندی بکە بەگروپی پشگیری بۆ چاڵاکردنی من."
         )
-        return await app.leave_chat(message.chat.id)
+        return await app.leave_chat(chat_id)
     if await is_gbanned_user(user_id):
         await message.reply_text(f"❗️ **تۆ بڵۆک کراویت لەلای من !**")
         return
