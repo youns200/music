@@ -46,7 +46,7 @@ async def welcome(_, message: Message):
         await add_served_chat(chat_id)
     if chat_id in await blacklisted_chats():
         await message.reply_text(
-            f" گروپی چاتەکەت[{message.chat.title}] لە لیستی ڕەشدا گیراوە داوا لە هەر بەکارهێنەرێکی سۆدۆ بکە بۆ لیستی سپیکردنی چاتەکەت"
+            f" گروپی چاتەکەت[{message.chat.title}] لە لیستی ڕەشدا گیراوە داوا لە هەر بەکارهێنەرێکی سۆدۆ بکە بۆ لیستی سپیکردنی چاتەکەت (https://t.me/{BOT_USERNAME}?start=sudolist)[ئێرە دابگرە ئەزیزی من]"
         )
         await app.leave_chat(chat_id)
     for member in message.new_chat_members:
