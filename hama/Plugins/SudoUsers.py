@@ -439,12 +439,12 @@ async def broadcast_message_pin_silent(_, message):
             except Exception:
                 pass
         await message.reply_text(
-            f"**Broadcasted Message In {sent}  Chats with {pin} Pins.**"
+            f"**ناردا بۆ {sent}  گرووپ لەگەڵ هەواڵسین لە {pin} گرووپ.**"
         )
         return
     if len(message.command) < 2:
         await message.reply_text(
-            "**Usage**:\n/broadcast [MESSAGE] or [Reply to a Message]"
+            "**فارمان**:\n/broadcast [چات بنوسە] یان [وەڵامی چات بدەوە]"
         )
         return
     text = message.text.split(None, 1)[1]
@@ -467,7 +467,7 @@ async def broadcast_message_pin_silent(_, message):
         except Exception:
             pass
     await message.reply_text(
-        f"**Broadcasted Message In {sent} Chats and {pin} Pins.**"
+        f"**ناردرا بۆ {sent} گروپ لەگەڵ هەواڵسین لە {pin} گرووپ.**"
     )
 
 
@@ -497,12 +497,12 @@ async def broadcast_message_pin_loud(_, message):
             except Exception:
                 pass
         await message.reply_text(
-            f"**Broadcasted Message In {sent}  Chats with {pin} Pins.**"
+            f"**ناردرا بۆ  {sent}  گرووپ لەگەڵ هەڵواسین لە  {pin} گرووپ.**"
         )
         return
     if len(message.command) < 2:
         await message.reply_text(
-            "**Usage**:\n/broadcast [MESSAGE] or [Reply to a Message]"
+            "**فرمان**:\n/broadcast [چات بنوسە] یان [وەڵامی چات بدەوە]"
         )
         return
     text = message.text.split(None, 1)[1]
@@ -525,7 +525,7 @@ async def broadcast_message_pin_loud(_, message):
         except Exception:
             pass
     await message.reply_text(
-        f"**Broadcasted Message In {sent} Chats and {pin} Pins.**"
+        f"**ناردرا بۆ {sent} گروپ لەگەڵ هەڵواسین لە {pin} گروپ.**"
     )
 
 
@@ -548,11 +548,11 @@ async def broadcast(_, message):
                 sent += 1
             except Exception:
                 pass
-        await message.reply_text(f"**Broadcasted Message In {sent} Chats.**")
+        await message.reply_text(f"**ناردرا بۆ {sent} گروپ**")
         return
     if len(message.command) < 2:
         await message.reply_text(
-            "**Usage**:\n/broadcast [MESSAGE] or [Reply to a Message]"
+            "**Usage**:\n/broadcast [نامە بنوسە] یان [وەڵامی چات بدەوە]"
         )
         return
     text = message.text.split(None, 1)[1]
@@ -568,7 +568,7 @@ async def broadcast(_, message):
             sent += 1
         except Exception:
             pass
-    await message.reply_text(f"**Broadcasted Message In {sent} Chats.**")
+    await message.reply_text(f"**ناردرا بۆ  {sent} گروپ.**")
 
 
 # Clean
@@ -582,7 +582,7 @@ async def clean(_, message):
     shutil.rmtree(dir1)
     os.mkdir(dir)
     os.mkdir(dir1)
-    await message.reply_text("Successfully cleaned all **temp** dir(s)!")
+    await message.reply_text("بەسەرکەوتوی هەموو فایڵەکان سڕانەوە!")
 
 @app.on_message(filters.command("leavebot") & filters.user(SUDOERS))
 async def bot_leave_group(_, message):
