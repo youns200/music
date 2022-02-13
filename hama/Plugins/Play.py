@@ -35,14 +35,15 @@ loop = asyncio.get_event_loop()
 @PermissionCheck
 @AssistantAdd
 async def play(_, message: Message):
-    await message.delete()     
+    await message.delete()   
+    chat_id = message.chat.id  
     if message.chat.id not in db_mem:
         db_mem[message.chat.id] = {}
-    if message.chat.id in await blacklisted_chats():
+    if chat_id in await blacklisted_chats():
         await message.reply(
             "❗️ ئەم گرووپە بڵۆک کراوە تکایە پەیوەندی بکە بەگروپی پشگیری بۆ چاڵاکردنی من."
         )
-        return await app.leave_chat(message.chat.id)
+        return await app.leave_chat(chat_id)
     if await is_gbanned_user(message.from_user.id):
         await message.reply_text(f"❗️ **تۆ بڵۆک کراویت لەلای من !**")
         return
