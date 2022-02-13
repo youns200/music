@@ -5,7 +5,7 @@ from config import MUST_JOIN
 from hama import app, BOT_USERNAME
 
 @app.on_message(~filters.edited & filters.incoming & filters.private, group=-1)
-async def must_join_channel(bot: Client, msg: Message):
+async def must_join(bot: Client, msg: Message):
     if not MUST_JOIN:  # Not compulsory
         return
     try:
@@ -38,7 +38,9 @@ async def must_join_channel(bot: Client, msg: Message):
         return
     try:
         try:
-            await bot.get_chat_member(MUST_JOIN, msg.from_user.id)
+        from_user_id = msg.from_user.id
+        from_user_mention = msg.from_user.mention
+            await bot.get_chat_member(MUST_JOIN, from_user_id)
         except UserNotParticipant:
             if MUST_JOIN.isalpha():
                 link = "https://t.me/" + MUST_JOIN
@@ -47,7 +49,7 @@ async def must_join_channel(bot: Client, msg: Message):
                 link = chat_info.invite_link
             try:
                 await msg.reply_text(
-                    f"**ببوورە ئەزیزم  {msg.from_user.mention} سەرەتا جۆینی کەناڵ بکە تاکوو بتوانی بۆت بەکاربێنی 🫀**",
+                    f"**ببوورە ئەزیزم  {from_user_mention} سەرەتا جۆینی کەناڵ بکە تاکوو بتوانی بۆت بەکاربێنی 🫀**",
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup([
                         [InlineKeyboardButton("✨ جۆین ✨", url=link)]
