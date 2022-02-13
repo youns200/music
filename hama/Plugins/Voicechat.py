@@ -9,7 +9,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from hama import SUDOERS, app, db_mem, userbot
-from hama.Database import get_active_chats, is_active_chat
+from hama.Database import get_active_chats, is_active_chat, remove_served_chat, remove_active_chat
 from hama.Decorators.checker import checker, checkerCB
 from hama.Inline import primary_markup
 
