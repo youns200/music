@@ -6,7 +6,7 @@ from hama.Database import blacklisted_chats, is_gbanned_user, is_on_off
 def checker(mystic):
     async def wrapper(_, message):
         if message.sender_chat:
-        return await message.reply_video(
+            return await message.reply_video(
             video="https://telegra.ph/file/fe47e4f1962ebd29be16a.mp4",
             caption="**تکایە بەڕێزم وەک لە فێرکاریەکە دیارە ئەنجام بدە بۆ ئەوەی بتوانم یارمەتیت بدەم 💜**",
         )
