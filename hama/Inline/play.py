@@ -166,6 +166,10 @@ def secondary_markup(videoid, user_id):
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
         [
+            InlineKeyboardButton(text="🔇", callback_data=f"mute"),
+            InlineKeyboardButton(text="🔈", callback_data=f"unmute"),
+        ],
+        [
             InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
        InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
@@ -212,6 +216,10 @@ def timer_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
         [
+            InlineKeyboardButton(text="🔇", callback_data=f"mute"),
+            InlineKeyboardButton(text="🔈", callback_data=f"unmute"),
+        ],
+        [
             InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
             InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
@@ -233,6 +241,10 @@ def audio_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
+        [
+            InlineKeyboardButton(text="🔇", callback_data=f"mute"),
+            InlineKeyboardButton(text="🔈", callback_data=f"unmute"),
+        ],
         [InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
          InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
@@ -251,8 +263,12 @@ def audio_timer_markup_start(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
-        [InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close")],
-      [InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
+        [
+            InlineKeyboardButton(text="🔇", callback_data=f"mute"),
+            InlineKeyboardButton(text="🔈", callback_data=f"unmute"),
+        ],
+        [InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
+         InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
     return buttons
 
@@ -264,6 +280,10 @@ audio_markup2 = InlineKeyboardMarkup(
             InlineKeyboardButton(text="⏸️", callback_data=f"pausecb"),        
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
+        ],
+        [
+            InlineKeyboardButton(text="🔇", callback_data=f"mute"),
+            InlineKeyboardButton(text="🔈", callback_data=f"unmute"),
         ],
         [InlineKeyboardButton("🗑 داخستن", callback_data="close"),
          InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
