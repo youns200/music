@@ -98,7 +98,7 @@ async def admins(_, message: Message):
         await message.reply_text(
             f"⏹ چاتی دەنگی کۆتای هات لەلایەن {message.from_user.mention}!"
         )
-    if message.command[0][1] == "m":
+    if message.command[0][1] == "m" or message.command[0][1] == "u":
         if not await is_music_playing(message.chat.id):
             return await message.reply_text("یارمەتی دەر کپکراوە.")
         await music_off(chat_id)
@@ -106,7 +106,7 @@ async def admins(_, message: Message):
         await message.reply_text(
             f"▶️ یارمەتی دەر کپکرا لەلایەن {message.from_user.mention}!"
         )
-    if message.command[0][1] == "c":
+    if message.command[0][1] == "c" or message.command[0][1] == "s":
         if not await is_music_playing(message.chat.id):
             return await message.reply_text("یارمەتی دەر لەکپکراوی لادراوە.")
         await music_on(chat_id)
