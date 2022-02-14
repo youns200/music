@@ -98,7 +98,7 @@ async def admins(_, message: Message):
         await message.reply_text(
             f"⏹ چاتی دەنگی کۆتای هات لەلایەن {message.from_user.mention}!"
         )
-    if message.command[0][1] == "b":
+    if message.command[0][1] == "m":
         if not await is_music_playing(message.chat.id):
             return await message.reply_text("یارمەتی دەر کپکراوە.")
         await music_off(chat_id)
