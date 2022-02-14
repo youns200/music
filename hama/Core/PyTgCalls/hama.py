@@ -54,6 +54,7 @@ async def on_stream_end(client: PyTgCalls, update: Update) -> None:
         if Queues.is_empty(chat_id):
             await remove_active_chat(chat_id)
             await pytgcalls.leave_group_call(chat_id)
+            await userbot.leave_group(chat_id)
         else:
             afk = Queues.get(chat_id)["file"]
             finxx = f"{afk[0]}{afk[1]}{afk[2]}"
