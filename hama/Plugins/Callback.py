@@ -9,7 +9,7 @@ from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import StreamType
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
-from hama import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
+from hama import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem, userbot
 from hama.Core.PyTgCalls import Queues, hama
 from hama.Core.PyTgCalls.Converter import convert
 from hama.Core.PyTgCalls.Downloader import download
@@ -89,6 +89,7 @@ async def admin_risghts(_, CallbackQuery):
             pass
         await remove_active_chat(chat_id)
         await hama.pytgcalls.leave_group_call(chat_id)
+        await userbot.leave_chat(chat_id)
         await CallbackQuery.message.reply_text(
             f"🎧 دەنگی چات کۆتایی پێ هات لەلایەن {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
