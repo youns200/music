@@ -93,7 +93,7 @@ async def admin_risghts(_, CallbackQuery):
         )
         await CallbackQuery.message.delete()
         await CallbackQuery.answer("❌ هیچ پەخێشک نیە", show_alert=True)
-     if command == "unmute":
+    if command == "unmute":
         if await is_music_playing(chat_id):
             return await CallbackQuery.answer("ℹ️ یاری دەرپێشتر لەکپکراوی لادراوە.", show_alert=True)
         await hama.pytgcalls.unmute_stream(chat_id)
