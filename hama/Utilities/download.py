@@ -265,7 +265,7 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
 def get_type(type, format, videoid, user_id):
     if type == "audio":
         a1 = InlineKeyboardButton(
-            text=f"بە ڤیدیۆ",
+            text=f"بە گۆرانی",
             callback_data=f"boom audio||{format}||{videoid}",
         )
         a2 = InlineKeyboardButton(
