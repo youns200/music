@@ -59,7 +59,7 @@ Only for Sudo Users
 
 
 @app.on_message(
-    filters.command(["pause", "skip", "resume", "stop", "end", "mute", "unmute"])
+    filters.command(["pause", "skip", "resume", "stop", "end"])
     & filters.group
 )
 @AdminRightsCheck
@@ -97,22 +97,6 @@ async def admins(_, message: Message):
         await userbot.leave_chat(message.chat.id)
         await message.reply_text(
             f"⏹ چاتی دەنگی کۆتای هات لەلایەن {message.from_user.mention}!"
-        )
-    if message.command[0][1] == "m" or message.command[0][1] == "u":
-        if not await is_music_playing(message.chat.id):
-            return await message.reply_text("یارمەتی دەر کپکراوە.")
-        await music_off(chat_id)
-        await hama.pytgcalls.mute_stream(chat_id)
-        await message.reply_text(
-            f"▶️ یارمەتی دەر کپکرا لەلایەن {message.from_user.mention}!"
-        )
-    if message.command[0][1] == "c" or message.command[0][1] == "s":
-        if not await is_music_playing(message.chat.id):
-            return await message.reply_text("یارمەتی دەر لەکپکراوی لادراوە.")
-        await music_on(chat_id)
-        await hama.pytgcalls.unmute_stream(chat_id)
-        await message.reply_text(
-            f"▶️ یارمەتی دەر کپکرا لەلایەن {message.from_user.mention}!"
         )
     if message.command[0][1] == "k":
         Queues.task_done(chat_id)
@@ -221,3 +205,34 @@ async def admins(_, message: Message):
                 message.from_user.id,
                 aud,
             )
+
+@app.on_message(filters.command("mute") & filters.group)
+@AdminRightsCheck
+@checker
+async def admins(_, message: Message):
+    global get_queue
+    if not await is_active_chat(message.chat.id):
+    return await message.reply_text("چاتی دەنگی بەتاڵە.")
+        chat_id = message.chat.id
+    if not await is_music_playing(message.chat.id):
+       return await message.reply_text("یارمەتی دەر کپکراوە.")
+     await music_off(chat_id)
+     await hama.pytgcalls.mute_stream(chat_id)
+     await message.reply_text(
+         f"▶️ یارمەتی دەر کپکرا لەلایەن {message.from_user.mention}!"
+        )
+@app.on_message(filters.command("unmute") & filters.group)
+@AdminRightsCheck
+@checker
+async def admins(_, message: Message):
+    global get_queue
+    if not await is_active_chat(message.chat.id):
+    return await message.reply_text("چاتی دەنگی بەتاڵە.")
+     chat_id = message.chat.id
+    if not await is_music_playing(message.chat.id):
+         return await message.reply_text("یارمەتی دەر لەکپکراوی لادراوە.")
+    await music_on(chat_id)
+    await hama.pytgcalls.unmute_stream(chat_id)
+    await message.reply_text(
+        f"▶️ یارمەتی دەر کپکرا لەلایەن {message.from_user.mention}!"
+       )
