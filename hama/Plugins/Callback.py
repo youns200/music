@@ -85,10 +85,9 @@ async def admin_risghts(_, CallbackQuery):
     if command == "mute":
         if not await is_music_playing(chat_id):
             return await CallbackQuery.answer("ℹ️ یارمەتی دەر کپکرا.", show_alert=True)
-                return
-            await hama.pytgcalls.mute_stream(chat_id)
-            await music_off(chat_id)
-            await CallbackQuery.message.reply_text(
+        await hama.pytgcalls.mute_stream(chat_id)
+        await music_off(chat_id)
+        await CallbackQuery.message.reply_text(
             f"🎧 یارمەتی دەر لە کپکرا لەلایەن {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
         )
@@ -97,10 +96,9 @@ async def admin_risghts(_, CallbackQuery):
      if command == "unmute":
         if await is_music_playing(chat_id):
             return await CallbackQuery.answer("ℹ️ یاری دەرپێشتر لەکپکراوی لادراوە.", show_alert=True)
-                return
-            await hama.pytgcalls.unmute_stream(chat_id)
-            await music_on(chat_id)
-            await CallbackQuery.message.reply_text(
+        await hama.pytgcalls.unmute_stream(chat_id)
+        await music_on(chat_id)
+        await CallbackQuery.message.reply_text(
             f"🎧 یارمەتی دەر لە کپکراوی لادرا {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
         )
