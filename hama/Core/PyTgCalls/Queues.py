@@ -52,8 +52,8 @@ def clear(chat_id: int):
     raise Empty
 
 def get_queue(chat_id):
-    if chat_id in QUEUE:
-        chat_queue = QUEUE[chat_id]
+    if chat_id in Queue:
+        chat_queue = Queue[chat_id]
         return chat_queue
     else:
         return 0
