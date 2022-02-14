@@ -160,10 +160,10 @@ def search_markup2(
 def secondary_markup(videoid, user_id):
     buttons = [
         [
-            InlineKeyboardButton(text="▶️", callback_data=f"resumecb"),
-            InlineKeyboardButton(text="⏸️", callback_data=f"pausecb"),
-            InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
-            InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
+            InlineKeyboardButton(text="▷", callback_data=f"resumecb"),
+            InlineKeyboardButton(text="II", callback_data=f"pausecb"),
+            InlineKeyboardButton(text="‣‣I", callback_data=f"skipcb"),
+            InlineKeyboardButton(text="▢", callback_data=f"stopcb"),
         ],
         [
             InlineKeyboardButton(text="🔇", callback_data=f"mute"),
@@ -182,14 +182,14 @@ def primary_markup(videoid, user_id, current_time, total_time):
     db_mem[videoid]["check"] = 2
     buttons = [
         [
-            InlineKeyboardButton(text="▶️", callback_data=f"resumecb"),
-            InlineKeyboardButton(text="⏸️", callback_data=f"pausecb"),
+            InlineKeyboardButton(text="▷", callback_data=f"resumecb"),
+            InlineKeyboardButton(text="II", callback_data=f"pausecb"),
             InlineKeyboardButton(
                 text=f"{current_time}",
                 callback_data=f"timer_checkup_markup {videoid}|{user_id}",
             ),
-            InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
-            InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
+            InlineKeyboardButton(text="‣‣I", callback_data=f"skipcb"),
+            InlineKeyboardButton(text="▢", callback_data=f"stopcb"),
         ],
         [
             InlineKeyboardButton(text="🔇", callback_data=f"mute"),
@@ -206,14 +206,14 @@ def timer_markup(videoid, user_id, current_time, total_time):
     buttons = [
        
         [
-            InlineKeyboardButton(text="▶️", callback_data=f"resumecb"),
-            InlineKeyboardButton(text="⏸️", callback_data=f"pausecb"),
+            InlineKeyboardButton(text="▷", callback_data=f"resumecb"),
+            InlineKeyboardButton(text="II", callback_data=f"pausecb"),
             InlineKeyboardButton(
                 text=f"{current_time}",
                 callback_data=f"timer_checkup_markup {videoid}|{user_id}",
             ),
-            InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
-            InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
+            InlineKeyboardButton(text="‣‣I", callback_data=f"skipcb"),
+            InlineKeyboardButton(text="▢", callback_data=f"stopcb"),
         ],
         [
             InlineKeyboardButton(text="🔇", callback_data=f"mute"),
@@ -232,14 +232,14 @@ def audio_markup(videoid, user_id, current_time, total_time):
     db_mem[videoid]["check"] = 2
     buttons = [
         [
-            InlineKeyboardButton(text="▶️", callback_data=f"resumecb"),
-            InlineKeyboardButton(text="⏸️", callback_data=f"pausecb"),
+            InlineKeyboardButton(text="▷", callback_data=f"resumecb"),
+            InlineKeyboardButton(text="II", callback_data=f"pausecb"),
             InlineKeyboardButton(
                 text=f"{current_time}",
                 callback_data=f"timer_checkup_markup {videoid}|{user_id}",
             ),
-            InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
-            InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
+            InlineKeyboardButton(text="‣‣I", callback_data=f"skipcb"),
+            InlineKeyboardButton(text="▢", callback_data=f"stopcb"),
         ],
         [
             InlineKeyboardButton(text="🔇", callback_data=f"mute"),
@@ -254,14 +254,14 @@ def audio_markup(videoid, user_id, current_time, total_time):
 def audio_timer_markup_start(videoid, user_id, current_time, total_time):
     buttons = [
         [
-            InlineKeyboardButton(text="▶️", callback_data=f"resumecb"),
-            InlineKeyboardButton(text="⏸️", callback_data=f"pausecb"),
+            InlineKeyboardButton(text="▷", callback_data=f"resumecb"),
+            InlineKeyboardButton(text="II", callback_data=f"pausecb"),
             InlineKeyboardButton(
                 text=f"{current_time}",
                 callback_data=f"timer_checkup_markup {videoid}|{user_id}",
             ),
-            InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
-            InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
+            InlineKeyboardButton(text="‣‣I", callback_data=f"skipcb"),
+            InlineKeyboardButton(text="▢", callback_data=f"stopcb"),
         ],
         [
             InlineKeyboardButton(text="🔇", callback_data=f"mute"),
