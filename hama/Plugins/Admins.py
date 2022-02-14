@@ -13,7 +13,6 @@ from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
 from hama import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem, userbot
 from hama.Core.PyTgCalls import Queues, hama
-from hama.Core.PyTgCalls.Queues import Queues, queues
 from hama.Core.PyTgCalls.Converter import convert
 from hama.Core.PyTgCalls.Downloader import download
 from hama.Database import (is_active_chat, is_music_playing, music_off,
