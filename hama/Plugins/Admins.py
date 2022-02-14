@@ -210,29 +210,38 @@ async def admins(_, message: Message):
 @AdminRightsCheck
 @checker
 async def admins(_, message: Message):
-    global get_queue
-    if not await is_active_chat(message.chat.id):
-    return await message.reply_text("چاتی دەنگی بەتاڵە.")
-        chat_id = message.chat.id
-    if not await is_music_playing(message.chat.id):
-       return await message.reply_text("یارمەتی دەر کپکراوە.")
-     await music_off(chat_id)
-     await hama.pytgcalls.mute_stream(chat_id)
-     await message.reply_text(
-         f"▶️ یارمەتی دەر کپکرا لەلایەن {message.from_user.mention}!"
-        )
+    chat_id = message.chat.id
+    if chat_id in QUEUE:
+        try:
+            if not await is_music_playing(chat_id):
+                await message.reply("ℹ️ بەکارهێنەری جۆگە پێشتر گۆڕدراوە.")
+                return
+            await hama.pytgcalls.mute_stream(chat_id)
+            await music_off(chat_id)
+            await message.reply(
+                "🔇 **یارمەتی دەر کپ کرا**"
+            )
+        except Exception as e:
+            await message.reply(f"🚫 **هەڵەڕوویدا:**\n\n`{e}`")
+    else:
+        await message.reply("❌ **هیچ پەخشێک نیە لە ئیستادا**")
+
 @app.on_message(filters.command("unmute") & filters.group)
 @AdminRightsCheck
 @checker
 async def admins(_, message: Message):
-    global get_queue
-    if not await is_active_chat(message.chat.id):
-    return await message.reply_text("چاتی دەنگی بەتاڵە.")
-     chat_id = message.chat.id
-    if not await is_music_playing(message.chat.id):
-         return await message.reply_text("یارمەتی دەر لەکپکراوی لادراوە.")
-    await music_on(chat_id)
-    await hama.pytgcalls.unmute_stream(chat_id)
-    await message.reply_text(
-        f"▶️ یارمەتی دەر کپکرا لەلایەن {message.from_user.mention}!"
-       )
+    chat_id = message.chat.id
+    if chat_id in QUEUE:
+        try:
+            if await is_music_playing(chat_id):
+                await message.reply("ℹ️ یارمەتی دەر لەدۆخی کپکراو لادرا.")
+                return
+            await hama.pytgcalls.unmute_stream(chat_id)
+            await music_on(chat_id)
+            await message.reply(
+                "🔊 **یارمەتی دەر ئیستا کپنەکراوە**."
+            )
+        except Exception as e:
+            await message.reply(f"🚫 **هەڵەڕوویدا:**\n\n`{e}`")
+    else:
+        await message.reply("❌ **هیچ پەخشێک نیە**")
