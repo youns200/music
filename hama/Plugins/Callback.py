@@ -82,28 +82,6 @@ async def admin_risghts(_, CallbackQuery):
         )
         await CallbackQuery.message.delete()
         await CallbackQuery.answer("دەستی پێکردەوە", show_alert=True)
-    if command == "mute":
-        if not await is_music_playing(chat_id):
-            return await CallbackQuery.answer("ℹ️ یارمەتی دەر کپکرا.", show_alert=True)
-        await hama.pytgcalls.mute_stream(chat_id)
-        await music_off(chat_id)
-        await CallbackQuery.message.reply_text(
-            f"🎧 یارمەتی دەر لە کپکرا لەلایەن {CallbackQuery.from_user.mention}!",
-            reply_markup=audio_markup2,
-        )
-        await CallbackQuery.message.delete()
-        await CallbackQuery.answer("❌ هیچ پەخێشک نیە", show_alert=True)
-     if command == "unmute":
-        if await is_music_playing(chat_id):
-            return await CallbackQuery.answer("ℹ️ یاری دەرپێشتر لەکپکراوی لادراوە.", show_alert=True)
-        await hama.pytgcalls.unmute_stream(chat_id)
-        await music_on(chat_id)
-        await CallbackQuery.message.reply_text(
-            f"🎧 یارمەتی دەر لە کپکراوی لادرا {CallbackQuery.from_user.mention}!",
-            reply_markup=audio_markup2,
-        )
-        await CallbackQuery.message.delete()
-        await CallbackQuery.answer("❌ هیچ پەخشێک نیە", show_alert=True)
      if command == "stopcb":
         try:
             Queues.clear(chat_id)
@@ -118,6 +96,28 @@ async def admin_risghts(_, CallbackQuery):
         )
         await CallbackQuery.message.delete()
         await CallbackQuery.answer("کۆتایی پێ هات", show_alert=True)
+    if command == "mute":
+            if not await is_music_playing(chat_id):
+                return await CallbackQuery.answer("ℹ️ یارمەتی دەر کپکرا.", show_alert=True)
+            await hama.pytgcalls.mute_stream(chat_id)
+            await music_off(chat_id)
+            await CallbackQuery.message.reply_text(
+                f"🎧 یارمەتی دەر لە کپکرا لەلایەن {CallbackQuery.from_user.mention}!",
+                reply_markup=audio_markup2,
+            )
+            await CallbackQuery.message.delete()
+            await CallbackQuery.answer("❌ هیچ پەخێشک نیە", show_alert=True)
+         if command == "unmute":
+            if await is_music_playing(chat_id):
+                return await CallbackQuery.answer("ℹ️ یاری دەرپێشتر لەکپکراوی لادراوە.", show_alert=True)
+            await hama.pytgcalls.unmute_stream(chat_id)
+            await music_on(chat_id)
+            await CallbackQuery.message.reply_text(
+                f"🎧 یارمەتی دەر لە کپکراوی لادرا {CallbackQuery.from_user.mention}!",
+                reply_markup=audio_markup2,
+            )
+            await CallbackQuery.message.delete()
+            await CallbackQuery.answer("❌ هیچ پەخشێک نیە", show_alert=True)
     if command == "skipcb":
         Queues.task_done(chat_id)
         if Queues.is_empty(chat_id):
