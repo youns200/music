@@ -13,6 +13,7 @@ from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
 from hama import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem, userbot
 from hama.Core.PyTgCalls import Queues, hama
+from hama.Core.PyTgCalls.Queues import Queues, queues
 from hama.Core.PyTgCalls.Converter import convert
 from hama.Core.PyTgCalls.Downloader import download
 from hama.Database import (is_active_chat, is_music_playing, music_off,
@@ -213,7 +214,7 @@ async def admins(_, message: Message):
 async def mute(client, message: Message):
     global get_queue
     chat_id = message.chat.id
-    if chat_id in Queues:
+    if chat_id in queues:
         try:
             await hama.pytgcalls.mute_stream(chat_id)
             await message.reply(
@@ -231,7 +232,7 @@ async def mute(client, message: Message):
 async def unmute(client, message: Message):
     global get_queue
     chat_id = message.chat.id
-    if chat_id in Queues:
+    if chat_id in queues:
         try:
             await hama.pytgcalls.unmute_stream(chat_id)
             await message.reply(
