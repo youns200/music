@@ -207,7 +207,7 @@ async def admins(_, message: Message):
                 aud,
             )
 
-@app.on_message(command(["mute"]) & filters.group)
+@app.on_message(filters.command(["mute"]) & filters.group)
 @AdminRightsCheck
 @checker
 async def mute(client, message: Message):
@@ -224,7 +224,7 @@ async def mute(client, message: Message):
         await message.reply("❌ **هیچ پەخشێک نیە**")
 
 
-@app.on_message(command("unmute") & filters.group)
+@app.on_message(filters.command("unmute") & filters.group)
 @AdminRightsCheck
 @checker
 async def unmute(client, message: Message):
