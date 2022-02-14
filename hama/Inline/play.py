@@ -193,7 +193,7 @@ def primary_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(
                 text=f"{current_time}",
                 callback_data=f"timer_checkup_markup {videoid}|{user_id}",
-            )
+            ),
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
@@ -223,7 +223,7 @@ def timer_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(
                 text=f"{current_time}",
                 callback_data=f"timer_checkup_markup {videoid}|{user_id}",
-            )
+            ),
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
@@ -255,7 +255,7 @@ def audio_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(
                 text=f"{current_time}",
                 callback_data=f"timer_checkup_markup {videoid}|{user_id}",
-            )
+            ),
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
@@ -273,7 +273,7 @@ def audio_timer_markup_start(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(
                 text=f"{current_time}",
                 callback_data=f"timer_checkup_markup {videoid}|{user_id}",
-            )
+            ),
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
@@ -291,7 +291,7 @@ audio_markup2 = InlineKeyboardMarkup(
             InlineKeyboardButton(
                 text=f"{current_time}",
                 callback_data=f"timer_checkup_markup {videoid}|{user_id}",
-            )
+            ),
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
