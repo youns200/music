@@ -188,6 +188,10 @@ def primary_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
         [
+            InlineKeyboardButton(text="🔇", callback_data=f"mute"),
+            InlineKeyboardButton(text="🔈", callback_data=f"unmute"),
+        ],
+        [
             InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
             InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
     ]
