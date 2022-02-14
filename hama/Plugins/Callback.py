@@ -105,8 +105,8 @@ async def admin_risghts(_, CallbackQuery):
           f"🎧 یارمەتی دەر لە کپکرا لەلایەن {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
             )
-         await CallbackQuery.message.delete()
-         await CallbackQuery.answer("❌ هیچ پەخێشک نیە", show_alert=True)
+        await CallbackQuery.message.delete()
+        await CallbackQuery.answer("❌ هیچ پەخێشک نیە", show_alert=True)
     if command == "unmute":
         if await is_music_playing(chat_id):
            return await CallbackQuery.answer("ℹ️ یاری دەرپێشتر لەکپکراوی لادراوە.", show_alert=True)
