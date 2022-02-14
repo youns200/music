@@ -11,7 +11,7 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
 from pytgcalls import StreamType
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
-from hama import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
+from hama import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem, userbot
 from hama.Core.PyTgCalls import Queues, hama
 from hama.Core.PyTgCalls.Converter import convert
 from hama.Core.PyTgCalls.Downloader import download
@@ -94,6 +94,7 @@ async def admins(_, message: Message):
             pass
         await remove_active_chat(chat_id)
         await hama.pytgcalls.leave_group_call(message.chat.id)
+        await userbot.leave_chat(message.chat.id)
         await message.reply_text(
             f"⏹ چاتی دەنگی کۆتای هات لەلایەن {message.from_user.mention}!"
         )
