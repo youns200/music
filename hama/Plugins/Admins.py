@@ -205,7 +205,6 @@ async def admins(_, message: Message):
                 message.from_user.id,
                 aud,
             )
-
 @app.on_message(filters.command("mute") & filters.group)
 @AdminRightsCheck
 @checker
@@ -230,4 +229,5 @@ async def admins(_, message: Message):
      await hama.pytgcalls.unmute_stream(chat_id)
      await music_on(chat_id)
      await message.reply(f"🔊 **یارمەتی دەر ئیستا کپنەکراوە لەلایەن {message.from_user.mention}**.")
-     await message.reply("❌ **هیچ پەخشێک نیە**")
+      else:
+          await message.reply("❌ **هیچ پەخشێک نیە**")
