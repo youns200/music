@@ -205,3 +205,36 @@ async def admins(_, message: Message):
                 message.from_user.id,
                 aud,
             )
+
+@app.on_message(command(["mute"]) & filters.group)
+@AdminRightsCheck
+@checker
+async def mute(client, message: Message):
+    chat_id = message.chat.id
+    if chat_id in Queues:
+        try:
+            await call_py.mute_stream(chat_id)
+            await message.reply(
+                f"🔇 **یارمەتی دەرکپکرا لەلایەن.**{message.from_user.mention}"
+            )
+        except Exception as e:
+            await message.reply(f"**هەڵەڕووێدا:**\n\n`{e}`")
+    else:
+        await message.reply("❌ **هیچ پەخشێک نیە**")
+
+
+@app.on_message(command("unmute") & filters.group)
+@AdminRightsCheck
+@checker
+async def unmute(client, message: Message):
+    chat_id = message.chat.id
+    if chat_id in Queues:
+        try:
+            await hama.unmute_stream(chat_id)
+            await message.reply(
+                f"🔊 **یارەمەتی دەر لەکپکراوی لادرا لەلایەن {message.from_user.mention}**"
+            )
+        except Exception as e:
+            await message.reply(f"**هەڵەڕوویدا:**\n\n`{e}`")
+    else:
+        await message.reply("❌ **هیچ پەخشێک نیە**")
