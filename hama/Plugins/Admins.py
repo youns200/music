@@ -217,8 +217,8 @@ async def admins(_, message: Message):
    await hama.pytgcalls.mute_stream(chat_id)
    await music_off(chat_id)
    await message.reply(f"🔇 **یارمەتی دەر کپ کرا** {message.from_user.mention}")
-     else:
-        await message.reply("❌ **هیچ پەخشێک نیە لە ئیستادا**")
+else:
+     await message.reply("❌ **هیچ پەخشێک نیە لە ئیستادا**")
 
 @app.on_message(filters.command("unmute") & filters.group)
 @AdminRightsCheck
@@ -231,5 +231,5 @@ async def admins(_, message: Message):
     await hama.pytgcalls.unmute_stream(chat_id)
     await music_on(chat_id)
     await message.reply(f"🔊 **یارمەتی دەر ئیستا کپنەکراوە لەلایەن {message.from_user.mention}**.")
-      else:
-          await message.reply("❌ **هیچ پەخشێک نیە**")
+ else:
+     await message.reply("❌ **هیچ پەخشێک نیە**")
