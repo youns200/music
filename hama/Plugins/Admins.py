@@ -210,9 +210,8 @@ async def admins(_, message: Message):
 @AdminRightsCheck
 @checker
 async def admins(_, message: Message):
+    global get_queue
     chat_id = message.chat.id
-    if chat_id in Queues:
-        try:
             if not await is_music_playing(chat_id):
                 await message.reply("ℹ️ بەکارهێنەری جۆگە پێشتر گۆڕدراوە.")
                 return
@@ -230,9 +229,8 @@ async def admins(_, message: Message):
 @AdminRightsCheck
 @checker
 async def admins(_, message: Message):
+    global get_queue
     chat_id = message.chat.id
-    if chat_id in Queues:
-        try:
             if await is_music_playing(chat_id):
                 await message.reply("ℹ️ یارمەتی دەر لەدۆخی کپکراو لادرا.")
                 return
