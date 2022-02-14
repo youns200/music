@@ -219,9 +219,9 @@ async def admins(_, message: Message):
   await music_off(chat_id)
   await message.reply(f"🔇 **یارمەتی دەر کپ کرا** {message.from_user.mention}")
   except Exception as e:
-    await message.reply(f"🚫 **هەڵەڕوویدا:**\n\n`{e}`")
+        await message.reply(f"🚫 **هەڵەڕوویدا:**\n\n`{e}`")
     else:
-      await message.reply("❌ **هیچ پەخشێک نیە لە ئیستادا**")
+        await message.reply("❌ **هیچ پەخشێک نیە لە ئیستادا**")
 
 @app.on_message(filters.command("unmute") & filters.group)
 @AdminRightsCheck
@@ -236,6 +236,6 @@ async def admins(_, message: Message):
   await music_on(chat_id)
   await message.reply(f"🔊 **یارمەتی دەر ئیستا کپنەکراوە لەلایەن {message.from_user.mention}**.")
   except Exception as e:
-    await message.reply(f"🚫 **هەڵەڕوویدا:**\n\n`{e}`")
+        await message.reply(f"🚫 **هەڵەڕوویدا:**\n\n`{e}`")
     else:
-      await message.reply("❌ **هیچ پەخشێک نیە**")
+        await message.reply("❌ **هیچ پەخشێک نیە**")
