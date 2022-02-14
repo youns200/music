@@ -162,7 +162,7 @@ async def activevc(_, message: Message):
 async def basffy(_, message):
     if len(message.command) != 2:
         await message.reply_text(
-            "**بەکاربێنە:**\n/joinassistant [پێناسە یان ناسنامەی گروپ]"
+            "**بەکاربێنە:**\n/join [پێناسە یان ناسنامەی گروپ]"
         )
         return
     chat = message.text.split(None, 2)[1]
