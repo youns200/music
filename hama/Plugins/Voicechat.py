@@ -78,12 +78,12 @@ async def timer_checkup_markup(_, CallbackQuery):
 async def activevc(_, message: Message):
     global get_queue
     if await is_active_chat(message.chat.id):
-        mystic = await message.reply_text("Please Wait... Getting Queue..")
+        mystic = await message.reply_text("⏳")
         dur_left = db_mem[message.chat.id]["left"]
         duration_min = db_mem[message.chat.id]["total"]
         got_queue = get_queue.get(message.chat.id)
         if not got_queue:
-            await mystic.edit(f"Nothing in Queue")
+            await mystic.edit(f"هیچ گۆرانیە لە ڕێزدا نیە")
         fetched = []
         for get in got_queue:
             fetched.append(get)
