@@ -102,6 +102,7 @@ async def admins(_, message: Message):
         Queues.task_done(chat_id)
         if Queues.is_empty(chat_id):
             await remove_active_chat(chat_id)
+            await userbot.leave_chat(message.chat.id)
             await message.reply_text(
                 "هیچ گۆرانیەک لە ناو ڕێزدا نیە \nیارمەتی دەر لەچاتی دەنگی دەرچۆ"
             )
@@ -213,7 +214,7 @@ async def mute(client, message: Message):
     chat_id = message.chat.id
     if chat_id in Queues:
         try:
-            await call_py.mute_stream(chat_id)
+            await hama.pytgcalls.mute_stream(chat_id)
             await message.reply(
                 f"🔇 **یارمەتی دەرکپکرا لەلایەن.**{message.from_user.mention}"
             )
@@ -230,7 +231,7 @@ async def unmute(client, message: Message):
     chat_id = message.chat.id
     if chat_id in Queues:
         try:
-            await hama.unmute_stream(chat_id)
+            await hama.pytgcalls.unmute_stream(chat_id)
             await message.reply(
                 f"🔊 **یارەمەتی دەر لەکپکراوی لادرا لەلایەن {message.from_user.mention}**"
             )
