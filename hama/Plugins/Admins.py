@@ -213,12 +213,12 @@ async def admins(_, message: Message):
     global get_queue
     chat_id = message.chat.id
             if not await is_music_playing(chat_id):
-                await message.reply("ℹ️ بەکارهێنەری جۆگە پێشتر گۆڕدراوە.")
+                await message.reply(f"ℹ️ یاری دەر پێشتر کپ کراوە.{message.from_user.mention}")
                 return
             await hama.pytgcalls.mute_stream(chat_id)
             await music_off(chat_id)
             await message.reply(
-                "🔇 **یارمەتی دەر کپ کرا**"
+                f"🔇 **یارمەتی دەر کپ کرا** {message.from_user.mention}"
             )
         except Exception as e:
             await message.reply(f"🚫 **هەڵەڕوویدا:**\n\n`{e}`")
@@ -232,12 +232,12 @@ async def admins(_, message: Message):
     global get_queue
     chat_id = message.chat.id
             if await is_music_playing(chat_id):
-                await message.reply("ℹ️ یارمەتی دەر لەدۆخی کپکراو لادرا.")
+                await message.reply(f"ℹ️ یارمەتی دەر لەدۆخی کپکراو لادرا. لەلایەن {message.from_user.mention}")
                 return
             await hama.pytgcalls.unmute_stream(chat_id)
             await music_on(chat_id)
             await message.reply(
-                "🔊 **یارمەتی دەر ئیستا کپنەکراوە**."
+                f"🔊 **یارمەتی دەر ئیستا کپنەکراوە لەلایەن {message.from_user.mention}**."
             )
         except Exception as e:
             await message.reply(f"🚫 **هەڵەڕوویدا:**\n\n`{e}`")
