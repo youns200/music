@@ -213,8 +213,8 @@ async def admins(_, message: Message):
 async def mute(client, message: Message):
     global get_queue
     chat_id = message.chat.id
-    if chat_id in queues:
-        try:
+    #if chat_id in queues:
+        #try:
             await hama.pytgcalls.mute_stream(chat_id)
             await message.reply(
                 f"🔇 **یارمەتی دەرکپکرا لەلایەن.**{message.from_user.mention}"
@@ -231,8 +231,8 @@ async def mute(client, message: Message):
 async def unmute(client, message: Message):
     global get_queue
     chat_id = message.chat.id
-    if chat_id in queues:
-        try:
+    #if chat_id in queues:
+       # try:
             await hama.pytgcalls.unmute_stream(chat_id)
             await message.reply(
                 f"🔊 **یارەمەتی دەر لەکپکراوی لادرا لەلایەن {message.from_user.mention}**"
