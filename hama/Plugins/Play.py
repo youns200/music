@@ -22,6 +22,7 @@ from hama.Utilities.thumbnails import gen_thumb
 from hama.Utilities.url import get_url
 from hama.Utilities.youtube import (get_yt_info_id, get_yt_info_query,
                                      get_yt_info_query_slider)
+from youtubesearchpython import VideosSearch
 
 
 loop = asyncio.get_event_loop()
@@ -334,3 +335,44 @@ async def slider_query_results(_, CallbackQuery):
         return await CallbackQuery.edit_message_media(
             media=med, reply_markup=InlineKeyboardMarkup(buttons)
         )
+
+
+@app.on_inline_query()
+async def inline(client: Client, query: InlineQuery):
+    answers = []
+    search_query = query.query.lower().strip().rstrip()
+
+    if search_query == "":
+        await client.answer_inline_query(
+            query.id,
+            results=answers,
+            switch_pm_text="ناوی گۆرانی بنوسە...",
+            switch_pm_parameter="help",
+            cache_time=0,
+        )
+    else:
+        search = VideosSearch(search_query, limit=50)
+
+        for result in search.result()["result"]:
+            answers.append(
+                InlineQueryResultArticle(
+                    title=result["title"],
+                    description="{}, {} views.".format(
+                        result["duration"], result["viewCount"]["short"]
+                    ),
+                    input_message_content=InputTextMessageContent(
+                        "/play https://www.youtube.com/watch?v={}".format(result["id"])
+                    ),
+                    thumb_url=result["thumbnails"][0]["url"],
+                )
+            )
+
+        try:
+            await query.answer(results=answers, cache_time=0)
+        except errors.QueryIdInvalid:
+            await query.answer(
+                results=answers,
+                cache_time=0,
+                switch_pm_text="هەڵەڕوویدا: نەدۆزراوە",
+                switch_pm_parameter="",
+            )
