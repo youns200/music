@@ -211,6 +211,7 @@ async def admins(_, message: Message):
 @AdminRightsCheck
 @checker
 async def mute(client, message: Message):
+    global get_queue
     chat_id = message.chat.id
     if chat_id in Queues:
         try:
@@ -228,6 +229,7 @@ async def mute(client, message: Message):
 @AdminRightsCheck
 @checker
 async def unmute(client, message: Message):
+    global get_queue
     chat_id = message.chat.id
     if chat_id in Queues:
         try:
