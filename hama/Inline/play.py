@@ -165,16 +165,6 @@ def secondary_markup(videoid, user_id):
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
-          [
-            InlineKeyboardButton(
-                text="⬇️ داگرتنی گۆرانی",
-                callback_data=f"gets audio|{videoid}|{user_id}",
-            ),
-            InlineKeyboardButton(
-                text="⬇️ داگرتنی ڤیدیۆ",
-                callback_data=f"gets video|{videoid}|{user_id}",
-            ),
-        ],
         [
             InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
        InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
@@ -197,16 +187,6 @@ def primary_markup(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
-       [
-            InlineKeyboardButton(
-                text="⬇️ داگرتنی گۆرانی",
-                callback_data=f"gets audio|{videoid}|{user_id}",
-            ),
-            InlineKeyboardButton(
-                text="⬇️ داگرتنی ڤیدیۆ",
-                callback_data=f"gets video|{videoid}|{user_id}",
-            ),
-        ],
         [
             InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
             InlineKeyboardButton(text=f"{NAMECH}", url=f"{CHANNEL}")],
@@ -226,16 +206,6 @@ def timer_markup(videoid, user_id, current_time, total_time):
             ),
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
-        ],
-   [
-            InlineKeyboardButton(
-                text="⬇️ داگرتنی گۆرانی",
-                callback_data=f"gets audio|{videoid}|{user_id}",
-            ),
-            InlineKeyboardButton(
-                text="⬇️ داگرتنی ڤیدیۆ",
-                callback_data=f"gets video|{videoid}|{user_id}",
-            ),
         ],
         [
             InlineKeyboardButton(text="🗑 داخستن", callback_data=f"close"),
