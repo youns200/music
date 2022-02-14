@@ -287,11 +287,7 @@ audio_markup2 = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(text="▶️", callback_data=f"resumecb"),
-            InlineKeyboardButton(text="⏸️", callback_data=f"pausecb"),
-            InlineKeyboardButton(
-                text=f"{current_time}",
-                callback_data=f"timer_checkup_markup {videoid}|{user_id}",
-            ),
+            InlineKeyboardButton(text="⏸️", callback_data=f"pausecb"),        
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
