@@ -338,7 +338,7 @@ async def slider_query_results(_, CallbackQuery):
 
 
 @app.on_inline_query()
-async def inline(client: Client, query: InlineQuery):
+async def inline(client: app, query: InlineQuery):
     answers = []
     search_query = query.query.lower().strip().rstrip()
 
