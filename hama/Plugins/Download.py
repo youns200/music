@@ -22,14 +22,7 @@ flex = {}
 __MODULE__ = "Global Ban"
 __HELP__ = """
 
-**Note:**
-Only for Sudo Users.
-
-/gban [Username or Reply to a user]
-- Ban a user globally in Bot's Served Chats and prevents user from using bot commands.
-
-/ungban [Username or Reply to a user]
-- Remove a user from Bot's GBan List.
+#hamarefaat
 """
 
 
