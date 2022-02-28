@@ -10,7 +10,7 @@ def start_pannel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Ozan-Music-Bot-02-28"
                 ),
             ],
             [
@@ -29,7 +29,7 @@ def start_pannel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Ozan-Music-Bot-02-28"
                 ),
             ],
             [
@@ -48,7 +48,7 @@ def start_pannel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Ozan-Music-Bot-02-28"
                 ),
             ],
             [
@@ -72,7 +72,7 @@ def start_pannel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Ozan-Music-Bot-02-28"
                 ),
             ],
             [
@@ -102,7 +102,7 @@ def private_panel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Ozan-Music-Bot-02-28"
                 ),
             ],
             [
@@ -172,7 +172,7 @@ def private_panel():
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="🗂 فرمانەکان", url="https://telegra.ph/Amort-Music-Bot-12-13"
+                    text="🗂 فرمانەکان", url="https://telegra.ph/Ozan-Music-Bot-02-28"
                 ),
             ],
             [
