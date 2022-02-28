@@ -199,8 +199,10 @@ async def start_command(_, message):
     out = private_panel()
     return await app.send_audio(
                 message.chat.id,
-                audio="https://t.me/xawnakam_lm/35",
-                caption= "ڕێگەت پێدەدات بۆ پەخشکردنی مۆسیقا و ڤیدیۆ لەسەر گروپەکان لە ڕێگەی چاتەکانی ڤیدیۆی تەلگرامی نوێ!\n💡 هەموو فەرمانەکانی بۆت بدۆزەرەوە و چۆن کار دەکەن بە کلیک کردن لەسەر دوگمەی فەرمانەکانی 📚",
+                audio="https://t.me/c/1603817995/3",
+                caption= "♨️ لە ڕێگای ئەم بۆتەوە دەتوانی گۆرانی و مۆسیقا و قورئان پەخش بکەی لە ڤۆیس چاتی گروپەکەت
+
+📝هەموو فەرمانەکانی بۆت دانراوە لە دگمەی فەرمانەکان بیان دەۆزەرەوە و بەباشی کۆنتڕۆلی بۆت بکە",
                 parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
