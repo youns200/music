@@ -317,4 +317,4 @@ def dashmarkup():
                 ),
             ],
     ]
-    return f"🔧  **{MUSIC_BOT_NAME} ڕێبەندەکان**", buttons
+    return f"🔧  **{MUSIC_BOT_NAME} ڕێبەندەکان **", buttons
