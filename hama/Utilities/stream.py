@@ -172,7 +172,7 @@ async def start_stream_audio(
             videoid, message.from_user.id, duration_min, duration_min
         )
         await mystic.delete()
-        cap = f"🎥<b>__پەخشکراو:__ </b>[بۆ بینینی فایڵی گۆرانی ئێرە دابگرە]({link})\n👤**__داواراوە لەلایەن:__** {message.from_user.mention}"
+        cap = f"🎥<b>__پەخشکراو:__ </b>[بۆ بینینی فایڵی گۆرانی ئێرە دابگرە]({link})\n👤**__داواکراوە لەلایەن:__** {message.from_user.mention}"
         final_output = await message.reply_photo(
             photo="Utils/Telegram.JPEG",
             reply_markup=InlineKeyboardMarkup(buttons),
