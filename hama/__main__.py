@@ -15,8 +15,7 @@ from hama import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME, CHA
 from hama.Core.Logger.Log import (startup_delete_last, startup_edit_last,
                                    startup_send_new)
 from hama.Core.PyTgCalls.hama import run
-from hama.Database import get_active_chats, get_sudoers, remove_active_chat
-from hama.Inline import private_panel
+from hama.Database import get_active_chats, get_sudoers, remove_active_chat, is_served_user, add_served_userfrom hama.Inline import private_panel
 from hama.Plugins import ALL_MODULES
 from hama.Utilities.inline import paginate_modules
 
@@ -122,6 +121,12 @@ async def initiate_bot():
 
 @app.on_message(filters.command("start") & filters.private)
 async def start_command(_, message):
+    user_id = message.from_user.id
+    if await is_served_user(user_id):
+        pass
+    else:
+        await add_served_user(user_id)
+        return
     if len(message.text.split()) > 1:
         name = (message.text.split(None, 1)[1]).lower()
         if name[0] == "s":
