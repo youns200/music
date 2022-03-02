@@ -15,7 +15,8 @@ from hama import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME, CHA
 from hama.Core.Logger.Log import (startup_delete_last, startup_edit_last,
                                    startup_send_new)
 from hama.Core.PyTgCalls.hama import run
-from hama.Database import get_active_chats, get_sudoers, remove_active_chat, is_served_user, add_served_userfrom hama.Inline import private_panel
+from hama.Database import get_active_chats, get_sudoers, remove_active_chat, is_served_user, add_served_user
+from hama.Inline import private_panel
 from hama.Plugins import ALL_MODULES
 from hama.Utilities.inline import paginate_modules
 
