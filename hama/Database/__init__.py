@@ -12,3 +12,4 @@ from .queue import (add_active_chat, get_active_chats, is_active_chat,
                     is_music_playing, music_off, music_on, remove_active_chat)
 from .sudo import add_sudo, get_sudoers, remove_sudo
 from .blacklistchat import blacklist_chat, blacklisted_chats, whitelist_chat
+from .user import is_served_user, get_served_user, add_served_user
