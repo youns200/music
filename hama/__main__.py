@@ -118,5 +118,5 @@ async def start_command(_, message):
     )
 
 
-if __name__ == "__main__":
-    loop.run_until_complete(initiate_bot())
+#if __name__ == "__main__":
+   # loop.run_until_complete(initiate_bot())
