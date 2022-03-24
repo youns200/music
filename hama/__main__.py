@@ -216,3 +216,7 @@ async def start_command(_, message):
 
 #if __name__ == "__main__":
     #loop.run_until_complete(initiate_bot())
+
+loop.run_until_complete(initiate_bot())
+run()
+idle()
