@@ -116,7 +116,7 @@ async def initiate_bot():
     console.print(f"├[green] ID :- {BOT_ID}!")
     console.print(f"├[red] Assistant Started as {ASSNAME}!")
     console.print(f"└[green] ID :- {ASSID}!")
-    await run()
+        await run()
     console.print(f"\n[red]Stopping Bot")
     
 
