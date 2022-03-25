@@ -19,3 +19,4 @@ rich
 dnspython
 yt-dlp==2021.11.10.1
 tgcrypto
+git+https://github.com/pytgcalls/pytgcalls
