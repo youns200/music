@@ -28,7 +28,7 @@ HELPABLE = {}
 
 async def initiate_bot():
     with console.status(
-        "[magenta] Booting up The Amort Music Bot...",
+        "[magenta] Booting up The Ozan Music Bot...",
     ) as status:
         console.print("┌ [red]Clearing MongoDB cache...")
         try:
