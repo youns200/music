@@ -9,8 +9,8 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, KeyboardButton, Message,
                             ReplyKeyboardMarkup, ReplyKeyboardRemove)
 from pytgcalls import PyTgCalls
-from pytgcalls import idle
-from pytgcalls.types import AudioPiped
+from pytgcalls.types import Update
+from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
 from hama import MUSIC_BOT_NAME, app, db_mem, userbot
 from hama.Core.PyTgCalls import Queues
